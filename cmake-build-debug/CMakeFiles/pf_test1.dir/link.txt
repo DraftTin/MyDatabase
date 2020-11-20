@@ -1,0 +1,3 @@
+"D:\clion\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\pf_test1.dir/objects.a
+C:\MinGW64\mingw64\bin\ar.exe cr CMakeFiles\pf_test1.dir/objects.a @CMakeFiles\pf_test1.dir\objects1.rsp
+C:\MinGW64\mingw64\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\pf_test1.dir/objects.a -Wl,--no-whole-archive  -o pf_test1.exe -Wl,--out-implib,libpf_test1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\pf_test1.dir\linklibs.rsp

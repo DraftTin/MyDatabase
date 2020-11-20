@@ -1,0 +1,3 @@
+"D:\clion\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\dbcreate.dir/objects.a
+C:\MinGW64\mingw64\bin\ar.exe cr CMakeFiles\dbcreate.dir/objects.a @CMakeFiles\dbcreate.dir\objects1.rsp
+C:\MinGW64\mingw64\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\dbcreate.dir/objects.a -Wl,--no-whole-archive  -o dbcreate.exe -Wl,--out-implib,libdbcreate.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\dbcreate.dir\linklibs.rsp
