@@ -173,11 +173,11 @@ RC RM_FileHandle::insertRec(const char *pData, RID &rid) {
 
     // 如果插入之后导致该页满了, 则file hdr page的firstFreePage赋值为当前页的nextPage
     if (Bitmap::isBitmapFull(bitmap, numberRecords)) {
-        // Get the next free page number
+        // Get the next freeHead page number
         RM_PageHdr* pH = (RM_PageHdr*) freePageData;
         int nextFreePageNumber = pH->nextPage;
 
-        // 更新first free page为该页的下一个空闲页(可能为空)
+        // 更新first freeHead page为该页的下一个空闲页(可能为空)
         hdrPage.firstFreePage = nextFreePageNumber;
         bHdrPageChanged = TRUE;
 

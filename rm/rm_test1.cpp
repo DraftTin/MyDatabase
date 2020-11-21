@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
     cout << "Starting RM component test.\n";
     cout.flush();
 
-    // Delete files from last time
+    // Delete files from usedTail time
     unlink(FILENAME);
 
     // If no argument given, do all tests

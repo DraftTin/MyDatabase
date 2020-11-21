@@ -17,7 +17,7 @@ static char *PF_WarnMsg[] = {
   (char*)"invalid page number",
   (char*)"file open",
   (char*)"invalid file descriptor (file closed)",
-  (char*)"page already free",
+  (char*)"page already freeHead",
   (char*)"page already unpinned",
   (char*)"end of file",
   (char*)"attempting to resize the buffer too small",

@@ -237,7 +237,7 @@ RC TestPF()
    cout << "Testing number of pages written to disk: ";
    piWP = pStatisticsMgr->Get(PF_WRITEPAGE);
 
-   // This number should not have increased since last time!
+   // This number should not have increased since usedTail time!
    if (piWP && (*piWP != 2*PF_BUFFER_SIZE)) {
       cout << "Number of written pages is incorrect! (" << *piWP << ")\n";
       // No built in error code for this
@@ -281,7 +281,7 @@ int main()
 
    cout << "----------------------\n";
 
-   // Delete files from last time
+   // Delete files from usedTail time
    unlink(FILE1);
 
    if ((rc = TestPF())) {

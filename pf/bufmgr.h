@@ -65,13 +65,13 @@ private:
     RC insertFree(int slot);
 
 private:
-    BufPageDesc* bufTable;   // 缓冲页s, 初始化的时候申请固定数量的缓冲页
+    BufPageDesc* bufTable;      // 缓冲页s, 初始化的时候申请固定数量的缓冲页
     BufHashTable hashTable;     // 缓冲区哈希表, (fd, pageNum) -> slotNum, slotNum表示bufTable的下标
     int numPages;               // 缓冲区的块数
     int pageSize;               // 缓冲区的块size
-    int first;                  // MRU page slot，也是used list的第一个页
-    int last;                   // LRU page slot，也是used list的最后一页
-    int free;                   // 空闲链表的头
+    int usedHead;               // MRU page slot，也是used list的第一个页
+    int usedTail;               // LRU page slot，也是used list的最后一页
+    int freeHead;               // 空闲链表的头
 };
 
 #endif

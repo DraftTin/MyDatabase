@@ -521,7 +521,7 @@ int main()
    cout << "Note: Statistics are turned on.\n";
 #endif
 
-   // Delete files from last time
+   // Delete files from usedTail time
    unlink(FILE1);
    unlink(FILE2);
 

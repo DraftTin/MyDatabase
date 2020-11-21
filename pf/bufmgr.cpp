@@ -40,8 +40,8 @@ BufferMgr::BufferMgr(int _numPages) : hashTable(PF_HASH_TBL_SIZE) {
     }
     // 统一用INVALID_SLOT表示，方便操作
     bufTable[0].prev = bufTable[numPages - 1].next = INVALID_SLOT;
-    free = 0;
-    first = last = INVALID_SLOT;    // 当前还未申请任何页，都设置成INVALID_SLOT
+    freeHead = 0;
+    usedHead = usedTail = INVALID_SLOT;    // 当前还未申请任何页，都设置成INVALID_SLOT
 }
 
 // 释放缓冲池空间
@@ -99,7 +99,7 @@ RC BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiplePin
 }
 
 // internalAlloc: 向缓冲池申请一页空闲的缓冲页, 用于放入文件页, 并返回申请到的缓冲页的下标
-// - 如果存在空闲区, 直接分配(free !- INVALID_SLOT)
+// - 如果存在空闲区, 直接分配(freeHead !- INVALID_SLOT)
 // - 如果不存在空闲区, 则使用LRU算法替换last页
     // - 判断last页是否是脏页, 如果是, 则写回文件
     // - 从哈希表中移除对应的映射关系
@@ -108,13 +108,13 @@ RC BufferMgr::internalAlloc(int &slot) {
     RC rc;          // return code
 
     // 存在空闲区，直接分配
-    if(free != INVALID_SLOT) {
-        slot = free;
-        free = bufTable[free].next;
+    if(freeHead != INVALID_SLOT) {
+        slot = freeHead;
+        freeHead = bufTable[freeHead].next;
     }
     else {
         // 选择unpinned并且最少使用的页
-        for(slot = last; slot != INVALID_SLOT; slot = bufTable[slot].prev) {
+        for(slot = usedTail; slot != INVALID_SLOT; slot = bufTable[slot].prev) {
             if(bufTable[slot].pinCount == 0) break;
         }
         if(slot == INVALID_SLOT) {
@@ -163,12 +163,12 @@ RC BufferMgr::writePage(int fd, PageNum pageNum, char *source) {
 // - 修改链表对应的prev和next
 RC BufferMgr::unlink(int slot) {
     // 是MRU页
-    if(first == slot) {
-        first = bufTable[slot].next;
+    if(usedHead == slot) {
+        usedHead = bufTable[slot].next;
     }
     // 是LRU页
-    if(last == slot) {
-        last = bufTable[slot].prev;
+    if(usedTail == slot) {
+        usedTail = bufTable[slot].prev;
     }
     // 如果不是最后一页
     if(bufTable[slot].next != INVALID_SLOT) {
@@ -186,17 +186,17 @@ RC BufferMgr::unlink(int slot) {
 
 // linkHead: 将slot页置为first(mru页)
 RC BufferMgr::linkHead(int slot) {
-    bufTable[slot].next = first;
+    bufTable[slot].next = usedHead;
     bufTable[slot].prev = INVALID_SLOT;
 
-    if(first != INVALID_SLOT) {
-        bufTable[first].prev = slot;
+    if(usedHead != INVALID_SLOT) {
+        bufTable[usedHead].prev = slot;
     }
-    first = slot;
+    usedHead = slot;
 
     // 若list为空, 初始化last
-    if(last == INVALID_SLOT) {
-        last = slot;
+    if(usedTail == INVALID_SLOT) {
+        usedTail = slot;
     }
     return 0;
 }
@@ -205,7 +205,7 @@ RC BufferMgr::linkHead(int slot) {
 // - 计算pageNum页在文件中的偏移
 // - 将该页的内容读取到dest中并返回
 RC BufferMgr::readPage(int fd, PageNum pageNum, char *dest) {
-    // readPage跳过文件头 PF_FILE_HDR_SIZE, 如果pageNum为0则读取的是file first page
+    // readPage跳过文件头 PF_FILE_HDR_SIZE, 如果pageNum为0则读取的是file usedHead page
     long offset = pageNum * (long)pageSize + PF_FILE_HDR_SIZE;
     if(lseek(fd, offset, L_SET) < 0) {
         return PF_UNIX;
@@ -232,12 +232,12 @@ RC BufferMgr::initPageDesc(int fd, PageNum pageNum, int slot) {
 // 将slot页插入到free list的首部
 // insertFree: 将slot缓冲页插入到空闲区链表中
 RC BufferMgr::insertFree(int slot) {
-    bufTable[slot].next = free;
+    bufTable[slot].next = freeHead;
     // free的页不会被LRU算法替换，所以不需要对prev赋值
-//    if(free != INVALID_SLOT) {
-//        bufTable[free].prev = slot;
+//    if(freeHead != INVALID_SLOT) {
+//        bufTable[freeHead].prev = slot;
 //    }
-    free = slot;
+    freeHead = slot;
     return 0;   // ok
 }
 
@@ -289,7 +289,7 @@ RC BufferMgr::printBuffer() const {
          << "least recently used.\n";
 
     int slot, next;
-    slot = first;
+    slot = usedHead;
     while (slot != INVALID_SLOT) {
         next = bufTable[slot].next;
         cout << slot << " :: \n";
@@ -303,10 +303,10 @@ RC BufferMgr::printBuffer() const {
         slot = next;
     }
 
-    if (first==INVALID_SLOT)
+    if (usedHead == INVALID_SLOT)
         cout << "Buffer is empty!\n";
     else
-        cout << "All remaining slots are free.\n";
+        cout << "All remaining slots are freeHead.\n";
 
     return 0;
 }
@@ -346,7 +346,7 @@ RC BufferMgr::unpinPage(int fd, PageNum pageNum) {
 RC BufferMgr::flushPages(int fd) {
     RC rc, rcWarn = 0;
     // 处理方法，从MRU页开始处理
-    int slot = first;
+    int slot = usedHead;
     while(slot != INVALID_SLOT) {
         // 保存该结点的下一个结点的位置
         int next = bufTable[slot].next;
@@ -407,7 +407,7 @@ RC BufferMgr::markDirty(int fd, PageNum pageNum) {
 // forcePages: 将fd文件的所有缓冲区的脏页写回磁盘, 不移除缓冲区
 RC BufferMgr::forcePages(int fd) {
     RC rc;
-    int slot = first;
+    int slot = usedHead;
     while(slot != INVALID_SLOT) {
         int next = bufTable[slot].next;
         // 对该文件中的所有脏页进行写回
@@ -428,7 +428,7 @@ RC BufferMgr::forcePages(int fd) {
 // forceSinglePage: 将fd文件的pageNum页内容写回磁盘, 不移除缓冲区
 RC BufferMgr::forceSinglePage(int fd, int pageNum) {
     RC rc;
-    int slot = first;
+    int slot = usedHead;
     while(slot != INVALID_SLOT) {
         int next = bufTable[slot].next;
         // 仅写回一页
