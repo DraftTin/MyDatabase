@@ -5,6 +5,10 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+
 #define MAXNAME         24          // 表示一个表或一个属性名的最大长度
 
 #define MAXSTRINGLEN    255         // 字符串类型属性的最大长度值

@@ -8,7 +8,7 @@
 #include <string>
 #include "../global.h"
 #include "rid.h"
-#include "../pf/pf.h"
+#include "pf.h"
 #include "../parser.h"
 
 typedef int PageNum;

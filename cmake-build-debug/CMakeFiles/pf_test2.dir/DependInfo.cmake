@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufhashtable.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufmgr.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/pf/pagehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_filehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/pf/pf_filehandle.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/pf/pf_manager.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_test2.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/pf/pf_test2.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/storage/bufhashtable.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/storage/bufmgr.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pagehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/storage/pagehandle.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_filehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/storage/pf_filehandle.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/storage/pf_manager.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_test2.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test2.dir/storage/pf_test2.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

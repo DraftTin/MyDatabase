@@ -32,7 +32,7 @@ BufferMgr::BufferMgr(int _numPages) : hashTable(PF_HASH_TBL_SIZE) {
             exit(1);
         }
 
-        memset((void *)bufTable[i].pData, 0, pageSize);
+        memset((char *)bufTable[i].pData, 0, pageSize);
 
         // 设置缓冲区链表的相对位置，使用数组表示链表
         bufTable[i].prev = i - 1;
@@ -68,7 +68,7 @@ RC BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiplePin
     }
     if (rc == PF_HASHNOTFOUND) {
         // 如果缓冲区中没找到该页则申请一个空页， 如果有空闲页直接分配，如果没有用替换算法淘汰一个页之后分配
-        if((rc = internalAlloc(slot))) {
+        if((rc = bufferAlloc(slot))) {
             return rc;
         }
 
@@ -98,13 +98,13 @@ RC BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiplePin
     return 0;
 }
 
-// internalAlloc: 向缓冲池申请一页空闲的缓冲页, 用于放入文件页, 并返回申请到的缓冲页的下标
+// bufferAlloc: 向缓冲池申请一页空闲的缓冲页, 用于放入文件页, 并返回申请到的缓冲页的下标
 // - 如果存在空闲区, 直接分配(freeHead !- INVALID_SLOT)
 // - 如果不存在空闲区, 则使用LRU算法替换last页
     // - 判断last页是否是脏页, 如果是, 则写回文件
     // - 从哈希表中移除对应的映射关系
 // - 将first的值置为该缓冲页(置为mru)
-RC BufferMgr::internalAlloc(int &slot) {
+RC BufferMgr::bufferAlloc(int &slot) {
     RC rc;          // return code
 
     // 存在空闲区，直接分配
@@ -113,7 +113,7 @@ RC BufferMgr::internalAlloc(int &slot) {
         freeHead = bufTable[freeHead].next;
     }
     else {
-        // 选择unpinned并且最少使用的页
+        // 用LRU算法替换未被固定的页面
         for(slot = usedTail; slot != INVALID_SLOT; slot = bufTable[slot].prev) {
             if(bufTable[slot].pinCount == 0) break;
         }
@@ -257,7 +257,7 @@ RC BufferMgr::allocatePage(int fd, PageNum pageNum, char **ppBuffer) {
     }
 
     // 申请一个空闲页，如果申请失败则返回error
-    if((rc = internalAlloc(slot))) {
+    if((rc = bufferAlloc(slot))) {
         return rc;
     }
 
@@ -311,9 +311,10 @@ RC BufferMgr::printBuffer() const {
     return 0;
 }
 
-// unpinPage: 将fd文件的pageNum页的pinCount减少一
-// - 判断能够unpin(是否存在于缓冲区, 是否已经是unpinned状态)
-// - 如果unpin之后其pinCount为0, 则将该页置为mru页, 该操作是一项优化, 防止pinCount为0, 之后在申请缓冲页的时候直接被换出缓冲区, 导致页的换入换出频繁
+// TODO
+//  unpinPage: 将fd文件的pageNum页的pinCount减一
+//  - 判断能够unpin(是否存在于缓冲区, 是否已经是unpinned状态)
+//  - 如果取消固定后没有进程使用该页，则将该页放到队尾, 防止pinCount为0, 之后在申请缓冲页的时候直接被换出缓冲区, 导致页的换入换出频繁
 RC BufferMgr::unpinPage(int fd, PageNum pageNum) {
     RC rc;
     int slot;
@@ -331,7 +332,7 @@ RC BufferMgr::unpinPage(int fd, PageNum pageNum) {
     if(bufTable[slot].pinCount == 0) {
         return PF_PAGEUNPINNED;
     }
-    // 如果该页是最后unpin的页，则make it MRU page
+    // 如果取消固定后没有进程使用该页，则将该页放到队尾
     if(--(bufTable[slot].pinCount) == 0) {
         if((rc = unlink(slot)) ||
            (rc = linkHead(slot))) {

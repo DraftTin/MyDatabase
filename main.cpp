@@ -10,7 +10,7 @@
 #include <iostream>
 #include <fcntl.h>
 #include "pf/bufmgr.h"
-#include "rm/rm.h"
+#include "storage/rm.h"
 #include "sm/sm.h"
 
 using namespace std;

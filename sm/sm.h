@@ -5,7 +5,7 @@
 #ifndef MYDATABASE_SM_H
 #define MYDATABASE_SM_H
 
-#include "../rm/rm.h"
+#include "../storage/rm.h"
 #include "../parser.h"
 
 // SM_RelcatRecord - 存储在relcat中的记录

@@ -8,19 +8,19 @@
 
 C:/Users/Administrator/CLionProjects/MyDatabase/global.h
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufhashtable.cpp
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.cpp
 pf_internal.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 bufhashtable.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufhashtable.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h
 iostream
 -
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufhashtable.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h
 pf_internal.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufmgr.cpp
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.cpp
 io.h
 -
 process.h
@@ -28,25 +28,25 @@ process.h
 iostream
 -
 bufmgr.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufmgr.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufmgr.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
 pf_internal.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 bufhashtable.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufhashtable.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pagehandle.cpp
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pagehandle.cpp
 pf.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
 ../global.h
 C:/Users/Administrator/CLionProjects/MyDatabase/global.h
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
 ../global.h
 C:/Users/Administrator/CLionProjects/MyDatabase/global.h
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_error.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_error.h
 cerrno
 -
 cstdio
@@ -54,29 +54,29 @@ cstdio
 iostream
 -
 pf_internal.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_filehandle.cpp
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_filehandle.cpp
 io.h
 -
 process.h
 -
 pf_internal.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 bufmgr.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufmgr.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
 pf.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
 iostream
 -
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 cstring
 -
 pf.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_manager.cpp
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_manager.cpp
 io.h
 -
 process.h
@@ -84,13 +84,13 @@ process.h
 fcntl.h
 -
 pf_internal.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 bufmgr.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufmgr.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
 iostream
 -
 
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_test1.cpp
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_test1.cpp
 cstdio
 -
 iostream
@@ -100,13 +100,13 @@ cstring
 unistd.h
 -
 pf.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
 pf_internal.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 bufhashtable.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/bufhashtable.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h
 pf_error.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/pf_error.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_error.h
 statistics.h
-C:/Users/Administrator/CLionProjects/MyDatabase/pf/statistics.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/statistics.h
 

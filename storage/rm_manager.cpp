@@ -5,7 +5,7 @@
 #include <cstring>
 #include "rm.h"
 #include "rm_internal.h"
-#include "../pf/bufmgr.h"
+#include "bufmgr.h"
 
 using namespace std;
 

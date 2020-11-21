@@ -5,10 +5,10 @@
 #include <cstdlib>
 
 #include "../global.h"
-#include "../pf/pf.h"
-#include "../rm/rm.h"
-#include "../pf/pf_error.h"
-#include "../rm/rm_error.h"
+#include "pf.h"
+#include "rm.h"
+#include "pf_error.h"
+#include "rm_error.h"
 
 using namespace std;
 

@@ -27,7 +27,6 @@ public:
     explicit BufferMgr(int numPages);                         // 申请numPages个页的缓冲区
     ~BufferMgr();
 public:
-
     // 将fd和pageNum读取到缓冲池中并获取缓冲池的指针
     RC getPage(int fd, PageNum pageNum, char** ppBuffer,
                int bMultiplePins = TRUE);
@@ -50,7 +49,7 @@ public:
     RC forceSinglePage(int fd, int pageNum);
 private:
     // 申请缓冲区的一个空闲页，如果没有则替换一页
-    RC internalAlloc(int& slot);
+    RC bufferAlloc(int& slot);
     // 将页写回
     RC writePage(int fd, PageNum pageNum, char* source);
     // 将slot从bufTable中的used列表中移除
@@ -69,9 +68,9 @@ private:
     BufHashTable hashTable;     // 缓冲区哈希表, (fd, pageNum) -> slotNum, slotNum表示bufTable的下标
     int numPages;               // 缓冲区的块数
     int pageSize;               // 缓冲区的块size
-    int usedHead;               // MRU page slot，也是used list的第一个页
+    int usedHead;               // MRU page slot，也是used list的首部
     int usedTail;               // LRU page slot，也是used list的最后一页
-    int freeHead;               // 空闲链表的头
+    int freeHead;               // 空闲链表的首部
 };
 
 #endif

@@ -10,8 +10,8 @@
 #include <iostream>
 #include "global.h"
 #include "pf/pf.h"
-#include "rm/rm.h"
-#include "rm/rm_error.h"
+#include "storage/rm.h"
+#include "storage/rm_error.h"
 #include "sm/sm.h"
 
 using namespace std;
