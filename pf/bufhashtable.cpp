@@ -3,16 +3,16 @@
 //
 
 #include "pf_internal.h"
-#include "pf_hashtable.h"
+#include "bufhashtable.h"
 #include <iostream>
 
 using namespace std;
 
 // 哈希表构造函数，创建numBuckets个桶
-PF_HashTable::PF_HashTable(int _numBuckets) {
+BufHashTable::BufHashTable(int _numBuckets) {
     this->numBuckets = _numBuckets;
     // 初始化哈希表
-    hashTable = new PF_HashEntry* [numBuckets];
+    hashTable = new BufHashEntry* [numBuckets];
 
     for(int i = 0; i < numBuckets; ++i) {
         hashTable[i] = nullptr;
@@ -20,12 +20,12 @@ PF_HashTable::PF_HashTable(int _numBuckets) {
 }
 
 // 哈希表析构函数, 逐项删除哈希表中的项
-PF_HashTable::~PF_HashTable() {
+BufHashTable::~BufHashTable() {
     for(int i = 0; i < numBuckets; ++i) {
         // 删除所有项
-        PF_HashEntry* entry = hashTable[i];
+        BufHashEntry* entry = hashTable[i];
         while(entry != nullptr) {
-            PF_HashEntry* next = entry->next;
+            BufHashEntry* next = entry->next;
             delete entry;
             entry = next;
         }
@@ -34,13 +34,13 @@ PF_HashTable::~PF_HashTable() {
 }
 
  // (pageNum, slot)唯一标识一条记录
- RC PF_HashTable::find(int fd, PageNum pageNum, int& slot) {
+ RC BufHashTable::find(int fd, PageNum pageNum, int& slot) {
      int bucket = Hash(fd, pageNum);
      if(bucket < 0) {
          return PF_HASHNOTFOUND;
      }
 
-     for(PF_HashEntry* entry = hashTable[bucket]; entry != nullptr;
+     for(BufHashEntry* entry = hashTable[bucket]; entry != nullptr;
              entry = entry->next) {
          if(entry->fd == fd && entry->pageNum == pageNum) {
              // 找到
@@ -51,17 +51,17 @@ PF_HashTable::~PF_HashTable() {
      return PF_HASHNOTFOUND;
  }
 int flag = 0;
- RC PF_HashTable::insert(int fd, PageNum pageNum, int slot) {
+ RC BufHashTable::insert(int fd, PageNum pageNum, int slot) {
     int bucket = Hash(fd, pageNum);
 
-    PF_HashEntry* entry;
+    BufHashEntry* entry;
     for(entry = hashTable[bucket]; entry != nullptr; entry = entry->next) {
         if(entry->fd == fd && entry->pageNum == pageNum) {
             return PF_HASHPAGEEXIST;
         }
     }
 
-    if((entry = new PF_HashEntry) == nullptr) {
+    if((entry = new BufHashEntry) == nullptr) {
         return PF_NOMEM;
     }
     entry->fd = fd;
@@ -77,9 +77,9 @@ int flag = 0;
     return 0;   // 插入成功
 }
 
-RC PF_HashTable::remove(int fd, PageNum pageNum) {
+RC BufHashTable::remove(int fd, PageNum pageNum) {
     int bucket = Hash(fd, pageNum);
-    PF_HashEntry* entry;
+    BufHashEntry* entry;
     for(entry = hashTable[bucket]; entry != nullptr; entry = entry->next) {
         if(entry->fd == fd && entry->pageNum == pageNum) {
             break;

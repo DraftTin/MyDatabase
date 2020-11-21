@@ -6,12 +6,12 @@
 #define PF_BUFFERMGR_H
 
 #include "pf_internal.h"
-#include "pf_hashtable.h"
+#include "bufhashtable.h"
 
 #define INVALID_SLOT -1
 
 // 缓存页
-struct PF_BufPageDesc {
+struct BufPageDesc {
     char* pData;                // 缓冲区页的数据指针, 指针位置: pBuf + sizeof(PF_PageHdr), 即指针会指向RM_PageHdr的开头
     int next;                   // 缓冲区页链表中的next
     int prev;                   // 缓冲区页链表中的prev
@@ -22,10 +22,10 @@ struct PF_BufPageDesc {
 };
 
 // 用于缓冲区的管理
-class PF_BufferMgr {
+class BufferMgr {
 public:
-    explicit PF_BufferMgr(int numPages);                         // 申请numPages个页的缓冲区
-    ~PF_BufferMgr();
+    explicit BufferMgr(int numPages);                         // 申请numPages个页的缓冲区
+    ~BufferMgr();
 public:
 
     // 将fd和pageNum读取到缓冲池中并获取缓冲池的指针
@@ -33,14 +33,10 @@ public:
                int bMultiplePins = TRUE);
     // 申请缓冲池中的一个新页，并用ppBuffer指向它
     RC allocatePage(int fd, PageNum pageNum, char** ppBuffer);
-    // 移除缓冲区中所有的entries
-    RC clearBuffer();
     // 输出缓冲区的所有页
     RC printBuffer() const;
-
     // 获取能够被申请的块的大小
     RC getBlockSize(int &length) const;
-
     // 将以也标记为dirty
     RC markDirty(int fd, PageNum pageNum);
     // unpin page from the buffer
@@ -69,8 +65,8 @@ private:
     RC insertFree(int slot);
 
 private:
-    PF_BufPageDesc* bufTable;   // 缓冲页s, 初始化的时候申请固定数量的缓冲页
-    PF_HashTable hashTable;     // 缓冲区哈希表, (fd, pageNum) -> slotNum, slotNum表示bufTable的下标
+    BufPageDesc* bufTable;   // 缓冲页s, 初始化的时候申请固定数量的缓冲页
+    BufHashTable hashTable;     // 缓冲区哈希表, (fd, pageNum) -> slotNum, slotNum表示bufTable的下标
     int numPages;               // 缓冲区的块数
     int pageSize;               // 缓冲区的块size
     int first;                  // MRU page slot，也是used list的第一个页

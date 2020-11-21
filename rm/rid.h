@@ -2,8 +2,8 @@
 // Created by Administrator on 2020/11/9.
 //
 
-#ifndef MYDATABASE_RM_RID_H
-#define MYDATABASE_RM_RID_H
+#ifndef MYDATABASE_RID_H
+#define MYDATABASE_RID_H
 
 #include "../global.h"
 
@@ -25,4 +25,4 @@ private:
 
 #define RID_NOT_VIABLE      (START_RM_WARN + 0)     // 记录不可用
 
-#endif //MYDATABASE_RM_RID_H
+#endif //MYDATABASE_RID_H

@@ -102,31 +102,31 @@ CMakeFiles/pf_test2.dir/pf/pf_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test2.dir/pf/pf_manager.cpp.s"
 	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_manager.cpp -o CMakeFiles\pf_test2.dir\pf\pf_manager.cpp.s
 
-CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.obj: CMakeFiles/pf_test2.dir/flags.make
-CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.obj: ../pf/pf_hashtable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\pf_test2.dir\pf\pf_hashtable.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_hashtable.cpp
+CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.obj: CMakeFiles/pf_test2.dir/flags.make
+CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.obj: ../pf/bufhashtable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\pf_test2.dir\pf\bufhashtable.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\pf\bufhashtable.cpp
 
-CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_hashtable.cpp > CMakeFiles\pf_test2.dir\pf\pf_hashtable.cpp.i
+CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\pf\bufhashtable.cpp > CMakeFiles\pf_test2.dir\pf\bufhashtable.cpp.i
 
-CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_hashtable.cpp -o CMakeFiles\pf_test2.dir\pf\pf_hashtable.cpp.s
+CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\pf\bufhashtable.cpp -o CMakeFiles\pf_test2.dir\pf\bufhashtable.cpp.s
 
-CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.obj: CMakeFiles/pf_test2.dir/flags.make
-CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.obj: ../pf/pf_buffermgr.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\pf_test2.dir\pf\pf_buffermgr.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_buffermgr.cpp
+CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.obj: CMakeFiles/pf_test2.dir/flags.make
+CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.obj: ../pf/bufmgr.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\pf_test2.dir\pf\bufmgr.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\pf\bufmgr.cpp
 
-CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_buffermgr.cpp > CMakeFiles\pf_test2.dir\pf\pf_buffermgr.cpp.i
+CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\pf\bufmgr.cpp > CMakeFiles\pf_test2.dir\pf\bufmgr.cpp.i
 
-CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_buffermgr.cpp -o CMakeFiles\pf_test2.dir\pf\pf_buffermgr.cpp.s
+CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\pf\bufmgr.cpp -o CMakeFiles\pf_test2.dir\pf\bufmgr.cpp.s
 
 CMakeFiles/pf_test2.dir/pf/pf_filehandle.cpp.obj: CMakeFiles/pf_test2.dir/flags.make
 CMakeFiles/pf_test2.dir/pf/pf_filehandle.cpp.obj: ../pf/pf_filehandle.cpp
@@ -141,37 +141,37 @@ CMakeFiles/pf_test2.dir/pf/pf_filehandle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test2.dir/pf/pf_filehandle.cpp.s"
 	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_filehandle.cpp -o CMakeFiles\pf_test2.dir\pf\pf_filehandle.cpp.s
 
-CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.obj: CMakeFiles/pf_test2.dir/flags.make
-CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.obj: ../pf/pf_pagehandle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\pf_test2.dir\pf\pf_pagehandle.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_pagehandle.cpp
+CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.obj: CMakeFiles/pf_test2.dir/flags.make
+CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.obj: ../pf/pagehandle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\pf_test2.dir\pf\pagehandle.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\pf\pagehandle.cpp
 
-CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_pagehandle.cpp > CMakeFiles\pf_test2.dir\pf\pf_pagehandle.cpp.i
+CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\pf\pagehandle.cpp > CMakeFiles\pf_test2.dir\pf\pagehandle.cpp.i
 
-CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\pf\pf_pagehandle.cpp -o CMakeFiles\pf_test2.dir\pf\pf_pagehandle.cpp.s
+CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\pf\pagehandle.cpp -o CMakeFiles\pf_test2.dir\pf\pagehandle.cpp.s
 
 # Object files for target pf_test2
 pf_test2_OBJECTS = \
 "CMakeFiles/pf_test2.dir/pf/pf_test2.cpp.obj" \
 "CMakeFiles/pf_test2.dir/pf/pf_manager.cpp.obj" \
-"CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.obj" \
-"CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.obj" \
+"CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.obj" \
+"CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.obj" \
 "CMakeFiles/pf_test2.dir/pf/pf_filehandle.cpp.obj" \
-"CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.obj"
+"CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.obj"
 
 # External object files for target pf_test2
 pf_test2_EXTERNAL_OBJECTS =
 
 pf_test2.exe: CMakeFiles/pf_test2.dir/pf/pf_test2.cpp.obj
 pf_test2.exe: CMakeFiles/pf_test2.dir/pf/pf_manager.cpp.obj
-pf_test2.exe: CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.obj
-pf_test2.exe: CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.obj
+pf_test2.exe: CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.obj
+pf_test2.exe: CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.obj
 pf_test2.exe: CMakeFiles/pf_test2.dir/pf/pf_filehandle.cpp.obj
-pf_test2.exe: CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.obj
+pf_test2.exe: CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.obj
 pf_test2.exe: CMakeFiles/pf_test2.dir/build.make
 pf_test2.exe: CMakeFiles/pf_test2.dir/linklibs.rsp
 pf_test2.exe: CMakeFiles/pf_test2.dir/objects1.rsp

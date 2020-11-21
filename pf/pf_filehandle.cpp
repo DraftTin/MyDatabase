@@ -7,7 +7,7 @@
 #include <process.h>
 #endif
 #include "pf_internal.h"
-#include "pf_buffermgr.h"
+#include "bufmgr.h"
 #include "pf.h"
 #include <iostream>
 
@@ -58,7 +58,7 @@ RC PF_FileHandle::flushPages() const {
 }
 
 // getFirstPage: 将文件第一页读入缓冲池
-RC PF_FileHandle::getFirstPage(PF_PageHandle &pageHandle) const {
+RC PF_FileHandle::getFirstPage(PageHandle &pageHandle) const {
     // -1转换为PageNum
     return getNextPage((PageNum)-1, pageHandle);
 }
@@ -66,7 +66,7 @@ RC PF_FileHandle::getFirstPage(PF_PageHandle &pageHandle) const {
 // getNextPage: 获取current页号的下一个used page
 // - 从current开始, 顺序查找文件中的页, 查看该页是否是used page
 // - 如果是used page, 则表示找到了下一页, 否则继续循环
-RC PF_FileHandle::getNextPage(PageNum current, PF_PageHandle &pageHandle) const {
+RC PF_FileHandle::getNextPage(PageNum current, PageHandle &pageHandle) const {
     // 必须指向一个open的文件
     if(!bFileOpen) {
         return PF_CLOSEDFILE;
@@ -93,7 +93,7 @@ RC PF_FileHandle::getNextPage(PageNum current, PF_PageHandle &pageHandle) const 
 // - 从缓冲区获取该页
 // - 判断该页是否被使用(used page)
 // - 若不是used page, 则表示该页还未被allocate, 不能使用
-RC PF_FileHandle::getThisPage(int pageNum, PF_PageHandle &pageHandle) const {
+RC PF_FileHandle::getThisPage(int pageNum, PageHandle &pageHandle) const {
     int rc;
     char *pPageBuf;
     if(!bFileOpen) {
@@ -120,13 +120,13 @@ RC PF_FileHandle::getThisPage(int pageNum, PF_PageHandle &pageHandle) const {
 }
 
 // getLastPage: 获取最后一个used page
-RC PF_FileHandle::getLastPage(PF_PageHandle &pageHandle) const {
+RC PF_FileHandle::getLastPage(PageHandle &pageHandle) const {
     // 获取最后一页的前一页
     return getPrevPage((PageNum)hdr.numPages, pageHandle);
 }
 
 // getPrevPage: 获取current页的前一个used page
-RC PF_FileHandle::getPrevPage(PageNum current, PF_PageHandle &pageHandle) const {
+RC PF_FileHandle::getPrevPage(PageNum current, PageHandle &pageHandle) const {
     // 如果文件没打开则返回error
     if(!bFileOpen) {
         return PF_CLOSEDFILE;
@@ -157,7 +157,7 @@ RC PF_FileHandle::getPrevPage(PageNum current, PF_PageHandle &pageHandle) const 
 // - 对于申请到的空页, 将其pageHdr的nextFree置为PF_PAGE_USED表示该页被使用, 并清空该页的数据区(因为可能有数据页被dispose然后有残留数据)
 // - 标记该页为dirty
 // - 对pageHandle的pData和pageNum进行赋值, 将其返回
-RC PF_FileHandle::allocatePage(PF_PageHandle &pageHandle) {
+RC PF_FileHandle::allocatePage(PageHandle &pageHandle) {
     if (!bFileOpen) {
         return (PF_CLOSEDFILE);
     }

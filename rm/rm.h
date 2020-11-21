@@ -7,7 +7,7 @@
 
 #include <string>
 #include "../global.h"
-#include "rm_rid.h"
+#include "rid.h"
 #include "../pf/pf.h"
 #include "../parser.h"
 

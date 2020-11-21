@@ -6,16 +6,16 @@
 
 #define  INVALID_PAGE -1
 
-PF_PageHandle::PF_PageHandle() : pageNum(INVALID_PAGE), pPageData(nullptr) {
+PageHandle::PageHandle() : pageNum(INVALID_PAGE), pPageData(nullptr) {
     // do nothing
 }
 
-PF_PageHandle::~PF_PageHandle() {
+PageHandle::~PageHandle() {
     // do nothing
 }
 
 // getData: 返回页的指针
-RC PF_PageHandle::getData(char *&pData) const {
+RC PageHandle::getData(char *&pData) const {
     if(pPageData == nullptr) {
         return PF_PAGEUNPINNED;
     }
@@ -24,7 +24,7 @@ RC PF_PageHandle::getData(char *&pData) const {
 }
 
 // 获取该页的页号
-RC PF_PageHandle::getPageNum(PageNum &_pageNum) const {
+RC PageHandle::getPageNum(PageNum &_pageNum) const {
     if(pPageData == nullptr) {
         return PF_PAGEUNPINNED;
     }

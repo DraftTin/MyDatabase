@@ -9,7 +9,7 @@
 #endif
 #include <iostream>
 #include <fcntl.h>
-#include "pf/pf_buffermgr.h"
+#include "pf/bufmgr.h"
 #include "rm/rm.h"
 #include "sm/sm.h"
 
@@ -26,7 +26,7 @@ void test2() {
     cout << "filename: " << filename << endl;
     cout << "create file: " << pfManager->createFile(filename) << endl;
     cout << "openfile: " << pfManager->openFile(filename, pfFileHandle) << endl;
-    PF_PageHandle pageHandle;
+    PageHandle pageHandle;
     cout << "allocate page from buffer pool: " << pfFileHandle.allocatePage(pageHandle) << endl;
     char *pData = nullptr;
     int pageNum = -999;

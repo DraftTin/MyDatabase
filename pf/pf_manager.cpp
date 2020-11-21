@@ -9,7 +9,7 @@
 #endif
 #include <fcntl.h>
 #include "pf_internal.h"
-#include "pf_buffermgr.h"
+#include "bufmgr.h"
 
 #include <iostream>
 
@@ -19,7 +19,7 @@ using namespace std;
 // - 初始化内存缓冲区
  PF_Manager::PF_Manager() {
      // 申请内存中的一个缓冲区
-     pBufferMgr = new PF_BufferMgr(PF_BUFFER_SIZE);
+     pBufferMgr = new BufferMgr(PF_BUFFER_SIZE);
  }
 
  PF_Manager::~PF_Manager() {

@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "pf.h"
 #include "pf_internal.h"
-#include "pf_hashtable.h"
+#include "bufhashtable.h"
 #include "pf_error.h"
 
 using namespace std;
@@ -33,7 +33,7 @@ RC TestPF()
 {
    PF_Manager pfm;
    PF_FileHandle fh;
-   PF_PageHandle ph;
+   PageHandle ph;
    RC rc;
    char *pData;
    PageNum pageNum;

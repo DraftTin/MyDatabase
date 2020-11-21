@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.obj"
+  "CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.obj"
+  "CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.obj"
+  "CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.obj"
   "CMakeFiles/pf_test2.dir/pf/pf_filehandle.cpp.obj"
-  "CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.obj"
   "CMakeFiles/pf_test2.dir/pf/pf_manager.cpp.obj"
-  "CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.obj"
   "CMakeFiles/pf_test2.dir/pf/pf_test2.cpp.obj"
   "libpf_test2.dll.a"
   "pf_test2.exe"

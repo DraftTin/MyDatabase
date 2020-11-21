@@ -5,7 +5,7 @@
 #include <cstring>
 #include "rm.h"
 #include "rm_internal.h"
-#include "../pf/pf_buffermgr.h"
+#include "../pf/bufmgr.h"
 
 using namespace std;
 
@@ -43,8 +43,8 @@ RC RM_Manager::createFile(const char *fileName, int recordSize) {
         return rc;
     }
     delete [] attrFileName;
-    PF_PageHandle recPH;
-    PF_PageHandle attrPH;
+    PageHandle recPH;
+    PageHandle attrPH;
     // 申请一页用作RM_FileHeaderPage
     if((rc = recFH.allocatePage(recPH)) ||
             (rc = attrFH.allocatePage(attrPH))) {
@@ -124,8 +124,8 @@ RC RM_Manager::openFile(const char *fileName, RM_FileHandle &fileHandle) {
     fileHandle.rmAttrFileHandle.bFileOpen = TRUE;
     fileHandle.rmAttrFileHandle.bHdrPageChanged = FALSE;
     fileHandle.rmAttrFileHandle.fileHandle = attrFH;
-    PF_PageHandle recPH;
-    PF_PageHandle attrPH;
+    PageHandle recPH;
+    PageHandle attrPH;
     // RM组件创建的文件first page是file hdr page
     if((rc = recFH.getFirstPage(recPH)) ||
             (rc = attrFH.getFirstPage(attrPH))) {
@@ -180,7 +180,7 @@ RC RM_Manager::closeFile(RM_FileHandle &fileHandle) {
     PF_FileHandle attrFH = fileHandle.rmAttrFileHandle.fileHandle;
     // 如果对应的记录文件头被修改, 则写回
     if(fileHandle.bHdrPageChanged) {
-        PF_PageHandle pfPH;
+        PageHandle pfPH;
         PageNum pageNum;
         char *pData;
         // 获取file hdr page, 对应的pageNum, 和页内数据
@@ -205,7 +205,7 @@ RC RM_Manager::closeFile(RM_FileHandle &fileHandle) {
     // 如果对应的属性文件头被修改, 则写回
     if(fileHandle.rmAttrFileHandle.bHdrPageChanged) {
         cout << "rmAttrFileHandle write " << endl;
-        PF_PageHandle pfPH;
+        PageHandle pfPH;
         PageNum pageNum;
         char *pData;
         // 获取file hdr page, 对应的pageNum, 和页内数据

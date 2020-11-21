@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "pf.h"
 #include "pf_internal.h"
-#include "pf_hashtable.h"
+#include "bufhashtable.h"
 #include "pf_error.h"
 
 using namespace std;
@@ -110,7 +110,7 @@ RC TestHash();
 RC WriteFile(PF_Manager &pfm, char *fname)
 {
     PF_FileHandle fh;
-    PF_PageHandle ph;
+    PageHandle ph;
     RC            rc;
     char          *pData;
     PageNum       pageNum;
@@ -162,7 +162,7 @@ RC WriteFile(PF_Manager &pfm, char *fname)
 
 RC PrintFile(PF_FileHandle &fh)
 {
-   PF_PageHandle ph;
+   PageHandle ph;
    RC            rc;
    char          *pData;
    PageNum       pageNum, temp;
@@ -219,7 +219,7 @@ RC TestPF()
 {
    PF_Manager    pfm;
    PF_FileHandle fh1, fh2;
-   PF_PageHandle ph;
+   PageHandle ph;
    RC            rc;
    char          *pData;
    PageNum       pageNum, temp;
@@ -467,7 +467,7 @@ int len;
 RC TestHash()
 {
     cout << "test hash\n";
-   PF_HashTable ht(PF_HASH_TBL_SIZE);
+   BufHashTable ht(PF_HASH_TBL_SIZE);
    RC           rc;
    int          i, s;
    PageNum      p;

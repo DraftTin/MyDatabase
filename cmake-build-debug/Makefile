@@ -248,44 +248,122 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-pf/pf_buffermgr.obj: pf/pf_buffermgr.cpp.obj
+pf/bufhashtable.obj: pf/bufhashtable.cpp.obj
 
-.PHONY : pf/pf_buffermgr.obj
+.PHONY : pf/bufhashtable.obj
 
 # target to build an object file
-pf/pf_buffermgr.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_buffermgr.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_buffermgr.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_buffermgr.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_buffermgr.cpp.obj
-.PHONY : pf/pf_buffermgr.cpp.obj
+pf/bufhashtable.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/bufhashtable.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/bufhashtable.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/bufhashtable.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/bufhashtable.cpp.obj
+.PHONY : pf/bufhashtable.cpp.obj
 
-pf/pf_buffermgr.i: pf/pf_buffermgr.cpp.i
+pf/bufhashtable.i: pf/bufhashtable.cpp.i
 
-.PHONY : pf/pf_buffermgr.i
+.PHONY : pf/bufhashtable.i
 
 # target to preprocess a source file
-pf/pf_buffermgr.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_buffermgr.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_buffermgr.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_buffermgr.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_buffermgr.cpp.i
-.PHONY : pf/pf_buffermgr.cpp.i
+pf/bufhashtable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/bufhashtable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/bufhashtable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/bufhashtable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/bufhashtable.cpp.i
+.PHONY : pf/bufhashtable.cpp.i
 
-pf/pf_buffermgr.s: pf/pf_buffermgr.cpp.s
+pf/bufhashtable.s: pf/bufhashtable.cpp.s
 
-.PHONY : pf/pf_buffermgr.s
+.PHONY : pf/bufhashtable.s
 
 # target to generate assembly for a file
-pf/pf_buffermgr.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_buffermgr.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_buffermgr.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_buffermgr.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_buffermgr.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_buffermgr.cpp.s
-.PHONY : pf/pf_buffermgr.cpp.s
+pf/bufhashtable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/bufhashtable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/bufhashtable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/bufhashtable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/bufhashtable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/bufhashtable.cpp.s
+.PHONY : pf/bufhashtable.cpp.s
+
+pf/bufmgr.obj: pf/bufmgr.cpp.obj
+
+.PHONY : pf/bufmgr.obj
+
+# target to build an object file
+pf/bufmgr.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/bufmgr.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/bufmgr.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/bufmgr.cpp.obj
+.PHONY : pf/bufmgr.cpp.obj
+
+pf/bufmgr.i: pf/bufmgr.cpp.i
+
+.PHONY : pf/bufmgr.i
+
+# target to preprocess a source file
+pf/bufmgr.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/bufmgr.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/bufmgr.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/bufmgr.cpp.i
+.PHONY : pf/bufmgr.cpp.i
+
+pf/bufmgr.s: pf/bufmgr.cpp.s
+
+.PHONY : pf/bufmgr.s
+
+# target to generate assembly for a file
+pf/bufmgr.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/bufmgr.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/bufmgr.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/bufmgr.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/bufmgr.cpp.s
+.PHONY : pf/bufmgr.cpp.s
+
+pf/pagehandle.obj: pf/pagehandle.cpp.obj
+
+.PHONY : pf/pagehandle.obj
+
+# target to build an object file
+pf/pagehandle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pagehandle.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pagehandle.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pagehandle.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pagehandle.cpp.obj
+.PHONY : pf/pagehandle.cpp.obj
+
+pf/pagehandle.i: pf/pagehandle.cpp.i
+
+.PHONY : pf/pagehandle.i
+
+# target to preprocess a source file
+pf/pagehandle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pagehandle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pagehandle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pagehandle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pagehandle.cpp.i
+.PHONY : pf/pagehandle.cpp.i
+
+pf/pagehandle.s: pf/pagehandle.cpp.s
+
+.PHONY : pf/pagehandle.s
+
+# target to generate assembly for a file
+pf/pagehandle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pagehandle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pagehandle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pagehandle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pagehandle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pagehandle.cpp.s
+.PHONY : pf/pagehandle.cpp.s
 
 pf/pf_filehandle.obj: pf/pf_filehandle.cpp.obj
 
@@ -326,45 +404,6 @@ pf/pf_filehandle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_filehandle.cpp.s
 .PHONY : pf/pf_filehandle.cpp.s
 
-pf/pf_hashtable.obj: pf/pf_hashtable.cpp.obj
-
-.PHONY : pf/pf_hashtable.obj
-
-# target to build an object file
-pf/pf_hashtable.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_hashtable.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_hashtable.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_hashtable.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_hashtable.cpp.obj
-.PHONY : pf/pf_hashtable.cpp.obj
-
-pf/pf_hashtable.i: pf/pf_hashtable.cpp.i
-
-.PHONY : pf/pf_hashtable.i
-
-# target to preprocess a source file
-pf/pf_hashtable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_hashtable.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_hashtable.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_hashtable.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_hashtable.cpp.i
-.PHONY : pf/pf_hashtable.cpp.i
-
-pf/pf_hashtable.s: pf/pf_hashtable.cpp.s
-
-.PHONY : pf/pf_hashtable.s
-
-# target to generate assembly for a file
-pf/pf_hashtable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_hashtable.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_hashtable.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_hashtable.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_hashtable.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_hashtable.cpp.s
-.PHONY : pf/pf_hashtable.cpp.s
-
 pf/pf_manager.obj: pf/pf_manager.cpp.obj
 
 .PHONY : pf/pf_manager.obj
@@ -403,45 +442,6 @@ pf/pf_manager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_manager.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_manager.cpp.s
 .PHONY : pf/pf_manager.cpp.s
-
-pf/pf_pagehandle.obj: pf/pf_pagehandle.cpp.obj
-
-.PHONY : pf/pf_pagehandle.obj
-
-# target to build an object file
-pf/pf_pagehandle.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_pagehandle.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_pagehandle.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_pagehandle.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_pagehandle.cpp.obj
-.PHONY : pf/pf_pagehandle.cpp.obj
-
-pf/pf_pagehandle.i: pf/pf_pagehandle.cpp.i
-
-.PHONY : pf/pf_pagehandle.i
-
-# target to preprocess a source file
-pf/pf_pagehandle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_pagehandle.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_pagehandle.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_pagehandle.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_pagehandle.cpp.i
-.PHONY : pf/pf_pagehandle.cpp.i
-
-pf/pf_pagehandle.s: pf/pf_pagehandle.cpp.s
-
-.PHONY : pf/pf_pagehandle.s
-
-# target to generate assembly for a file
-pf/pf_pagehandle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_pagehandle.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/pf/pf_pagehandle.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/pf/pf_pagehandle.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/pf/pf_pagehandle.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/pf/pf_pagehandle.cpp.s
-.PHONY : pf/pf_pagehandle.cpp.s
 
 pf/pf_test1.obj: pf/pf_test1.cpp.obj
 
@@ -497,35 +497,68 @@ pf/pf_test2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/pf/pf_test2.cpp.s
 .PHONY : pf/pf_test2.cpp.s
 
-rm/rm_attrfilehandle.obj: rm/rm_attrfilehandle.cpp.obj
+rm/attrfilehandle.obj: rm/attrfilehandle.cpp.obj
 
-.PHONY : rm/rm_attrfilehandle.obj
+.PHONY : rm/attrfilehandle.obj
 
 # target to build an object file
-rm/rm_attrfilehandle.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rm_attrfilehandle.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rm_attrfilehandle.cpp.obj
-.PHONY : rm/rm_attrfilehandle.cpp.obj
+rm/attrfilehandle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/attrfilehandle.cpp.obj
+.PHONY : rm/attrfilehandle.cpp.obj
 
-rm/rm_attrfilehandle.i: rm/rm_attrfilehandle.cpp.i
+rm/attrfilehandle.i: rm/attrfilehandle.cpp.i
 
-.PHONY : rm/rm_attrfilehandle.i
+.PHONY : rm/attrfilehandle.i
 
 # target to preprocess a source file
-rm/rm_attrfilehandle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rm_attrfilehandle.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rm_attrfilehandle.cpp.i
-.PHONY : rm/rm_attrfilehandle.cpp.i
+rm/attrfilehandle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/attrfilehandle.cpp.i
+.PHONY : rm/attrfilehandle.cpp.i
 
-rm/rm_attrfilehandle.s: rm/rm_attrfilehandle.cpp.s
+rm/attrfilehandle.s: rm/attrfilehandle.cpp.s
 
-.PHONY : rm/rm_attrfilehandle.s
+.PHONY : rm/attrfilehandle.s
 
 # target to generate assembly for a file
-rm/rm_attrfilehandle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rm_attrfilehandle.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rm_attrfilehandle.cpp.s
-.PHONY : rm/rm_attrfilehandle.cpp.s
+rm/attrfilehandle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/attrfilehandle.cpp.s
+.PHONY : rm/attrfilehandle.cpp.s
+
+rm/rid.obj: rm/rid.cpp.obj
+
+.PHONY : rm/rid.obj
+
+# target to build an object file
+rm/rid.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rid.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/rm/rid.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rid.cpp.obj
+.PHONY : rm/rid.cpp.obj
+
+rm/rid.i: rm/rid.cpp.i
+
+.PHONY : rm/rid.i
+
+# target to preprocess a source file
+rm/rid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rid.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/rm/rid.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rid.cpp.i
+.PHONY : rm/rid.cpp.i
+
+rm/rid.s: rm/rid.cpp.s
+
+.PHONY : rm/rid.s
+
+# target to generate assembly for a file
+rm/rid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rid.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/rm/rid.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rid.cpp.s
+.PHONY : rm/rid.cpp.s
 
 rm/rm_bitmap.obj: rm/rm_bitmap.cpp.obj
 
@@ -689,39 +722,6 @@ rm/rm_record.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rm_record.cpp.s
 .PHONY : rm/rm_record.cpp.s
 
-rm/rm_rid.obj: rm/rm_rid.cpp.obj
-
-.PHONY : rm/rm_rid.obj
-
-# target to build an object file
-rm/rm_rid.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rm_rid.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/rm/rm_rid.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rm_rid.cpp.obj
-.PHONY : rm/rm_rid.cpp.obj
-
-rm/rm_rid.i: rm/rm_rid.cpp.i
-
-.PHONY : rm/rm_rid.i
-
-# target to preprocess a source file
-rm/rm_rid.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rm_rid.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/rm/rm_rid.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rm_rid.cpp.i
-.PHONY : rm/rm_rid.cpp.i
-
-rm/rm_rid.s: rm/rm_rid.cpp.s
-
-.PHONY : rm/rm_rid.s
-
-# target to generate assembly for a file
-rm/rm_rid.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/rm/rm_rid.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/rm/rm_rid.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/rm/rm_rid.cpp.s
-.PHONY : rm/rm_rid.cpp.s
-
 rm/rm_test1.obj: rm/rm_test1.cpp.obj
 
 .PHONY : rm/rm_test1.obj
@@ -831,30 +831,33 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... pf/pf_buffermgr.obj
-	@echo ... pf/pf_buffermgr.i
-	@echo ... pf/pf_buffermgr.s
+	@echo ... pf/bufhashtable.obj
+	@echo ... pf/bufhashtable.i
+	@echo ... pf/bufhashtable.s
+	@echo ... pf/bufmgr.obj
+	@echo ... pf/bufmgr.i
+	@echo ... pf/bufmgr.s
+	@echo ... pf/pagehandle.obj
+	@echo ... pf/pagehandle.i
+	@echo ... pf/pagehandle.s
 	@echo ... pf/pf_filehandle.obj
 	@echo ... pf/pf_filehandle.i
 	@echo ... pf/pf_filehandle.s
-	@echo ... pf/pf_hashtable.obj
-	@echo ... pf/pf_hashtable.i
-	@echo ... pf/pf_hashtable.s
 	@echo ... pf/pf_manager.obj
 	@echo ... pf/pf_manager.i
 	@echo ... pf/pf_manager.s
-	@echo ... pf/pf_pagehandle.obj
-	@echo ... pf/pf_pagehandle.i
-	@echo ... pf/pf_pagehandle.s
 	@echo ... pf/pf_test1.obj
 	@echo ... pf/pf_test1.i
 	@echo ... pf/pf_test1.s
 	@echo ... pf/pf_test2.obj
 	@echo ... pf/pf_test2.i
 	@echo ... pf/pf_test2.s
-	@echo ... rm/rm_attrfilehandle.obj
-	@echo ... rm/rm_attrfilehandle.i
-	@echo ... rm/rm_attrfilehandle.s
+	@echo ... rm/attrfilehandle.obj
+	@echo ... rm/attrfilehandle.i
+	@echo ... rm/attrfilehandle.s
+	@echo ... rm/rid.obj
+	@echo ... rm/rid.i
+	@echo ... rm/rid.s
 	@echo ... rm/rm_bitmap.obj
 	@echo ... rm/rm_bitmap.i
 	@echo ... rm/rm_bitmap.s
@@ -870,9 +873,6 @@ help:
 	@echo ... rm/rm_record.obj
 	@echo ... rm/rm_record.i
 	@echo ... rm/rm_record.s
-	@echo ... rm/rm_rid.obj
-	@echo ... rm/rm_rid.i
-	@echo ... rm/rm_rid.s
 	@echo ... rm/rm_test1.obj
 	@echo ... rm/rm_test1.i
 	@echo ... rm/rm_test1.s

@@ -7,24 +7,24 @@
 #include <process.h>
 #endif
 #include <iostream>
-#include "pf_buffermgr.h"
+#include "bufmgr.h"
 
 using namespace std;
 
 // 暂存页的“文件描述符”
 #define MEMORY_FD -1
 
-// PF_BufferMgr: 输入_numPages, 表示创建_numPages容量的缓冲池
+// BufferMgr: 输入_numPages, 表示创建_numPages容量的缓冲池
 // - 申请_numPages容量的缓冲池空间
 // - 初始化缓冲页的size为pageSize = PF页头 + PF_PAGE_SIZE = 4096, 和文件页大小相同, 并将每个缓冲页的初始next和prev指针都设置成后一页和前一页
 // - free空闲块号链的head, 初始化为缓冲区的第一页0
 // - first被申请页链表的head(mru页), last被申请页链表的tail(lru页), 初始化为INVALID_SLOT表示不存在
-PF_BufferMgr::PF_BufferMgr(int _numPages) : hashTable(PF_HASH_TBL_SIZE) {
+BufferMgr::BufferMgr(int _numPages) : hashTable(PF_HASH_TBL_SIZE) {
     this->numPages = _numPages;
     // 一个页的大小是页内容 + 页头
     pageSize = PF_PAGE_SIZE + sizeof(PF_PageHdr);
     // 申请numPages页缓冲区
-    bufTable = new PF_BufPageDesc[numPages];
+    bufTable = new BufPageDesc[numPages];
 
     for(int i = 0; i < numPages; ++i) {
         if((bufTable[i].pData = new char[pageSize]) == nullptr) {
@@ -45,7 +45,7 @@ PF_BufferMgr::PF_BufferMgr(int _numPages) : hashTable(PF_HASH_TBL_SIZE) {
 }
 
 // 释放缓冲池空间
-PF_BufferMgr::~PF_BufferMgr() {
+BufferMgr::~BufferMgr() {
     // 先把每个缓冲区页中保存的字符串内容删除
     for(int i = 0; i < this->numPages; ++i) {
         delete [] bufTable[i].pData;
@@ -58,7 +58,7 @@ PF_BufferMgr::~PF_BufferMgr() {
 // - 若不在缓冲区内, 则向缓冲池申请一页空闲缓冲页, 并将文件页读入该缓冲页, 向哈希表中插入映射关系, 初始化该缓冲页的fd, pageNum, pinCount和bDirty
 // - 若在缓冲区内, 则直接返回该页, ++pinCount, 注: bMultiplePins表示一个标记, 如果bMultiplePins为FALSE而pinCount > 0则是一个错误(如disposePage时)
 // - 返回文件页在缓冲区页的指针
-RC PF_BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiplePins) {
+RC BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiplePins) {
     RC rc;      // return code
     int slot;   // 指定缓冲区中页的下标
 
@@ -104,7 +104,7 @@ RC PF_BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiple
     // - 判断last页是否是脏页, 如果是, 则写回文件
     // - 从哈希表中移除对应的映射关系
 // - 将first的值置为该缓冲页(置为mru)
-RC PF_BufferMgr::internalAlloc(int &slot) {
+RC BufferMgr::internalAlloc(int &slot) {
     RC rc;          // return code
 
     // 存在空闲区，直接分配
@@ -144,7 +144,7 @@ RC PF_BufferMgr::internalAlloc(int &slot) {
 // - 计算该页在文件中的偏移offset
 // - 移动文件句柄的指针到文件内偏移处
 // - 写入数据
-RC PF_BufferMgr::writePage(int fd, PageNum pageNum, char *source) {
+RC BufferMgr::writePage(int fd, PageNum pageNum, char *source) {
     long offset = pageNum * (long)pageSize + PF_FILE_HDR_SIZE;
     // 将fd定位到offset位置
     if(lseek(fd, offset, L_SET) < 0) {
@@ -161,7 +161,7 @@ RC PF_BufferMgr::writePage(int fd, PageNum pageNum, char *source) {
 // unlink: 从used list中移除bufTable[slot]
 // - 判断该页是否是first或last, 若是, 则first和last指向对应的下一个位置和前一个位置
 // - 修改链表对应的prev和next
-RC PF_BufferMgr::unlink(int slot) {
+RC BufferMgr::unlink(int slot) {
     // 是MRU页
     if(first == slot) {
         first = bufTable[slot].next;
@@ -185,7 +185,7 @@ RC PF_BufferMgr::unlink(int slot) {
 }
 
 // linkHead: 将slot页置为first(mru页)
-RC PF_BufferMgr::linkHead(int slot) {
+RC BufferMgr::linkHead(int slot) {
     bufTable[slot].next = first;
     bufTable[slot].prev = INVALID_SLOT;
 
@@ -204,7 +204,7 @@ RC PF_BufferMgr::linkHead(int slot) {
 // readPage: 将文件fd的pageNum页内容读取到dest中并返回, 用于将页的内容读入缓冲区的时候
 // - 计算pageNum页在文件中的偏移
 // - 将该页的内容读取到dest中并返回
-RC PF_BufferMgr::readPage(int fd, PageNum pageNum, char *dest) {
+RC BufferMgr::readPage(int fd, PageNum pageNum, char *dest) {
     // readPage跳过文件头 PF_FILE_HDR_SIZE, 如果pageNum为0则读取的是file first page
     long offset = pageNum * (long)pageSize + PF_FILE_HDR_SIZE;
     if(lseek(fd, offset, L_SET) < 0) {
@@ -221,7 +221,7 @@ RC PF_BufferMgr::readPage(int fd, PageNum pageNum, char *dest) {
 }
 
 // initPageDesc: 初始化bufTable[slot]缓冲页, 设置fd, pageNum, bDirty, pinCount
-RC PF_BufferMgr::initPageDesc(int fd, PageNum pageNum, int slot) {
+RC BufferMgr::initPageDesc(int fd, PageNum pageNum, int slot) {
     bufTable[slot].fd = fd;
     bufTable[slot].pageNum = pageNum;
     bufTable[slot].bDirty = FALSE;
@@ -231,7 +231,7 @@ RC PF_BufferMgr::initPageDesc(int fd, PageNum pageNum, int slot) {
 
 // 将slot页插入到free list的首部
 // insertFree: 将slot缓冲页插入到空闲区链表中
-RC PF_BufferMgr::insertFree(int slot) {
+RC BufferMgr::insertFree(int slot) {
     bufTable[slot].next = free;
     // free的页不会被LRU算法替换，所以不需要对prev赋值
 //    if(free != INVALID_SLOT) {
@@ -245,7 +245,7 @@ RC PF_BufferMgr::insertFree(int slot) {
 // - 向缓冲区申请一页空闲缓冲页
 // - 向哈希表中插入(fd, pageNum) -> slotNum 的映射, 初始化该缓冲页
 // - 将ppBuffer指向该缓冲页并返回
-RC PF_BufferMgr::allocatePage(int fd, PageNum pageNum, char **ppBuffer) {
+RC BufferMgr::allocatePage(int fd, PageNum pageNum, char **ppBuffer) {
     RC rc;
     int slot;
     // 如果已经在缓冲区了，则返回error
@@ -276,13 +276,13 @@ RC PF_BufferMgr::allocatePage(int fd, PageNum pageNum, char **ppBuffer) {
 }
 
 
-RC PF_BufferMgr::getBlockSize(int &length) const {
+RC BufferMgr::getBlockSize(int &length) const {
     length = pageSize;
     return 0;   // ok
 }
 
 // printBuffer: 输出缓冲池的信息
-RC PF_BufferMgr::printBuffer() const {
+RC BufferMgr::printBuffer() const {
     cout << "Buffer contains " << numPages << " pages of size "
          << pageSize <<".\n";
     cout << "Contents in order from most recently used to "
@@ -314,7 +314,7 @@ RC PF_BufferMgr::printBuffer() const {
 // unpinPage: 将fd文件的pageNum页的pinCount减少一
 // - 判断能够unpin(是否存在于缓冲区, 是否已经是unpinned状态)
 // - 如果unpin之后其pinCount为0, 则将该页置为mru页, 该操作是一项优化, 防止pinCount为0, 之后在申请缓冲页的时候直接被换出缓冲区, 导致页的换入换出频繁
-RC PF_BufferMgr::unpinPage(int fd, PageNum pageNum) {
+RC BufferMgr::unpinPage(int fd, PageNum pageNum) {
     RC rc;
     int slot;
 
@@ -343,7 +343,7 @@ RC PF_BufferMgr::unpinPage(int fd, PageNum pageNum) {
 
 // flushPages: 刷新页面，将缓冲区中fd对应的所有页的脏页都写回的文件中，并且从缓冲区中移除
 // - 从first开始刷新, 将脏页写回文件, 如果此时fd文件在缓冲区仍有固定的页面, 则在方法后会返回警告
-RC PF_BufferMgr::flushPages(int fd) {
+RC BufferMgr::flushPages(int fd) {
     RC rc, rcWarn = 0;
     // 处理方法，从MRU页开始处理
     int slot = first;
@@ -378,7 +378,7 @@ RC PF_BufferMgr::flushPages(int fd) {
 }
 
 // markDirty: 将缓冲池中的(fd, pageNum)页标记为脏，不需要移除缓冲区, 并将该页放到used list的首部
-RC PF_BufferMgr::markDirty(int fd, PageNum pageNum) {
+RC BufferMgr::markDirty(int fd, PageNum pageNum) {
     int rc;
     int slot;
     if((rc = hashTable.find(fd, pageNum, slot))) {
@@ -405,7 +405,7 @@ RC PF_BufferMgr::markDirty(int fd, PageNum pageNum) {
 }
 
 // forcePages: 将fd文件的所有缓冲区的脏页写回磁盘, 不移除缓冲区
-RC PF_BufferMgr::forcePages(int fd) {
+RC BufferMgr::forcePages(int fd) {
     RC rc;
     int slot = first;
     while(slot != INVALID_SLOT) {
@@ -426,7 +426,7 @@ RC PF_BufferMgr::forcePages(int fd) {
 }
 
 // forceSinglePage: 将fd文件的pageNum页内容写回磁盘, 不移除缓冲区
-RC PF_BufferMgr::forceSinglePage(int fd, int pageNum) {
+RC BufferMgr::forceSinglePage(int fd, int pageNum) {
     RC rc;
     int slot = first;
     while(slot != INVALID_SLOT) {

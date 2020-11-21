@@ -50,7 +50,7 @@ RC RM_FileHandle::getRec(const RID &rid, RM_Record &record) {
         return rc;
     }
     //  根据rid的pageNum和slotNum获取对应的页指针
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     char *pData;
     if((rc = fileHandle.getThisPage(pageNum, pfPH)) ||
             (rc = pfPH.getData(pData))) {
@@ -97,7 +97,7 @@ RC RM_FileHandle::insertRec(const char *pData, RID &rid) {
     if (numberRecords % 8 != 0) bitmapSize++;
 
     PageNum freePageNumber = hdrPage.firstFreePage;
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
 
     // 如果文件中没有空闲页, 则向缓冲区申请一页空闲页, 并进行初始化(写page hdr, 写bitmap)
     if (freePageNumber == RM_NO_FREE_PAGE) {
@@ -228,7 +228,7 @@ RC RM_FileHandle::deleteRec(const RID &rid) {
     }
 
     // 获取该记录对应的页内的数据, 并将pageNum标记为脏页
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     char* pageData;
     if ((rc = fileHandle.getThisPage(pageNumber, pfPH))) {
         return rc;
@@ -301,7 +301,7 @@ RC RM_FileHandle::updateRec(const RM_Record &rec) {
     }
 
     // 获取该记录所在文件页的句柄, 获取页数据
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     char* pData;
     if ((rc = fileHandle.getThisPage(pageNumber, pfPH)) ||
             (rc = pfPH.getData(pData))) {
@@ -353,7 +353,7 @@ RC RM_FileHandle::insertVarValue(const RID &rid, int offset, const char *pVal, i
     if((rc = rmAttrFileHandle.insertVarValue(pVal, length, varLenAttr))) {
         return rc;
     }
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     PageNum pageNum;
     SlotNum slotNum;
     char *pageData;
@@ -403,7 +403,7 @@ RC RM_FileHandle::updateVarValue(const RID &rid, int offset, char *pVal, int len
     if((rc = rmAttrFileHandle.updateVarValue(pVal, length, varLenAttr))) {
         return rc;
     }
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     PageNum pageNum;
     SlotNum slotNum;
     char *pageData;

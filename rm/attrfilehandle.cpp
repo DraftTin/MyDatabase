@@ -23,7 +23,7 @@ RC RM_AttrFileHandle::insertVarValue(const char *pVal, int length, RM_VarLenAttr
         k++;
     }
     int rc;
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     // 找到对应的属性块种类
     if(k < NUMBER_ATTRBLOCK_SPECIES) {
         int firstFreePage = hdrPage.firstFreeAttrPages[k];
@@ -117,7 +117,7 @@ RC RM_AttrFileHandle::deleteVarValue(const RM_VarLenAttr &varLenAttr) {
         return rc;
     }
     // 获取该页内的数据, 标记为dirty
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     char *pData;
     if((rc = fileHandle.getThisPage(pageNum, pfPH)) ||
             (rc = pfPH.getData(pData)) ||
@@ -158,7 +158,7 @@ RC RM_AttrFileHandle::getVarValue(RM_VarLenAttr &varLenAttr, char *&pVal) {
         return rc;
     }
     char *pData;
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     if((rc = fileHandle.getThisPage(pageNum, pfPH)) ||
             (rc = pfPH.getData(pData))) {
         return rc;

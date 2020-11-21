@@ -62,7 +62,7 @@ RC RM_FileScan::openScan(const RM_FileHandle &fileHandle, AttrType attrType, int
     int rc;
 
     PF_FileHandle pfFH = fileHandle.fileHandle;
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
 
     if((rc = pfFH.getFirstPage(pfPH))) {
         return rc;
@@ -198,7 +198,7 @@ RC RM_FileScan::getNextRec(RM_Record &rec) {
     int rc;
 
     PF_FileHandle pfFH = rmFileHandle.fileHandle;
-    PF_PageHandle pfPH;
+    PageHandle pfPH;
     char* pageData;
     char* bitmap;
 
