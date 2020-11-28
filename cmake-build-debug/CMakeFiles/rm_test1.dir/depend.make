@@ -21,6 +21,7 @@ CMakeFiles/rm_test1.dir/storage/attrfilehandle.cpp.obj: ../storage/rm.h
 CMakeFiles/rm_test1.dir/storage/attrfilehandle.cpp.obj: ../storage/rm_bitmap.h
 CMakeFiles/rm_test1.dir/storage/attrfilehandle.cpp.obj: ../storage/rm_internal.h
 
+CMakeFiles/rm_test1.dir/storage/bufhashtable.cpp.obj: ../atomic/RWLock.h
 CMakeFiles/rm_test1.dir/storage/bufhashtable.cpp.obj: ../global.h
 CMakeFiles/rm_test1.dir/storage/bufhashtable.cpp.obj: ../storage/bufhashtable.cpp
 CMakeFiles/rm_test1.dir/storage/bufhashtable.cpp.obj: ../storage/bufhashtable.h

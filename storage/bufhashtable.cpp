@@ -32,26 +32,33 @@ BufHashTable::~BufHashTable() {
     }
     delete[] hashTable;
 }
-
- // (pageNum, slot)唯一标识一条记录
+ // find: 哈希表find函数
+ // 输入: (pageNum, slot)唯一标识一条记录
+ // 输出: slot - 缓冲区页下标
  RC BufHashTable::find(int fd, PageNum pageNum, int& slot) {
-     int bucket = Hash(fd, pageNum);
-     if(bucket < 0) {
-         return PF_HASHNOTFOUND;
-     }
+    // 加读锁
+    ReadGuard readGuard(rwLock);
+    int bucket = Hash(fd, pageNum);
+    if(bucket < 0) {
+        return PF_HASHNOTFOUND;
+    }
 
-     for(BufHashEntry* entry = hashTable[bucket]; entry != nullptr;
-             entry = entry->next) {
-         if(entry->fd == fd && entry->pageNum == pageNum) {
-             // 找到
+    for(BufHashEntry* entry = hashTable[bucket]; entry != nullptr;
+            entry = entry->next) {
+        if(entry->fd == fd && entry->pageNum == pageNum) {
              slot = entry->slot;
              return 0;
-         }
-     }
-     return PF_HASHNOTFOUND;
+        }
+    }
+    return PF_HASHNOTFOUND;
  }
 
+ // insert: 哈希表insert函数
+ // 输入: key: (fd, pageNum), value: slot
+ // 输出: 无
  RC BufHashTable::insert(int fd, PageNum pageNum, int slot) {
+     // 加写锁
+    WriteGuard writeGuard(rwLock);
     int bucket = Hash(fd, pageNum);
 
     BufHashEntry* entry;
@@ -74,10 +81,20 @@ BufHashTable::~BufHashTable() {
     }
     hashTable[bucket] = entry;
 
+//    printf("insert: (%d, %d, %d) \n", fd, pageNum, slot);
+    // 并发产生不一致
+    if(fd != hashTable[bucket]->fd || pageNum != hashTable[bucket]->pageNum) {
+        return HASH_INCONSISTENT;
+    }
     return 0;   // 插入成功
 }
 
+// remove: 哈希表remove函数
+// 输入: key: (fd, pageNum)
+// 输出: 无
 RC BufHashTable::remove(int fd, PageNum pageNum) {
+    // 加写锁
+//    WriteGuard writeGuard(rwLock);
     int bucket = Hash(fd, pageNum);
     BufHashEntry* entry;
     for(entry = hashTable[bucket]; entry != nullptr; entry = entry->next) {
@@ -97,8 +114,23 @@ RC BufHashTable::remove(int fd, PageNum pageNum) {
         entry->next->prev = entry->prev;
     }
     delete entry;
-
+//    printf("remove: (%d, %d, %d)\n", fd, pageNum);
     return 0;
+}
+
+// show: 输出hashcode处的key, val链表
+// 输入: hashcode
+// 输出: 无
+void BufHashTable::show(int hashcode) {
+    if(hashTable[hashcode] == nullptr) {
+        printf("null\n");
+        return ;
+    }
+    BufHashEntry* entry;
+    for(entry = hashTable[hashcode]; entry->next != nullptr; entry = entry->next) {
+        printf("(%d, %d, %d) -> ", entry->fd, entry->pageNum, entry->slot);
+    }
+    printf("(%d, %d, %d)\n", entry->fd, entry->pageNum, entry->slot);
 }
 
 

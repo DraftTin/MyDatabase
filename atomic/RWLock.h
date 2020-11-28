@@ -6,6 +6,7 @@
 #define MYDATABASE_RWLOCK_H
 
 #include <condition_variable>
+#include <atomic>
 
 class RWLock {
 public:
@@ -16,12 +17,9 @@ public:
     void writeUnlock();
 
 private:
-    int readCount;
-    int writeCount;
-    std::mutex readCountMutex;          // readCount的锁
-    std::mutex writeCountMutex;         // writeCount的锁
-    std::mutex readMutex;
-    std::mutex writeMutex;
+    std::atomic_int readCount;
+    std::atomic_int writeCount;
+    std::mutex rwMutex;             // 并发控制锁
     std::condition_variable wq;     // 控制写者
     std::condition_variable rq;     // 控制读者
 };
@@ -29,32 +27,36 @@ private:
 class ReadGuard {
 public:
     ReadGuard(RWLock &rwLock);
+    ReadGuard();
     ~ReadGuard();
     void unlock();
     void lock();
+    ReadGuard& operator=(ReadGuard&& readGuard) noexcept;
 
 public:
     ReadGuard& operator=(const ReadGuard&) = delete;
     ReadGuard(const ReadGuard&) = delete;
 
 private:
-    RWLock &rwLock;
+    RWLock *rwLock;
     int myOwns;
 };
 
 class WriteGuard {
 public:
-    WriteGuard(RWLock &rwLock);
+    explicit WriteGuard(RWLock& rwLock);
+    WriteGuard();
     ~WriteGuard();
     void unlock();
     void lock();
+    WriteGuard& operator=(WriteGuard&& writeGuard) noexcept;
 
 public:
     WriteGuard& operator=(const WriteGuard&) = delete;
     WriteGuard(const WriteGuard&) = delete;
 
 private:
-    RWLock &rwLock;
+    RWLock *rwLock;
     int myOwns;
 };
 

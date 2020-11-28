@@ -6,6 +6,9 @@
 #define PF_HASHTABLE_H
 
 #include "pf_internal.h"
+#include "../atomic/RWLock.h"
+
+#define HASH_INCONSISTENT -301;
 
 struct BufHashEntry {
     BufHashEntry* next;
@@ -23,12 +26,14 @@ public:
     RC find(int fd, PageNum pageNum, int& slot);
     RC insert(int fd, PageNum pageNum, int slot);
     RC remove(int fd, PageNum pageNum);
+    void show(int hashcode);
 private:
     int Hash(int fd, PageNum pageNum) const {
         return (fd + pageNum) % numBuckets;
     }
     int numBuckets;             // 记录桶的数量
     BufHashEntry** hashTable;   // 哈希表
+    RWLock rwLock;              // 控制哈希表访问的读写锁
 };
 
 #endif

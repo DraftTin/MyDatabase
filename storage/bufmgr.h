@@ -44,7 +44,6 @@ public:
     RC unpinPage(int fd, PageNum pageNum);
     // 释放fd文件在缓冲区中的所有未被使用的页
     RC flushPages(int fd);
-
     // 将文件中所有的脏页页写回文件，并且不从缓冲区移除这些页
     RC forcePages(int fd);
     // 将一页写回文件，并且不从缓冲区中移除
@@ -55,15 +54,15 @@ private:
     // 将页写回
     RC writePage(int fd, PageNum pageNum, char* source);
     // 将slot从bufTable中的used列表中移除
-    RC unlink(int slot);
+    RC unlink(int slot, bool blck = true);
     // 将被申请的页放到栈顶/队列头（LRU算法）
-    RC linkHead(int slot);
+    RC linkHead(int slot, bool blck = true);
     // 读取页
     RC readPage(int fd, PageNum pageNum, char* dest);
     // 初始化缓冲区页的entry
     RC initPageDesc(int fd, PageNum pageNum, int slot);
     // 将slot插入到free list的头部
-    RC insertFree(int slot);
+    RC insertFree(int slot, bool blck = true);
 
 private:
     BufPageDesc* bufTable;                      // 缓冲页s, 初始化的时候申请固定数量的缓冲页
@@ -73,7 +72,7 @@ private:
     int usedHead;                               // MRU page slot，也是used list的首部
     int usedTail;                               // LRU page slot，也是used list的最后一页
     int freeHead;                               // 空闲链表的首部
-    RWLock listLock;                            // 链表的读写锁
+    RWLock listLock;                            // 控制链表访问的读写锁
 };
 
 #endif

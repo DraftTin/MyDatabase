@@ -76,9 +76,8 @@ RC BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiplePin
         if((rc = readPage(fd, pageNum, bufTable[slot].pData)) ||
                 (rc = hashTable.insert(fd, pageNum, slot)) ||
                 (rc = initPageDesc(fd, pageNum, slot))) {
-            WriteGuard writeGuard(listLock);
-            unlink(slot);
-            insertFree(slot);
+            unlink(slot, true);
+            insertFree(slot, true);
             return rc;
         }
     }
@@ -90,9 +89,8 @@ RC BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiplePin
         // 当前页在内存，增加pinCount
         ++bufTable[slot].pinCount;
         // 将该页放到used list的头部
-        WriteGuard writeGuard(listLock);
-        if((rc = unlink(slot)) ||
-                (rc = linkHead(slot))) {
+        if((rc = unlink(slot, true)) ||
+           (rc = linkHead(slot, true))) {
             return rc;
         }
     }
@@ -115,6 +113,10 @@ RC BufferMgr::bufferAlloc(int &slot) {
     if(freeHead != INVALID_SLOT) {
         readGuard.unlock();
         WriteGuard writeGuard(listLock);
+        // 判断是否还存在空闲页
+        if(freeHead == INVALID_SLOT) {
+            return bufferAlloc(slot);
+        }
         slot = freeHead;
         freeHead = bufTable[freeHead].next;
     }
@@ -141,12 +143,12 @@ RC BufferMgr::bufferAlloc(int &slot) {
         }
         // 从hashTable和bufferTable的used队列中移除
         if((rc = hashTable.remove(bufTable[slot].fd, bufTable[slot].pageNum)) ||
-                (rc = unlink(slot))) {
+                (rc = unlink(slot, true))) {
             return rc;
         }
     }
     // 申请之后，将申请的slot放到栈顶(LRU算法)
-    if((rc = linkHead(slot))) return rc;
+    if((rc = linkHead(slot, true))) return rc;
     return 0;
 }
 
@@ -169,11 +171,17 @@ RC BufferMgr::writePage(int fd, PageNum pageNum, char *source) {
 
 // 从used list中移除bufTable[slot]
 // unlink: 从used list中移除bufTable[slot]
-// - 对链表加写锁
+// 输入: slot - 缓冲页的下标    blck - 是否需要单独对链表加锁
+// 输出: RC码
+// - 如果需要, 对链表加写锁
 // - 判断该页是否是first或last, 若是, 则first和last指向对应的下一个位置和前一个位置
 // - 修改链表对应的prev和next
-RC BufferMgr::unlink(int slot) {
-    WriteGuard writeGuard(listLock);
+RC BufferMgr::unlink(int slot, bool blck) {
+    WriteGuard writeGuard;
+    // 如果需要, 对链表加锁
+    if(blck) {
+        writeGuard = WriteGuard(listLock);
+    }
     // 是MRU页
     if(usedHead == slot) {
         usedHead = bufTable[slot].next;
@@ -196,10 +204,16 @@ RC BufferMgr::unlink(int slot) {
 }
 
 // linkHead: 将slot页置为first(mru页)
-// - 对链表加写锁
+// 输入: slot - 缓冲页的下标    blck - 是否需要单独对链表加锁
+// 输出: RC码
+// - 如果需要, 对链表加写锁
 // - 修改链表指针
-RC BufferMgr::linkHead(int slot) {
-    WriteGuard writeGuard(listLock);
+RC BufferMgr::linkHead(int slot, bool blck) {
+    WriteGuard writeGuard;
+    // 如果需要, 对链表加锁
+    if(blck) {
+        writeGuard = WriteGuard(listLock);
+    }
     bufTable[slot].next = usedHead;
     bufTable[slot].prev = INVALID_SLOT;
 
@@ -243,10 +257,16 @@ RC BufferMgr::initPageDesc(int fd, PageNum pageNum, int slot) {
 }
 
 // insertFree: 将slot缓冲页插入到空闲区链表首部
-// - 加写锁
+// 输入: slot - 缓冲页的下标    blck - 是否需要单独对链表加锁
+// 输出: RC码
+// - 如果需要, 加写锁
 // - 修改链表指针
-RC BufferMgr::insertFree(int slot) {
-    WriteGuard writeGuard(listLock);
+RC BufferMgr::insertFree(int slot, bool blck) {
+    WriteGuard writeGuard;
+    // 如果需要, 对链表加锁
+    if(blck) {
+        writeGuard = WriteGuard(listLock);
+    }
     bufTable[slot].next = freeHead;
     bufTable[slot].prev = INVALID_SLOT;
     freeHead = slot;
@@ -277,9 +297,8 @@ RC BufferMgr::allocatePage(int fd, PageNum pageNum, char **ppBuffer) {
     // 初始化申请的页, 将pinCount置为1，表示正在使用
     if((rc = hashTable.insert(fd, pageNum, slot)) ||
             (rc = initPageDesc(fd, pageNum, slot))) {
-        WriteGuard writeGuard(listLock);
-        unlink(slot);
-        insertFree(slot);
+        unlink(slot, true);
+        insertFree(slot, true);
         return rc;
     }
 
@@ -347,8 +366,8 @@ RC BufferMgr::unpinPage(int fd, PageNum pageNum) {
     }
     // 如果取消固定后没有进程使用该页，则将该页放到队尾
     if(--(bufTable[slot].pinCount) == 0) {
-        if((rc = unlink(slot)) ||
-           (rc = linkHead(slot))) {
+        if((rc = unlink(slot, true)) ||
+           (rc = linkHead(slot, true))) {
             return rc;
         }
     }
@@ -356,21 +375,19 @@ RC BufferMgr::unpinPage(int fd, PageNum pageNum) {
 }
 
 // flushPages: 刷新页面，将缓冲区中fd对应的所有页的脏页都写回的文件中，并且从缓冲区中移除
-// - 加读锁
+// - 加写锁
 // - 从first开始刷新, 将脏页写回文件, 如果此时fd文件在缓冲区仍有固定的页面, 则在方法后会返回警告
 RC BufferMgr::flushPages(int fd) {
     RC rc, rcWarn = 0;
 
     // 处理方法，从MRU页开始处理
-    // 加读锁
-    ReadGuard readGuard(listLock);
+    // 加写锁
+    WriteGuard writeGuard(listLock);
     int slot = usedHead;
-    readGuard.unlock();
+
     while(slot != INVALID_SLOT) {
         // 保存该结点的下一个结点的位置
-        readGuard.lock();
         int next = bufTable[slot].next;
-        readGuard.unlock();
         // 找到缓冲区中对应fd的脏页
         if(bufTable[slot].fd == fd) {
             // 确保该页unpinned
@@ -387,8 +404,8 @@ RC BufferMgr::flushPages(int fd) {
                     bufTable[slot].bDirty = FALSE;
                 }
                 if((rc = hashTable.remove(fd, bufTable[slot].pageNum)) ||
-                   (rc = unlink(slot)) ||
-                   (rc = insertFree(slot))) {
+                   (rc = unlink(slot, false)) ||
+                   (rc = insertFree(slot, false))) {
                     return rc;
                 }
             }
@@ -418,23 +435,22 @@ RC BufferMgr::markDirty(int fd, PageNum pageNum) {
     bufTable[slot].bDirty = TRUE;
     // 修改bug: 移除 (rc = hashTable.remove),
     // unlink: 从used list中移出，linkHead: 放入used list的first中，使其成为mru页
-    if((rc = unlink(slot)) ||
-            (rc = linkHead(slot))){
+    if((rc = unlink(slot, true)) ||
+       (rc = linkHead(slot, true))){
         return rc;
     }
     return 0;
 }
 
 // forcePages: 将fd文件的所有缓冲区的脏页写回磁盘, 不移除缓冲区
+// - 对链表加读锁
+// - 遍历used list链表, 将fd文件的所有脏页写回
 RC BufferMgr::forcePages(int fd) {
     RC rc;
     ReadGuard readGuard(listLock);
     int slot = usedHead;
-    readGuard.unlock();
     while(slot != INVALID_SLOT) {
-        readGuard.lock();
         int next = bufTable[slot].next;
-        readGuard.unlock();
         // 对该文件中的所有脏页进行写回
         if(fd == bufTable[slot].fd) {
             // 如果是脏页则写回磁盘
@@ -451,25 +467,30 @@ RC BufferMgr::forcePages(int fd) {
 }
 
 // forceSinglePage: 将fd文件的pageNum页内容写回磁盘, 不移除缓冲区
+// - 对链表加读锁
+// - 将fd文件的pageNum页写回磁盘
 RC BufferMgr::forceSinglePage(int fd, int pageNum) {
     RC rc;
     ReadGuard readGuard(listLock);
     int slot = usedHead;
-    readGuard.unlock();
     while(slot != INVALID_SLOT) {
-        readGuard.lock();
         int next = bufTable[slot].next;
-        readGuard.unlock();
         // 仅写回一页
-        if(fd == bufTable[slot].fd && bufTable[slot].pageNum == pageNum) {
-            // 如果是脏页则写回磁盘
-            if(bufTable[slot].bDirty) {
-                if((rc = writePage(fd, bufTable[slot].pageNum, bufTable[slot].pData))) {
-                    return rc;
+        if(bufTable[slot].pageNum == pageNum) {
+            if(fd == bufTable[slot].fd) {
+                // 如果是脏页则写回磁盘
+                if(bufTable[slot].bDirty) {
+                    if((rc = writePage(fd, bufTable[slot].pageNum, bufTable[slot].pData))) {
+                        return rc;
+                    }
+                    bufTable[slot].bDirty = FALSE;
                 }
-                bufTable[slot].bDirty = FALSE;
+                break;
             }
-            break;
+            // 若该页不是脏页, 则直接退出
+            else {
+                break;
+            }
         }
         slot = next;
     }

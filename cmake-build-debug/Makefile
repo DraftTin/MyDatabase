@@ -207,6 +207,19 @@ rm_test1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/build
 .PHONY : rm_test1/fast
 
+#=============================================================================
+# Target rules for targets named concurrent_test
+
+# Build rule for target.
+concurrent_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 concurrent_test
+.PHONY : concurrent_test
+
+# fast build rule for target.
+concurrent_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/build
+.PHONY : concurrent_test/fast
+
 atomic/RWLock.obj: atomic/RWLock.cpp.obj
 
 .PHONY : atomic/RWLock.obj
@@ -219,6 +232,7 @@ atomic/RWLock.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/atomic/RWLock.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/atomic/RWLock.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/atomic/RWLock.cpp.obj
 .PHONY : atomic/RWLock.cpp.obj
 
 atomic/RWLock.i: atomic/RWLock.cpp.i
@@ -233,6 +247,7 @@ atomic/RWLock.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/atomic/RWLock.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/atomic/RWLock.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/atomic/RWLock.cpp.i
 .PHONY : atomic/RWLock.cpp.i
 
 atomic/RWLock.s: atomic/RWLock.cpp.s
@@ -247,6 +262,7 @@ atomic/RWLock.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/atomic/RWLock.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/atomic/RWLock.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/atomic/RWLock.cpp.s
 .PHONY : atomic/RWLock.cpp.s
 
 dbcreate.obj: dbcreate.cpp.obj
@@ -407,6 +423,7 @@ storage/bufhashtable.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/bufhashtable.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/storage/bufhashtable.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/bufhashtable.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/storage/bufhashtable.cpp.obj
 .PHONY : storage/bufhashtable.cpp.obj
 
 storage/bufhashtable.i: storage/bufhashtable.cpp.i
@@ -420,6 +437,7 @@ storage/bufhashtable.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/bufhashtable.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/storage/bufhashtable.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/bufhashtable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/storage/bufhashtable.cpp.i
 .PHONY : storage/bufhashtable.cpp.i
 
 storage/bufhashtable.s: storage/bufhashtable.cpp.s
@@ -433,6 +451,7 @@ storage/bufhashtable.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/bufhashtable.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/storage/bufhashtable.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/bufhashtable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/storage/bufhashtable.cpp.s
 .PHONY : storage/bufhashtable.cpp.s
 
 storage/bufmgr.obj: storage/bufmgr.cpp.obj
@@ -903,6 +922,33 @@ storage/rm_varlenattr.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/rm_varlenattr.cpp.s
 .PHONY : storage/rm_varlenattr.cpp.s
 
+test/concurrent_test.obj: test/concurrent_test.cpp.obj
+
+.PHONY : test/concurrent_test.obj
+
+# target to build an object file
+test/concurrent_test.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/test/concurrent_test.cpp.obj
+.PHONY : test/concurrent_test.cpp.obj
+
+test/concurrent_test.i: test/concurrent_test.cpp.i
+
+.PHONY : test/concurrent_test.i
+
+# target to preprocess a source file
+test/concurrent_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/test/concurrent_test.cpp.i
+.PHONY : test/concurrent_test.cpp.i
+
+test/concurrent_test.s: test/concurrent_test.cpp.s
+
+.PHONY : test/concurrent_test.s
+
+# target to generate assembly for a file
+test/concurrent_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/test/concurrent_test.cpp.s
+.PHONY : test/concurrent_test.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -912,6 +958,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... MyDatabase
+	@echo ... concurrent_test
 	@echo ... dbcreate
 	@echo ... pf_test1
 	@echo ... pf_test2
@@ -980,6 +1027,9 @@ help:
 	@echo ... storage/rm_varlenattr.obj
 	@echo ... storage/rm_varlenattr.i
 	@echo ... storage/rm_varlenattr.s
+	@echo ... test/concurrent_test.obj
+	@echo ... test/concurrent_test.i
+	@echo ... test/concurrent_test.s
 .PHONY : help
 
 
