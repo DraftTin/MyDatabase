@@ -4,116 +4,122 @@
 CMakeFiles/MyDatabase.dir/main.cpp.obj: ../global.h
 CMakeFiles/MyDatabase.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/MyDatabase.dir/main.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/main.cpp.obj: ../pf/bufhashtable.h
-CMakeFiles/MyDatabase.dir/main.cpp.obj: ../pf/bufmgr.h
-CMakeFiles/MyDatabase.dir/main.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/main.cpp.obj: ../pf/pf_internal.h
-CMakeFiles/MyDatabase.dir/main.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/main.cpp.obj: ../rm/rm.h
 CMakeFiles/MyDatabase.dir/main.cpp.obj: ../sm/sm.h
-
-CMakeFiles/MyDatabase.dir/pf/bufhashtable.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/pf/bufhashtable.cpp.obj: ../pf/bufhashtable.cpp
-CMakeFiles/MyDatabase.dir/pf/bufhashtable.cpp.obj: ../pf/bufhashtable.h
-CMakeFiles/MyDatabase.dir/pf/bufhashtable.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/pf/bufhashtable.cpp.obj: ../pf/pf_internal.h
-
-CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.obj: ../pf/bufhashtable.h
-CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.obj: ../pf/bufmgr.cpp
-CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.obj: ../pf/bufmgr.h
-CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/pf/bufmgr.cpp.obj: ../pf/pf_internal.h
-
-CMakeFiles/MyDatabase.dir/pf/pagehandle.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/pf/pagehandle.cpp.obj: ../pf/pagehandle.cpp
-CMakeFiles/MyDatabase.dir/pf/pagehandle.cpp.obj: ../pf/pf.h
-
-CMakeFiles/MyDatabase.dir/pf/pf_filehandle.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/pf/pf_filehandle.cpp.obj: ../pf/bufhashtable.h
-CMakeFiles/MyDatabase.dir/pf/pf_filehandle.cpp.obj: ../pf/bufmgr.h
-CMakeFiles/MyDatabase.dir/pf/pf_filehandle.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/pf/pf_filehandle.cpp.obj: ../pf/pf_filehandle.cpp
-CMakeFiles/MyDatabase.dir/pf/pf_filehandle.cpp.obj: ../pf/pf_internal.h
-
-CMakeFiles/MyDatabase.dir/pf/pf_manager.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/pf/pf_manager.cpp.obj: ../pf/bufhashtable.h
-CMakeFiles/MyDatabase.dir/pf/pf_manager.cpp.obj: ../pf/bufmgr.h
-CMakeFiles/MyDatabase.dir/pf/pf_manager.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/pf/pf_manager.cpp.obj: ../pf/pf_internal.h
-CMakeFiles/MyDatabase.dir/pf/pf_manager.cpp.obj: ../pf/pf_manager.cpp
-
-CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj: ../rm/attrfilehandle.cpp
-CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj: ../rm/rm.h
-CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj: ../rm/rm_bitmap.h
-CMakeFiles/MyDatabase.dir/rm/attrfilehandle.cpp.obj: ../rm/rm_internal.h
-
-CMakeFiles/MyDatabase.dir/rm/rid.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/rm/rid.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/rm/rid.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/rm/rid.cpp.obj: ../rm/rid.cpp
-CMakeFiles/MyDatabase.dir/rm/rid.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/rm/rid.cpp.obj: ../rm/rm.h
-
-CMakeFiles/MyDatabase.dir/rm/rm_bitmap.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/rm/rm_bitmap.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/rm/rm_bitmap.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/rm/rm_bitmap.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/rm/rm_bitmap.cpp.obj: ../rm/rm.h
-CMakeFiles/MyDatabase.dir/rm/rm_bitmap.cpp.obj: ../rm/rm_bitmap.cpp
-CMakeFiles/MyDatabase.dir/rm/rm_bitmap.cpp.obj: ../rm/rm_bitmap.h
-
-CMakeFiles/MyDatabase.dir/rm/rm_filehandle.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/rm/rm_filehandle.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/rm/rm_filehandle.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/rm/rm_filehandle.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/rm/rm_filehandle.cpp.obj: ../rm/rm.h
-CMakeFiles/MyDatabase.dir/rm/rm_filehandle.cpp.obj: ../rm/rm_bitmap.h
-CMakeFiles/MyDatabase.dir/rm/rm_filehandle.cpp.obj: ../rm/rm_filehandle.cpp
-CMakeFiles/MyDatabase.dir/rm/rm_filehandle.cpp.obj: ../rm/rm_internal.h
-
-CMakeFiles/MyDatabase.dir/rm/rm_filescan.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/rm/rm_filescan.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/rm/rm_filescan.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/rm/rm_filescan.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/rm/rm_filescan.cpp.obj: ../rm/rm.h
-CMakeFiles/MyDatabase.dir/rm/rm_filescan.cpp.obj: ../rm/rm_filescan.cpp
-CMakeFiles/MyDatabase.dir/rm/rm_filescan.cpp.obj: ../rm/rm_internal.h
-
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../pf/bufhashtable.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../pf/bufmgr.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../pf/pf_internal.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../rm/rm.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../rm/rm_internal.h
-CMakeFiles/MyDatabase.dir/rm/rm_manager.cpp.obj: ../rm/rm_manager.cpp
-
-CMakeFiles/MyDatabase.dir/rm/rm_record.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/rm/rm_record.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/rm/rm_record.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/rm/rm_record.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/rm/rm_record.cpp.obj: ../rm/rm.h
-CMakeFiles/MyDatabase.dir/rm/rm_record.cpp.obj: ../rm/rm_record.cpp
-
-CMakeFiles/MyDatabase.dir/rm/rm_varlenattr.cpp.obj: ../global.h
-CMakeFiles/MyDatabase.dir/rm/rm_varlenattr.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/rm/rm_varlenattr.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/rm/rm_varlenattr.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/rm/rm_varlenattr.cpp.obj: ../rm/rm.h
-CMakeFiles/MyDatabase.dir/rm/rm_varlenattr.cpp.obj: ../rm/rm_varlenattr.cpp
+CMakeFiles/MyDatabase.dir/main.cpp.obj: ../storage/bufhashtable.h
+CMakeFiles/MyDatabase.dir/main.cpp.obj: ../storage/bufmgr.h
+CMakeFiles/MyDatabase.dir/main.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/main.cpp.obj: ../storage/pf_internal.h
+CMakeFiles/MyDatabase.dir/main.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/main.cpp.obj: ../storage/rm.h
 
 CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../global.h
 CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../parser.h
-CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../pf/pf.h
-CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../rm/rid.h
-CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../rm/rm.h
 CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../sm/sm.h
 CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../sm/sm_manager.cpp
+CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../storage/rm.h
+
+CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj: ../parser.h
+CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj: ../storage/attrfilehandle.cpp
+CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj: ../storage/rm.h
+CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj: ../storage/rm_bitmap.h
+CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj: ../storage/rm_internal.h
+
+CMakeFiles/MyDatabase.dir/storage/bufhashtable.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/bufhashtable.cpp.obj: ../storage/bufhashtable.cpp
+CMakeFiles/MyDatabase.dir/storage/bufhashtable.cpp.obj: ../storage/bufhashtable.h
+CMakeFiles/MyDatabase.dir/storage/bufhashtable.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/bufhashtable.cpp.obj: ../storage/pf_internal.h
+
+CMakeFiles/MyDatabase.dir/storage/bufmgr.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/bufmgr.cpp.obj: ../storage/bufhashtable.h
+CMakeFiles/MyDatabase.dir/storage/bufmgr.cpp.obj: ../storage/bufmgr.cpp
+CMakeFiles/MyDatabase.dir/storage/bufmgr.cpp.obj: ../storage/bufmgr.h
+CMakeFiles/MyDatabase.dir/storage/bufmgr.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/bufmgr.cpp.obj: ../storage/pf_internal.h
+
+CMakeFiles/MyDatabase.dir/storage/lwlock.cpp.obj: ../atomics/fallback.h
+CMakeFiles/MyDatabase.dir/storage/lwlock.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/lwlock.cpp.obj: ../storage/lwlock.cpp
+CMakeFiles/MyDatabase.dir/storage/lwlock.cpp.obj: ../storage/lwlock.h
+CMakeFiles/MyDatabase.dir/storage/lwlock.cpp.obj: ../storage/proclist_types.h
+
+CMakeFiles/MyDatabase.dir/storage/pagehandle.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/pagehandle.cpp.obj: ../storage/pagehandle.cpp
+CMakeFiles/MyDatabase.dir/storage/pagehandle.cpp.obj: ../storage/pf.h
+
+CMakeFiles/MyDatabase.dir/storage/pf_filehandle.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/pf_filehandle.cpp.obj: ../storage/bufhashtable.h
+CMakeFiles/MyDatabase.dir/storage/pf_filehandle.cpp.obj: ../storage/bufmgr.h
+CMakeFiles/MyDatabase.dir/storage/pf_filehandle.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/pf_filehandle.cpp.obj: ../storage/pf_filehandle.cpp
+CMakeFiles/MyDatabase.dir/storage/pf_filehandle.cpp.obj: ../storage/pf_internal.h
+
+CMakeFiles/MyDatabase.dir/storage/pf_manager.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/pf_manager.cpp.obj: ../storage/bufhashtable.h
+CMakeFiles/MyDatabase.dir/storage/pf_manager.cpp.obj: ../storage/bufmgr.h
+CMakeFiles/MyDatabase.dir/storage/pf_manager.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/pf_manager.cpp.obj: ../storage/pf_internal.h
+CMakeFiles/MyDatabase.dir/storage/pf_manager.cpp.obj: ../storage/pf_manager.cpp
+
+CMakeFiles/MyDatabase.dir/storage/rid.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/rid.cpp.obj: ../parser.h
+CMakeFiles/MyDatabase.dir/storage/rid.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/rid.cpp.obj: ../storage/rid.cpp
+CMakeFiles/MyDatabase.dir/storage/rid.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/storage/rid.cpp.obj: ../storage/rm.h
+
+CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj: ../parser.h
+CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj: ../storage/rm.h
+CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj: ../storage/rm_bitmap.cpp
+CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj: ../storage/rm_bitmap.h
+
+CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj: ../parser.h
+CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj: ../storage/rm.h
+CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj: ../storage/rm_bitmap.h
+CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj: ../storage/rm_filehandle.cpp
+CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj: ../storage/rm_internal.h
+
+CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj: ../parser.h
+CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj: ../storage/rm.h
+CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj: ../storage/rm_filescan.cpp
+CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj: ../storage/rm_internal.h
+
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../parser.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../storage/bufhashtable.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../storage/bufmgr.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../storage/pf_internal.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../storage/rm.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../storage/rm_internal.h
+CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj: ../storage/rm_manager.cpp
+
+CMakeFiles/MyDatabase.dir/storage/rm_record.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/rm_record.cpp.obj: ../parser.h
+CMakeFiles/MyDatabase.dir/storage/rm_record.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/rm_record.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/storage/rm_record.cpp.obj: ../storage/rm.h
+CMakeFiles/MyDatabase.dir/storage/rm_record.cpp.obj: ../storage/rm_record.cpp
+
+CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj: ../global.h
+CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj: ../parser.h
+CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj: ../storage/pf.h
+CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj: ../storage/rid.h
+CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj: ../storage/rm.h
+CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj: ../storage/rm_varlenattr.cpp
 

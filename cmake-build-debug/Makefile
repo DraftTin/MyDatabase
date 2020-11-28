@@ -182,6 +182,19 @@ pf_test1/fast:
 .PHONY : pf_test1/fast
 
 #=============================================================================
+# Target rules for targets named playground
+
+# Build rule for target.
+playground: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 playground
+.PHONY : playground
+
+# fast build rule for target.
+playground/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/build
+.PHONY : playground/fast
+
+#=============================================================================
 # Target rules for targets named rm_test1
 
 # Build rule for target.
@@ -193,6 +206,48 @@ rm_test1: cmake_check_build_system
 rm_test1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/build
 .PHONY : rm_test1/fast
+
+atomic/RWLock.obj: atomic/RWLock.cpp.obj
+
+.PHONY : atomic/RWLock.obj
+
+# target to build an object file
+atomic/RWLock.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/atomic/RWLock.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/atomic/RWLock.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/atomic/RWLock.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/atomic/RWLock.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.obj
+.PHONY : atomic/RWLock.cpp.obj
+
+atomic/RWLock.i: atomic/RWLock.cpp.i
+
+.PHONY : atomic/RWLock.i
+
+# target to preprocess a source file
+atomic/RWLock.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/atomic/RWLock.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/atomic/RWLock.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/atomic/RWLock.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/atomic/RWLock.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.i
+.PHONY : atomic/RWLock.cpp.i
+
+atomic/RWLock.s: atomic/RWLock.cpp.s
+
+.PHONY : atomic/RWLock.s
+
+# target to generate assembly for a file
+atomic/RWLock.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/atomic/RWLock.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/atomic/RWLock.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/atomic/RWLock.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/atomic/RWLock.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.s
+.PHONY : atomic/RWLock.cpp.s
 
 dbcreate.obj: dbcreate.cpp.obj
 
@@ -247,6 +302,33 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+playground.obj: playground.cpp.obj
+
+.PHONY : playground.obj
+
+# target to build an object file
+playground.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/playground.cpp.obj
+.PHONY : playground.cpp.obj
+
+playground.i: playground.cpp.i
+
+.PHONY : playground.i
+
+# target to preprocess a source file
+playground.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/playground.cpp.i
+.PHONY : playground.cpp.i
+
+playground.s: playground.cpp.s
+
+.PHONY : playground.s
+
+# target to generate assembly for a file
+playground.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/playground.cpp.s
+.PHONY : playground.cpp.s
 
 sm/sm_manager.obj: sm/sm_manager.cpp.obj
 
@@ -833,13 +915,20 @@ help:
 	@echo ... dbcreate
 	@echo ... pf_test1
 	@echo ... pf_test2
+	@echo ... playground
 	@echo ... rm_test1
+	@echo ... atomic/RWLock.obj
+	@echo ... atomic/RWLock.i
+	@echo ... atomic/RWLock.s
 	@echo ... dbcreate.obj
 	@echo ... dbcreate.i
 	@echo ... dbcreate.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... playground.obj
+	@echo ... playground.i
+	@echo ... playground.s
 	@echo ... sm/sm_manager.obj
 	@echo ... sm/sm_manager.i
 	@echo ... sm/sm_manager.s

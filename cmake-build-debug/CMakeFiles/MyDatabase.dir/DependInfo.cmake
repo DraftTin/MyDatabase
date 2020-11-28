@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/main.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/main.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/sm/sm_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/attrfilehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj"

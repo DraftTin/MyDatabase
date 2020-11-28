@@ -50,7 +50,7 @@ BufHashTable::~BufHashTable() {
      }
      return PF_HASHNOTFOUND;
  }
-int flag = 0;
+
  RC BufHashTable::insert(int fd, PageNum pageNum, int slot) {
     int bucket = Hash(fd, pageNum);
 

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/pf_test2.dir/atomic/RWLock.cpp.obj"
   "CMakeFiles/pf_test2.dir/storage/bufhashtable.cpp.obj"
   "CMakeFiles/pf_test2.dir/storage/bufmgr.cpp.obj"
   "CMakeFiles/pf_test2.dir/storage/pagehandle.cpp.obj"

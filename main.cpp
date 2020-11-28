@@ -9,7 +9,7 @@
 #endif
 #include <iostream>
 #include <fcntl.h>
-#include "pf/bufmgr.h"
+#include "storage/bufmgr.h"
 #include "storage/rm.h"
 #include "sm/sm.h"
 
@@ -87,17 +87,20 @@ int main() {
 //    for(int i = 0; i < 6; ++i) {
 //        cout << calcNumberRecord(ATTRBLOCK_SLOTSIZE[i]) << endl;
 //    }
-    RM_VarLenAttr varLenAttr(1, 1, 1);
-    char *cc = new char[sizeof(RM_VarLenAttr)];
-    memset(cc, 0, sizeof(RM_VarLenAttr));
-    memcpy(cc, (char*)&varLenAttr, sizeof(RM_VarLenAttr));
-    int p;
-    int s;
-    int i;
-    ((RM_VarLenAttr*)cc)->getPageNum(p);
-    ((RM_VarLenAttr*)cc)->getSlotNum(s);
-    ((RM_VarLenAttr*)cc)->getBlockInfoIndex(i);
-    cout << p << s << i << endl;
+//    RM_VarLenAttr varLenAttr(1, 1, 1);
+//    char *cc = new char[sizeof(RM_VarLenAttr)];
+//    memset(cc, 0, sizeof(RM_VarLenAttr));
+//    memcpy(cc, (char*)&varLenAttr, sizeof(RM_VarLenAttr));
+//    int p;
+//    int s;
+//    int i;
+//    ((RM_VarLenAttr*)cc)->getPageNum(p);
+//    ((RM_VarLenAttr*)cc)->getSlotNum(s);
+//    ((RM_VarLenAttr*)cc)->getBlockInfoIndex(i);
+//    cout << p << s << i << endl;
+    uint32 a = ((uint32) 1 << 24);
+    uint32 b = a & 1;
+    cout << b << "\n";
     return 0;
 }
 // attrcat dbinfo relcat

@@ -5,6 +5,8 @@
 #ifndef PF_BUFFERMGR_H
 #define PF_BUFFERMGR_H
 
+#include <atomic>
+#include "../atomic/RWLock.h"
 #include "pf_internal.h"
 #include "bufhashtable.h"
 
@@ -12,12 +14,12 @@
 
 // 缓存页
 struct BufPageDesc {
-    char* pData;                // 缓冲区页的数据指针, 指针位置: pBuf + sizeof(PF_PageHdr), 即指针会指向RM_PageHdr的开头
-    int next;                   // 缓冲区页链表中的next
-    int prev;                   // 缓冲区页链表中的prev
+    char* pData;                // 缓冲区页的数据指针
+    int next;                   // 双向链表后继指针
+    int prev;                   // 双向链表前向指针
     int bDirty;                 // 标记脏页，1/0
-    short int pinCount;         // 当前使用该页的数量
-    PageNum pageNum;            // 对应在fd文件中的页号，定位：pageNum * (long)pageSize + PF_FILE_HDR_SIZE
+    std::atomic_short pinCount; // 记录当前使用该页的进程数量，保证对该变量的原子性操作
+    PageNum pageNum;            // 对应在fd文件中的页号
     int fd;                     // 该页对应的文件
 };
 
@@ -64,13 +66,14 @@ private:
     RC insertFree(int slot);
 
 private:
-    BufPageDesc* bufTable;      // 缓冲页s, 初始化的时候申请固定数量的缓冲页
-    BufHashTable hashTable;     // 缓冲区哈希表, (fd, pageNum) -> slotNum, slotNum表示bufTable的下标
-    int numPages;               // 缓冲区的块数
-    int pageSize;               // 缓冲区的块size
-    int usedHead;               // MRU page slot，也是used list的首部
-    int usedTail;               // LRU page slot，也是used list的最后一页
-    int freeHead;               // 空闲链表的首部
+    BufPageDesc* bufTable;                      // 缓冲页s, 初始化的时候申请固定数量的缓冲页
+    BufHashTable hashTable;                     // 缓冲区哈希表, (fd, pageNum) -> slotNum, slotNum表示bufTable的下标
+    int numPages;                               // 缓冲区的块数
+    int pageSize;                               // 缓冲区的块size
+    int usedHead;                               // MRU page slot，也是used list的首部
+    int usedTail;                               // LRU page slot，也是used list的最后一页
+    int freeHead;                               // 空闲链表的首部
+    RWLock listLock;                            // 链表的读写锁
 };
 
 #endif
