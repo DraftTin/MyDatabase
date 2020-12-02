@@ -38,8 +38,8 @@ struct AttrcatRecord {
     int indexNo;
 };
 
-#define SM_RELCAT_ATTR_COUNT    4       // 表示表目录的记录的属性数量
-#define SM_ATTRCAT_ATTR_COUNT   6       // 表示属性目录的记录的属性数量
+#define RELCAT_ATTR_COUNT    4       // 表示表目录的记录的属性数量
+#define ATTRCAT_ATTR_COUNT   6       // 表示属性目录的记录的属性数量
 
 class DDL_Manager {
 public:
