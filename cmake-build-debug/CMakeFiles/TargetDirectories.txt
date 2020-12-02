@@ -4,6 +4,7 @@ C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbc
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test1.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/playground.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rm_test1.dir
+C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/hw1_test.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/concurrent_test.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rebuild_cache.dir

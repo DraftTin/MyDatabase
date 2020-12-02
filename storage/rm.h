@@ -13,10 +13,10 @@
 
 typedef int PageNum;
 
-const int NUMBER_ATTRBLOCK_SPECIES = 6;
-const int ATTRBLOCK_BIMAPSIZE[6] = {8, 4, 2, 1, 1, 1};
-const int ATTRBLOCK_SLOTSIZE[6] = {70, 127, 255, 510, 1021, 2041};
-const int ATTRBLOCK_NUM_RECORDS[6] = {58, 32, 16, 8, 4, 2};
+const int NUMBER_ATTRBLOCK_SPECIES = 7;
+const int ATTRBLOCK_BIMAPSIZE[NUMBER_ATTRBLOCK_SPECIES] = {8, 4, 2, 1, 1, 1, 1};
+const int ATTRBLOCK_SLOTSIZE[NUMBER_ATTRBLOCK_SPECIES] = {70, 127, 255, 510, 1021, 2041, 4087};
+const int ATTRBLOCK_NUM_RECORDS[NUMBER_ATTRBLOCK_SPECIES] = {58, 32, 16, 8, 4, 2, 1};
 
 // RM_RecordFileHeaderPage
 struct RM_RecordFileHeaderPage {

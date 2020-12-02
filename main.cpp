@@ -11,7 +11,7 @@
 #include <fcntl.h>
 #include "storage/bufmgr.h"
 #include "storage/rm.h"
-#include "sm/sm.h"
+#include "sql/ddl.h"
 
 using namespace std;
 
@@ -60,7 +60,7 @@ int calcNumberRecord(int recordSize) {
 void test1() {
         PF_Manager pfManager;
         RM_Manager rmManager(pfManager);
-        SM_Manager smManager(rmManager);
+        DDL_Manager smManager(rmManager);
         char dbName[15] = "db3";
         smManager.openDb(dbName);
         while(true) {
@@ -83,6 +83,7 @@ void test1() {
 };
 
 int main() {
+    cout << calcNumberRecord(4087) << endl;
 //    int ATTRBLOCK_SLOTSIZE[6] = {70, 127, 255, 510, 1021, 2041};
 //    for(int i = 0; i < 6; ++i) {
 //        cout << calcNumberRecord(ATTRBLOCK_SLOTSIZE[i]) << endl;
@@ -98,9 +99,9 @@ int main() {
 //    ((RM_VarLenAttr*)cc)->getSlotNum(s);
 //    ((RM_VarLenAttr*)cc)->getBlockInfoIndex(i);
 //    cout << p << s << i << endl;
-    uint32 a = ((uint32) 1 << 24);
-    uint32 b = a & 1;
-    cout << b << "\n";
+//    uint32 a = ((uint32) 1 << 24);
+//    uint32 b = a & 1;
+//    cout << b << "\n";
     return 0;
 }
 // attrcat dbinfo relcat

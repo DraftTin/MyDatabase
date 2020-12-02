@@ -4,7 +4,7 @@
 
 #include "rm.h"
 
-RM_VarLenAttr::RM_VarLenAttr() : pageNum(RM_INVALID_PAGE_NUMBER), slotNum(RM_INVALID_SLOT_NUMBER) {
+RM_VarLenAttr::RM_VarLenAttr() : pageNum(-1), slotNum(-1) {
     //
 }
 
@@ -17,7 +17,7 @@ RM_VarLenAttr::~RM_VarLenAttr() {
 }
 
 RC RM_VarLenAttr::getPageNum(PageNum &pageNum) const {
-    if(pageNum == RM_INVALID_PAGE_NUMBER) {
+    if(pageNum == -1) {
         return RM_RID_NOT_VIABLE;
     }
     pageNum = this->pageNum;
@@ -25,7 +25,7 @@ RC RM_VarLenAttr::getPageNum(PageNum &pageNum) const {
 }
 
 RC RM_VarLenAttr::getSlotNum(SlotNum &slotNum) const {
-    if(pageNum == RM_INVALID_PAGE_NUMBER) {
+    if(pageNum == -1) {
         return RM_RID_NOT_VIABLE;
     }
     slotNum = this->slotNum;
@@ -33,7 +33,7 @@ RC RM_VarLenAttr::getSlotNum(SlotNum &slotNum) const {
 }
 
 RC RM_VarLenAttr::getBlockInfoIndex(int &index) const {
-    if(pageNum == RM_INVALID_PAGE_NUMBER) {
+    if(pageNum == -1) {
         return RM_RID_NOT_VIABLE;
     }
     index = this->blockInfoIndex;

@@ -5,7 +5,7 @@
 #include "rm.h"
 
 // 初始化pageNum和slotNum为INVALID
-RID::RID() : pageNum(RM_INVALID_PAGE_NUMBER), slotNum(RM_INVALID_SLOT_NUMBER) {
+RID::RID() : pageNum(-1), slotNum(-1) {
     // do nothing
 }
 
@@ -19,6 +19,7 @@ RID::~RID() {
 }
 
 RC RID::getPageNum(PageNum &pageNum) const {
+    // 修改bug: 将RM_INVALID_PAGE_NUMBER修改成-1
     if(pageNum == RM_INVALID_PAGE_NUMBER) {
         return RID_NOT_VIABLE;
     }
@@ -27,7 +28,8 @@ RC RID::getPageNum(PageNum &pageNum) const {
 }
 
 RC RID::getSlotNum(SlotNum &slotNum) const {
-    if(pageNum == RM_INVALID_PAGE_NUMBER) {
+    // 修改bug: 将RM_INVALID_PAGE_NUMBER修改成-1
+    if(pageNum == -1) {
         return RID_NOT_VIABLE;
     }
     slotNum = this->slotNum;

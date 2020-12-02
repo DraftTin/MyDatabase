@@ -19,7 +19,7 @@ RM_Manager::~RM_Manager() {
 }
 
 // createFile: 创建记录文件
-// - 调用PF_Manager的创建文件的方法创建页文件
+// - 调用PF_Manager的创建文件的方法创建页文件(记录文件和变长属性文件)
 // - 在为文件申请一页新页File Hdr Page, 用于记录该表的(recordSize, nextFree, recordCount, firstFree)
 RC RM_Manager::createFile(const char *fileName, int recordSize) {
     if(recordSize <= 0) {

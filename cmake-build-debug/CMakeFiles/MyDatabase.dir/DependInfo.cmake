@@ -6,7 +6,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/main.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/main.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/sm/sm_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/sql/ql_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/sql/sm_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/attrfilehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/storage/bufhashtable.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/storage/bufmgr.cpp.obj"

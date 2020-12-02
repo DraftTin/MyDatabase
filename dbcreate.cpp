@@ -9,17 +9,16 @@
 #endif
 #include <iostream>
 #include "global.h"
-#include "pf/pf.h"
+#include "storage/pf.h"
 #include "storage/rm.h"
 #include "storage/rm_error.h"
-#include "sm/sm.h"
+#include "sql/ddl.h"
 
 using namespace std;
 
 // 描述: 命令行创建数据库
 // - 创建数据库目录
 // - 创建relcat和attrcat的RM文件
-
 int main(int argc, char *argv[]) {
     char *dbname;
     char command[255] = "mkdir ";
@@ -43,8 +42,8 @@ int main(int argc, char *argv[]) {
     char attrCatFileName[10] = "attrcat";
     PF_Manager pfManager;
     RM_Manager rmManager(pfManager);
-    if((rc = rmManager.createFile(relCatFileName, sizeof(SM_RelcatRecord))) ||
-            (rc = rmManager.createFile(attrCatFileName, sizeof(SM_AttrcatRecord)))) {
+    if((rc = rmManager.createFile(relCatFileName, sizeof(RelcatRecord))) ||
+       (rc = rmManager.createFile(attrCatFileName, sizeof(AttrcatRecord)))) {
         RM_PrintError(rc);
         return rc;
     }

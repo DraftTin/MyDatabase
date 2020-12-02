@@ -219,18 +219,18 @@ CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.s"
 	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\rm_filescan.cpp -o CMakeFiles\MyDatabase.dir\storage\rm_filescan.cpp.s
 
-CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
-CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj: ../sm/sm_manager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\MyDatabase.dir\sm\sm_manager.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\sm\sm_manager.cpp
+CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
+CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.obj: ../sql/sm_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\MyDatabase.dir\sql\sm_manager.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\sql\sm_manager.cpp
 
-CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\sm\sm_manager.cpp > CMakeFiles\MyDatabase.dir\sm\sm_manager.cpp.i
+CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\sql\sm_manager.cpp > CMakeFiles\MyDatabase.dir\sql\sm_manager.cpp.i
 
-CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\sm\sm_manager.cpp -o CMakeFiles\MyDatabase.dir\sm\sm_manager.cpp.s
+CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\sql\sm_manager.cpp -o CMakeFiles\MyDatabase.dir\sql\sm_manager.cpp.s
 
 CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
 CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj: ../storage/rm_varlenattr.cpp
@@ -284,6 +284,19 @@ CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.s"
 	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\atomic\RWLock.cpp -o CMakeFiles\MyDatabase.dir\atomic\RWLock.cpp.s
 
+CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
+CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.obj: ../sql/ql_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\MyDatabase.dir\sql\ql_manager.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\sql\ql_manager.cpp
+
+CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\sql\ql_manager.cpp > CMakeFiles\MyDatabase.dir\sql\ql_manager.cpp.i
+
+CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\sql\ql_manager.cpp -o CMakeFiles\MyDatabase.dir\sql\ql_manager.cpp.s
+
 # Object files for target MyDatabase
 MyDatabase_OBJECTS = \
 "CMakeFiles/MyDatabase.dir/main.cpp.obj" \
@@ -297,11 +310,12 @@ MyDatabase_OBJECTS = \
 "CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj" \
 "CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj" \
 "CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj" \
-"CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj" \
+"CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.obj" \
 "CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj" \
 "CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj" \
 "CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj" \
-"CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj"
+"CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj" \
+"CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.obj"
 
 # External object files for target MyDatabase
 MyDatabase_EXTERNAL_OBJECTS =
@@ -317,16 +331,17 @@ MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/rid.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/rm_manager.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/rm_filehandle.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/rm_filescan.cpp.obj
-MyDatabase.exe: CMakeFiles/MyDatabase.dir/sm/sm_manager.cpp.obj
+MyDatabase.exe: CMakeFiles/MyDatabase.dir/sql/sm_manager.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/rm_varlenattr.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/rm_bitmap.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj
+MyDatabase.exe: CMakeFiles/MyDatabase.dir/sql/ql_manager.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/build.make
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/linklibs.rsp
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/objects1.rsp
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable MyDatabase.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable MyDatabase.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\MyDatabase.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
