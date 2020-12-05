@@ -219,18 +219,18 @@ CMakeFiles/dbcreate.dir/storage/rm_filescan.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbcreate.dir/storage/rm_filescan.cpp.s"
 	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\rm_filescan.cpp -o CMakeFiles\dbcreate.dir\storage\rm_filescan.cpp.s
 
-CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.obj: CMakeFiles/dbcreate.dir/flags.make
-CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.obj: ../sql/sm_manager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbcreate.dir\sql\sm_manager.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\sql\sm_manager.cpp
+CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.obj: CMakeFiles/dbcreate.dir/flags.make
+CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.obj: ../sql/ddl_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbcreate.dir\sql\ddl_manager.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\sql\ddl_manager.cpp
 
-CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\sql\sm_manager.cpp > CMakeFiles\dbcreate.dir\sql\sm_manager.cpp.i
+CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\sql\ddl_manager.cpp > CMakeFiles\dbcreate.dir\sql\ddl_manager.cpp.i
 
-CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\sql\sm_manager.cpp -o CMakeFiles\dbcreate.dir\sql\sm_manager.cpp.s
+CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\sql\ddl_manager.cpp -o CMakeFiles\dbcreate.dir\sql\ddl_manager.cpp.s
 
 CMakeFiles/dbcreate.dir/storage/rm_varlenattr.cpp.obj: CMakeFiles/dbcreate.dir/flags.make
 CMakeFiles/dbcreate.dir/storage/rm_varlenattr.cpp.obj: ../storage/rm_varlenattr.cpp
@@ -297,7 +297,7 @@ dbcreate_OBJECTS = \
 "CMakeFiles/dbcreate.dir/storage/rm_manager.cpp.obj" \
 "CMakeFiles/dbcreate.dir/storage/rm_filehandle.cpp.obj" \
 "CMakeFiles/dbcreate.dir/storage/rm_filescan.cpp.obj" \
-"CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.obj" \
+"CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.obj" \
 "CMakeFiles/dbcreate.dir/storage/rm_varlenattr.cpp.obj" \
 "CMakeFiles/dbcreate.dir/storage/attrfilehandle.cpp.obj" \
 "CMakeFiles/dbcreate.dir/storage/rm_bitmap.cpp.obj" \
@@ -317,7 +317,7 @@ dbcreate.exe: CMakeFiles/dbcreate.dir/storage/rid.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/rm_manager.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/rm_filehandle.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/rm_filescan.cpp.obj
-dbcreate.exe: CMakeFiles/dbcreate.dir/sql/sm_manager.cpp.obj
+dbcreate.exe: CMakeFiles/dbcreate.dir/sql/ddl_manager.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/rm_varlenattr.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/attrfilehandle.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/rm_bitmap.cpp.obj

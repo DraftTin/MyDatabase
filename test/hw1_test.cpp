@@ -46,6 +46,7 @@ int compare(Student& student, int id);
 
 int main() {
     int rc;
+    srand(time(nullptr));
     if((rc = Test2()) != 0) {
         RM_PrintError(rc);
     }
@@ -101,7 +102,7 @@ RC VertifyData(RM_FileHandle& rmFileHandle) {
     }
     RM_Record rmRecord;
     int i = 0;
-    while((rc = rmFileScan.getNextRec(rmRecord)) != RM_EOF) {
+    while((rc = rmFileScan.getNextRec(rmRecord)) == 0) {
         char* pData;
         if((rc = rmRecord.getData(pData))) {
             return rc;
@@ -112,6 +113,9 @@ RC VertifyData(RM_FileHandle& rmFileHandle) {
             return 0;
         }
         cout << i++ << ": " << tmp->id << " " << tmp->name << " " << tmp->studentNumber << endl;
+    }
+    if(rc != RM_EOF) {
+        return rc;
     }
     cout << "Vertify Successfully!\n";
     return 0;

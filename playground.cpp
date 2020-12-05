@@ -42,11 +42,20 @@ void test2(thread::id id) {
 
 }
 
+struct AA {
+    int a;
+    friend std::ostream &operator<<(std::ostream &s, const AA &aa) {
+        return s;
+    }
+};
+
 int main() {
-    mutex a;
-    unique_lock<mutex> aa;
-    aa = unique_lock<mutex>(a);
-    aa.lock();
+    cout << sizeof(AA);
+//    mutex a;
+//    unique_lock<mutex> aa;
+//    aa = unique_lock<mutex>(a);
+//    aa.lock();
+/////
 //    WriteGuard writeGuard(rwLock);
 //
 //    thread thr2(test, ref(writeGuard));

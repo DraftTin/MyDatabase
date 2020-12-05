@@ -101,6 +101,48 @@
 					<DistClean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="dml_test">
+				<Option output="C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/dml_test.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 dml_test"/>
+					<CompileFile command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="dml_test/fast">
+				<Option output="C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/dml_test.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 dml_test/fast"/>
+					<CompileFile command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="dbcreate">
 				<Option output="C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/dbcreate.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug"/>
@@ -377,6 +419,7 @@
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.cpp">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
 			<Option target="playground"/>
@@ -387,6 +430,7 @@
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.h">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
 			<Option target="playground"/>
@@ -400,8 +444,10 @@
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/global.h">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
@@ -410,36 +456,56 @@
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/parser.h">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/playground.cpp">
 			<Option target="playground"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/sql/ql.h">
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl.h">
 			<Option target="MyDatabase"/>
-		</Unit>
-		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/sql/ql_manager.cpp">
-			<Option target="MyDatabase"/>
-		</Unit>
-		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/sql/sm_manager.cpp">
-			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl_manager.cpp">
+			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
+			<Option target="dbcreate"/>
+			<Option target="playground"/>
+			<Option target="rm_test1"/>
+			<Option target="hw1_test"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/sql/dml.h">
+			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
+			<Option target="playground"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/sql/dml_manager.cpp">
+			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
+			<Option target="playground"/>
+		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/attrfilehandle.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.cpp">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 			<Option target="concurrent_test"/>
@@ -447,8 +513,10 @@
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 			<Option target="concurrent_test"/>
@@ -456,64 +524,80 @@
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.cpp">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pagehandle.cpp">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_error.h">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_filehandle.cpp">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_manager.cpp">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
 			<Option target="pf_test1"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
@@ -525,67 +609,89 @@
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rid.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rid.h">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_bitmap.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_bitmap.h">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_error.h">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_filehandle.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_filescan.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_internal.h">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_manager.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_record.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
@@ -594,7 +700,9 @@
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_varlenattr.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dml_test"/>
 			<Option target="dbcreate"/>
+			<Option target="playground"/>
 			<Option target="rm_test1"/>
 			<Option target="hw1_test"/>
 		</Unit>
@@ -603,6 +711,9 @@
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/test/hw1_test.cpp">
 			<Option target="hw1_test"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/test/sql_test.cpp">
+			<Option target="dml_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

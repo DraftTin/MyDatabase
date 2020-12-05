@@ -49,6 +49,9 @@ RC DDL_Manager::openDb(const char *dbName) {
 // - 将表信息和属性信息写入relcat和attrcat
 // - 将relcat和attrcat缓冲区的内容写回到文件中(运行过程中需要读取)
 RC DDL_Manager::createTable(const char *relName, int attrCount, AttrInfo *attributes) {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
     // 计算recordSize
     int recordSize = 0;
     int offsets[attrCount];
@@ -98,6 +101,9 @@ RC DDL_Manager::createTable(const char *relName, int attrCount, AttrInfo *attrib
 // - 关闭数据字典文件
 // - 将bDbOpen置false
 RC DDL_Manager::closeDb() {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
     int rc;
     // 关闭数据字典文件
     if((rc = rmManager->closeFile(relFileHandle)) ||
@@ -110,19 +116,19 @@ RC DDL_Manager::closeDb() {
 }
 
 // getRelInfo: 获取表的数据字典信息
-RC DDL_Manager::getRelInfo(const char *relName, RelcatRecord &relinfo) {
+RC DDL_Manager::getRelInfo(const char *relName, RelcatRecord &relinfo) const {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
     int rc;
     RM_FileScan relScan;
     // 开启对表信息文件的扫描
-    if((rc = relScan.openScan(relFileHandle, STRING, MAXNAME + 1, offsetof(RelcatRecord, relName), EQ_OP, relName))) {
+    if((rc = relScan.openScan(relFileHandle, STRING, MAXNAME + 1, offsetof(RelcatRecord, relName), EQ_OP, (void*)relName))) {
         return rc;
     }
     RM_Record relRecord;
-    if((rc = relScan.getNextRec(relRecord)) != 0 && rc != RM_EOF) {
+    if((rc = relScan.getNextRec(relRecord))) {
         return rc;
-    }
-    if(rc == RM_EOF) {
-        return DDL_REL_NOT_EXISTS;
     }
 
     char *relData;
@@ -141,15 +147,19 @@ RC DDL_Manager::getRelInfo(const char *relName, RelcatRecord &relinfo) {
 // getAttrInfo: 获取{relName}表的所有属性信息
 // - 扫描属性文件
 // - 将每个属于该表的属性录入到attrinfo中
-RC DDL_Manager::getAttrInfo(const char *relName, int attrCount, AttrcatRecord *attrinfo) {
+RC DDL_Manager::getAttrInfo(const char *relName, int attrCount, AttrcatRecord *attrinfo) const {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
     int rc;
     RM_FileScan attrScan;
-    if((rc = attrScan.openScan(attrFileHandle, STRING, MAXNAME + 1, offsetof(AttrcatRecord, relName), EQ_OP, relName))) {
+    if((rc = attrScan.openScan(attrFileHandle, STRING, MAXNAME + 1, offsetof(AttrcatRecord, relName), EQ_OP, (void*)relName))) {
         return rc;
     }
     int i = 0;
     RM_Record attrRec;
-    while((rc = attrScan.getNextRec(attrRec))) {
+    // 修改bug: while循环 == 0
+    while((rc = attrScan.getNextRec(attrRec)) == 0) {
         char *pData;
         if((rc = attrRec.getData(pData))) {
             return rc;
@@ -161,11 +171,127 @@ RC DDL_Manager::getAttrInfo(const char *relName, int attrCount, AttrcatRecord *a
         attrinfo[i].attrLength = attrcatRecord->attrLength;
         attrinfo[i].offset = attrcatRecord->offset;
         attrinfo[i].indexNo = attrcatRecord->indexNo;
+        // 修改bug: i在循环中递增
+        ++i;
+    }
+    if(rc != RM_EOF) {
+        return rc;
     }
     if((rc = attrScan.closeScan())) {
         return rc;
     }
     return 0;
+}
+
+// printAllData: 输出relName表的所有内容
+// - 打开数据字典查看表的属性信息
+// - 开启扫描
+// - 获取记录, 根据属性信息输出数据, 循环
+// - 关闭表
+RC DDL_Manager::printAllData(char *relName, int lines) const {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
+    int rc;
+    // 获取表信息
+    RelcatRecord relcatRecord;
+    if((rc = getRelInfo(relName, relcatRecord))) {
+        return rc;
+    }
+    // 获取属性信息
+    AttrcatRecord *attrInfos = new AttrcatRecord[relcatRecord.attrCount];
+    if((rc = getAttrInfo(relName, relcatRecord.attrCount, attrInfos))) {
+        delete [] attrInfos;
+        return rc;
+    }
+    // 开启扫描
+    RM_FileHandle rmFileHandle;
+    RM_FileScan rmScan;
+    if((rc = rmManager->openFile(relName, rmFileHandle))) {
+        delete [] attrInfos;
+        return rc;
+    }
+    int tmp;
+    if((rc = rmScan.openScan(rmFileHandle, attrInfos[0].attrType, attrInfos[0].attrLength, attrInfos[0].offset, NO_OP, (void*)&tmp))) {
+        delete [] attrInfos;
+        return rc;
+    }
+    // 输出表的属性信息
+    cout << "Table Data Dictionary: ";
+    for(int i = 0; i < relcatRecord.attrCount; ++i) {
+        cout << attrInfos[i].attrName << ", ";
+    }
+    cout << "\n";
+    // 循环
+    int k = 0;
+    RM_Record rmRecord;
+    while((rc = rmScan.getNextRec(rmRecord)) == 0 && (lines == PRINT_ALL_DATA || k < lines)) {
+        // 按照属性信息输出属性值
+        char *pData;
+        if((rmRecord.getData(pData))) {
+            delete [] attrInfos;
+            return rc;
+        }
+        cout << k++ << ": \n";
+        for(int i = 0; i < relcatRecord.attrCount; ++i) {
+            Value value;
+            value.value = pData + attrInfos[i].offset;
+            value.type = attrInfos[i].attrType;
+            cout << value;
+        }
+    }
+    delete [] attrInfos;
+    if(rc != RM_EOF) {
+        return rc;
+    }
+    // 关闭表
+    if((rc = rmManager->closeFile(rmFileHandle))) {
+        return rc;
+    }
+    return 0;
+}
+
+// printDataDic: 输出数据字典
+// - 读取数据字典文件数据数据, 按照格式输出, 循环
+// - 关闭数据字典文件
+RC DDL_Manager::printDataDic() const {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
+    int rc;
+    int tmp;
+    RM_FileScan rmFileScan;
+    if((rc = rmFileScan.openScan(relFileHandle, INT, 4, 0, NO_OP, (void*)&tmp))) {
+        return rc;
+    }
+    RM_Record rec;
+    cout << "Relation Table Data: \n";
+    while((rc = rmFileScan.getNextRec(rec)) == 0) {
+        char *pData;
+        if((rc = rec.getData(pData))) {
+            return rc;
+        }
+        RelcatRecord relcatRecord;
+        memcpy((char*)&relcatRecord, pData, sizeof(RelcatRecord));
+        cout << relcatRecord;
+    }
+    if(rc != RM_EOF) {
+        return rc;
+    }
+    if((rc = rmFileScan.openScan(attrFileHandle, INT, 4, 0, NO_OP, (void*)&tmp))) {
+        return rc;
+    }
+    cout << "Attribution Table Data: \n";
+    while((rc = rmFileScan.getNextRec(rec)) == 0) {
+        char *pData;
+        if((rc = rec.getData(pData))) {
+            return rc;
+        }
+        AttrcatRecord attrcatRecord;
+        memcpy((char*)&attrcatRecord, pData, sizeof(AttrcatRecord));
+        cout << attrcatRecord;
+    }
+    return 0;   // ok
 }
 
 

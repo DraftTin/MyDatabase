@@ -21,16 +21,18 @@ struct Value {
     void *value;
     AttrType type;
 
+    // 输出自身信息
     friend std::ostream &operator<<(std::ostream &s, const Value &value) {
+        // 修改bug: 强转后输出字符串不需要再取地址
         switch (value.type) {
-            case INT: 
+            case INT:
                 s << "int: " << *static_cast<int*>(value.value) << '\n';
                 break;
             case FLOAT:
                 s << "float: " << *static_cast<float *>(value.value) << '\n';
                 break;
             case STRING:
-                s << "string: " << *static_cast<char*>(value.value) << '\n';
+                s << "string: " << static_cast<char*>(value.value) << '\n';
                 break;
             case VARCHAR:
                 s << "varchar: " << (char*)value.value << '\n';

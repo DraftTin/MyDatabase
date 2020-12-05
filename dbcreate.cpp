@@ -47,5 +47,21 @@ int main(int argc, char *argv[]) {
         RM_PrintError(rc);
         return rc;
     }
+//    RM_FileHandle relFH;
+//    RM_FileHandle attrFH;
+//    if((rc = rmManager.openFile(relCatFileName, relFH)) ||
+//            (rc = rmManager.openFile(attrCatFileName, attrFH))) {
+//        return rc;
+//    }
+//    RelcatRecord relcatRecord;
+//    strcpy(relcatRecord.relName, "relcat");
+//    relcatRecord.attrCount = RELCAT_ATTR_COUNT;
+//    relcatRecord.indexCount = 0;
+//    relcatRecord.tupleLength = sizeof(RelcatRecord);
+//    RID rid;
+//    if((rc = relFH.insertRec((char*)&relcatRecord, rid))) {
+//        return rc;
+//    }
+
     return 0;
 }

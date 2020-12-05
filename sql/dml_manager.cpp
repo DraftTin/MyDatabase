@@ -5,7 +5,7 @@
 #include <cstring>
 #include "dml.h"
 
-DML_Manager::DML_Manager(RM_Manager &_rmManager, DDL_Manager &_smManager) : rmManager(&_rmManager), smManager(&_smManager) {
+DML_Manager::DML_Manager(RM_Manager &_rmManager, DDL_Manager &_ddlManager) : rmManager(&_rmManager), ddlManager(&_ddlManager) {
     // Don't need to do anything
 }
 
@@ -17,12 +17,12 @@ DML_Manager::DML_Manager(RM_Manager &_rmManager, DDL_Manager &_smManager) : rmMa
 RC DML_Manager::insert(const char *relName, int nValues, const Value *values) {
     int rc;
     RelcatRecord relcatRecord;
-    if((rc = smManager->getRelInfo(relName, relcatRecord))) {
+    if((rc = ddlManager->getRelInfo(relName, relcatRecord))) {
         return rc;
     }
     int attrCount = relcatRecord.attrCount;
     AttrcatRecord *attrcatRecords = new AttrcatRecord[attrCount];
-    if((rc = smManager->getAttrInfo(relName, attrCount, attrcatRecords))) {
+    if((rc = ddlManager->getAttrInfo(relName, attrCount, attrcatRecords))) {
         delete [] attrcatRecords;
         return rc;
     }
@@ -31,8 +31,9 @@ RC DML_Manager::insert(const char *relName, int nValues, const Value *values) {
         delete [] attrcatRecords;
         return DML_ATTR_COUNT_INCORRECT;
     }
+    // 修改bug: if(values[i].type != attrcatRecords->attrType)修改为if(values[i].type != attrcatRecords[i]->attrType)
     for(int i = 0; i < nValues; ++i) {
-        if(values[i].type != attrcatRecords->attrType) {
+        if(values[i].type != attrcatRecords[i].attrType) {
             delete [] attrcatRecords;
             return DML_ATTR_TYPE_INCORRECT;
         }
@@ -91,3 +92,4 @@ RC DML_Manager::insert(const char *relName, int nValues, const Value *values) {
     }
     return 0;   // ok
 }
+

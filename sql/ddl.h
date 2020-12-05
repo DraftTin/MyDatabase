@@ -20,6 +20,10 @@ struct RelcatRecord {
     int tupleLength;
     int attrCount;
     int indexCount;
+    friend ostream &operator<<(std::ostream &s, const RelcatRecord &relcatRecord) {
+        cout << relcatRecord.relName << " " << relcatRecord.tupleLength << " " << relcatRecord.attrCount << " " << relcatRecord.indexCount << "\n";
+        return s;
+    }
 };
 
 // AttrcatRecord - 存储在attrcat中的记录
@@ -36,10 +40,33 @@ struct AttrcatRecord {
     AttrType attrType;
     int attrLength;
     int indexNo;
+    friend ostream &operator<<(std::ostream &s, const AttrcatRecord &attrcatRecord) {
+        cout << attrcatRecord.relName << " " << attrcatRecord.attrName << " " << attrcatRecord.offset << " ";
+        switch (attrcatRecord.attrType) {
+            case INT:
+                cout << "int ";
+                break;
+            case FLOAT:
+                cout << "float ";
+                break;
+            case STRING:
+                cout << "string ";
+                break;
+            case VARCHAR:
+                cout << "varchar ";
+                break;
+            default:
+                break;
+        }
+        cout << attrcatRecord.attrLength << " " << attrcatRecord.indexNo << "\n";
+        return s;
+    }
 };
 
-#define RELCAT_ATTR_COUNT    4       // 表示表目录的记录的属性数量
-#define ATTRCAT_ATTR_COUNT   6       // 表示属性目录的记录的属性数量
+#define RELCAT_ATTR_COUNT    4          // 表示表目录的记录的属性数量
+#define ATTRCAT_ATTR_COUNT   6          // 表示属性目录的记录的属性数量
+
+#define PRINT_ALL_DATA      -1          // 输出所有信息
 
 class DDL_Manager {
 public:
@@ -50,9 +77,10 @@ public:
     RC createTable(const char *relName,             // 表名
                    int        attrCount,            // 属性的数量
                    AttrInfo   *attributes);         // 属性的数据(属性名, 属性长度, 属性类型)
-    RC getRelInfo(const char *relName, RelcatRecord& relinfo);   // 返回属性信息和表信息
-    RC getAttrInfo(const char *relName, int attrCount, AttrcatRecord *attrinfo);
-
+    RC getRelInfo(const char *relName, RelcatRecord& relinfo) const;   // 返回属性信息和表信息
+    RC getAttrInfo(const char *relName, int attrCount, AttrcatRecord *attrinfo) const;
+    RC printAllData(char *relName, int lines = PRINT_ALL_DATA) const;
+    RC printDataDic() const;
 private:
     int bDbOpen;
     RM_Manager *rmManager;
@@ -61,10 +89,11 @@ private:
 };
 
 
-#define DDL_DATABASE_OPEN                    (START_DDL_WARN + 2)
-#define DDL_REL_NOT_EXISTS                   (START_DDL_WARN + 1)     // 进行操作的表不存在
+#define DDL_DATABASE_NOT_OPEN                   (START_DDL_WARN + 3)    // 数据库没打开
+#define DDL_DATABASE_OPEN                       (START_DDL_WARN + 2)    // 数据库已经打开了
+#define DDL_REL_NOT_EXISTS                      (START_DDL_WARN + 1)    // 进行操作的表不存在
 
 
-#define DDL_INVALID_DBNAME                   (START_DDL_ERR - 0)
+#define DDL_INVALID_DBNAME                      (START_DDL_ERR - 0)
 
 #endif //MYDATABASE_DDL_H

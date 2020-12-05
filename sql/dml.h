@@ -5,20 +5,19 @@
 #ifndef MYDATABASE_DML_H
 #define MYDATABASE_DML_H
 
-#include "../parser.h"
 #include "../global.h"
 #include "../storage/rm.h"
 #include "ddl.h"
 
 class DML_Manager {
 public:
-    DML_Manager(RM_Manager &_rmManager, DDL_Manager &_smManager);
+    DML_Manager(RM_Manager &_rmManager, DDL_Manager &_ddlManager);
     RC insert (const char  *relName,           // relation to insert into
                int         nValues,            // # values to insert
                const Value values[]);          // values to insert
 private:
     RM_Manager *rmManager;                      // 用于控制记录的插入删除等
-    DDL_Manager *smManager;                      // 用于获取表的信息和属性的信息
+    DDL_Manager *ddlManager;                      // 用于获取表的信息和属性的信息
 };
 
 #define DML_ATTR_COUNT_INCORRECT     START_DML_WARN + 1;  // 插入的属性数量不一致

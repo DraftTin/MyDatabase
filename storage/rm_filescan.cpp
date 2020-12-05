@@ -262,7 +262,7 @@ RC RM_FileScan::getNextRec(RM_Record &rec) {
                 }
                 // 获取该属性值
                 string attrValue(pVal);
-                cout << "attrValue: " << attrValue << endl;
+//                cout << "attrValue: " << attrValue << endl;
                 char *givenValueChar = static_cast<char*>(value);
                 string givenValue(givenValueChar);
                 recordMatch = matchRecord(attrValue, givenValue);
@@ -292,7 +292,6 @@ RC RM_FileScan::getNextRec(RM_Record &rec) {
             if ((rc = pfFH.unpinPage(pageNum))) {
                 return rc;
             }
-
             // 获取nextPage
             rc = pfFH.getNextPage(pageNum, pfPH);
             if (rc == PF_EOF) {
