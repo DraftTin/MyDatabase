@@ -18,7 +18,7 @@ struct BufPageDesc {
     int next;                   // 双向链表后继指针
     int prev;                   // 双向链表前向指针
     int bDirty;                 // 标记脏页，1/0
-    std::atomic_short pinCount; // 记录当前使用该页的进程数量，保证对该变量的原子性操作
+    std::atomic_short pinCount; // 记录当前使用该页的操作数量，保证对该变量的原子性操作
     PageNum pageNum;            // 对应在fd文件中的页号
     int fd;                     // 该页对应的文件
 };
@@ -66,7 +66,7 @@ private:
 
 private:
     BufPageDesc* bufTable;                      // 缓冲页s, 初始化的时候申请固定数量的缓冲页
-    BufHashTable hashTable;                     // 缓冲区哈希表, (fd, pageNum) -> slotNum, slotNum表示bufTable的下标
+    BufHashTable hashTable;                     // 缓冲区哈希表, (fd, nextPage) -> slotNum, slotNum表示bufTable的下标
     int numPages;                               // 缓冲区的块数
     int pageSize;                               // 缓冲区的块size
     int usedHead;                               // MRU page slot，也是used list的首部

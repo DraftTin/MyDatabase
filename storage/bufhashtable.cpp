@@ -33,7 +33,7 @@ BufHashTable::~BufHashTable() {
     delete[] hashTable;
 }
  // find: 哈希表find函数
- // 输入: (pageNum, slot)唯一标识一条记录
+ // 输入: (nextPage, slot)唯一标识一条记录
  // 输出: slot - 缓冲区页下标
  RC BufHashTable::find(int fd, PageNum pageNum, int& slot) {
     // 加读锁
@@ -54,7 +54,7 @@ BufHashTable::~BufHashTable() {
  }
 
  // insert: 哈希表insert函数
- // 输入: key: (fd, pageNum), value: slot
+ // 输入: key: (fd, nextPage), value: slot
  // 输出: 无
  RC BufHashTable::insert(int fd, PageNum pageNum, int slot) {
      // 加写锁
@@ -81,7 +81,7 @@ BufHashTable::~BufHashTable() {
     }
     hashTable[bucket] = entry;
 
-//    printf("insert: (%d, %d, %d) \n", fd, pageNum, slot);
+//    printf("insert: (%d, %d, %d) \n", fd, nextPage, slot);
     // 并发产生不一致
     if(fd != hashTable[bucket]->fd || pageNum != hashTable[bucket]->pageNum) {
         return HASH_INCONSISTENT;
@@ -90,7 +90,7 @@ BufHashTable::~BufHashTable() {
 }
 
 // remove: 哈希表remove函数
-// 输入: key: (fd, pageNum)
+// 输入: key: (fd, nextPage)
 // 输出: 无
 RC BufHashTable::remove(int fd, PageNum pageNum) {
     // 加写锁
@@ -114,7 +114,7 @@ RC BufHashTable::remove(int fd, PageNum pageNum) {
         entry->next->prev = entry->prev;
     }
     delete entry;
-//    printf("remove: (%d, %d, %d)\n", fd, pageNum);
+//    printf("remove: (%d, %d, %d)\n", fd, nextPage);
     return 0;
 }
 

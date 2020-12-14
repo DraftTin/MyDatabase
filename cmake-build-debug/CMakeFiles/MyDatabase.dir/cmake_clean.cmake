@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj"
   "CMakeFiles/MyDatabase.dir/storage/bufhashtable.cpp.obj"
   "CMakeFiles/MyDatabase.dir/storage/bufmgr.cpp.obj"
+  "CMakeFiles/MyDatabase.dir/storage/ix_indexhandle.cpp.obj"
+  "CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.obj"
   "CMakeFiles/MyDatabase.dir/storage/pagehandle.cpp.obj"
   "CMakeFiles/MyDatabase.dir/storage/pf_filehandle.cpp.obj"
   "CMakeFiles/MyDatabase.dir/storage/pf_manager.cpp.obj"

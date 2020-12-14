@@ -181,7 +181,7 @@ bool RM_FileScan::matchRecord(T recordValue, T givenValue) {
 
 // TODO
 //  getNextRec: 获取当前扫描的记录的下一条匹配的记录
-//  - (pageNum, slotNum)为当前扫描的记录, 获取pageNum页的指针
+//  - (nextPage, slotNum)为当前扫描的记录, 获取pageNum页的指针
 //  - 从slotNum开始循环扫描, 若该bitmap对应slotNum的bit为1, 则进行比较, 若符合条件, 则设置返回的record
 //  - 如果slotNum达到了页能够容纳的记录的数量, 则获取下一页并将slotNum置为1
 //  - 直到找到符合条件的记录或到达文件尾没找到记录

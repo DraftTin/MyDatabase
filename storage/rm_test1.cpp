@@ -19,7 +19,7 @@ using namespace std;
 #define STRLEN      29               // length of string in testrec
 #define PROG_UNIT   50               // how frequently to give progress
                                      // reports when adding lots of recs
-#define FEW_RECS   1200              // number of records added in
+#define FEW_RECS   10000             // number of records added in
 
 //
 // Computes the offset of a field in a record (should be in <stddef.h>)
@@ -107,7 +107,7 @@ void PF_ConfirmStatistics()
 
 
 //
-// Structure of the records we will be using for the tests
+// 将TestRec结构体表示为一条数据记录
 //
 struct TestRec {
     char  str[STRLEN];
@@ -468,8 +468,6 @@ RC VerifyFile(RM_FileHandle &fh, int numRecs, CompOp op)
     found = new char[numRecs];
     memset(found, 0, numRecs);
     // 转换成int*再取值
-    int givenValue = *static_cast<int*>((int*)tempRecord + offsetof(TestRec, num));
-    // For each record in the file
     for (rc = GetNextRecScan(fs, rec), n = 0;
          rc == 0;
          rc = GetNextRecScan(fs, rec), n++) {
@@ -823,9 +821,8 @@ RC Test2(void)
     return (0);
 }
 
-//
-// Test3 verifies that records are added to a file.
-//
+
+// Test3: 验证数据插入的正确性
 RC Test3(void)
 {
     RC            rc;
@@ -833,30 +830,33 @@ RC Test3(void)
 
     printf("\ntest3 starting\n*****************************\n");
 
+    // 创建表文件
     if ((rc = CreateFile((char*)FILENAME, sizeof(TestRec)))) {
         return rc;
     }
+    // 打开表文件
     if ((rc = OpenFile((char*)FILENAME, fh))) {
         return rc;
     }
+    // 向表中添加若干条记录
     if ((rc = AddRecs(fh, FEW_RECS))) {
         return rc;
     }
+    // 关闭 + 写回数据
     if ((rc = CloseFile((char*)FILENAME, fh))) {
         return (rc);
     }
-    // Verify file
+    // 重新打开文件
     if ((rc = OpenFile((char*)FILENAME, fh))) {
         return rc;
     }
+    // 验证数据是否正确
     if ((rc = VerifyFile(fh, FEW_RECS, NO_OP))) {
         return rc;
     }
     if ((rc = CloseFile((char*)FILENAME, fh))) {
         return (rc);
     }
-
-    LsFile((char*)FILENAME);
 
     if ((rc = DestroyFile((char*)FILENAME)))
         return (rc);

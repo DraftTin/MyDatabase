@@ -30,7 +30,8 @@ RC Test1();
 RC Test2();
 RC InsertData(DML_Manager &dmlManager, char *relName);
 RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relName);
-
+RC CreateTable(DDL_Manager &ddlManager, char *relName);
+RC CreateDatabase();
 
 
 int main() {
@@ -53,6 +54,12 @@ void generateStr(char str[], int size) {
         str[i] = rand() % 95 + 32;
     }
     str[size - 1] = '\0';
+}
+
+RC CreateDatabase() {
+    char command[30] = ".\\dbcreate testdb";
+    system(command);
+    return 0;
 }
 
 RC InsertData(DML_Manager &dmlManager, char *relName) {
@@ -100,6 +107,7 @@ RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relNa
         return rc;
     }
     RM_Record rec;
+    // 扫描表中的数据，并和保存到数组中的数据做比较验证
     while((rc = rmScan.getNextRec(rec)) == 0) {
         char *pData;
         if((rc = rec.getData(pData))) {
@@ -120,20 +128,8 @@ RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relNa
     return 0;   // ok
 }
 
-// 测试创建表操作, 查看数据字典是否正确存储
-RC Test1() {
-    cout << "Test1 start....\n";
+RC CreateTable(DDL_Manager &ddlManager, char *relName) {
     int rc;
-    PF_Manager pfManager;
-    RM_Manager rmManager(pfManager);
-    DDL_Manager ddlManager(rmManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
-    char dbName[MAXNAME + 1] = "testdb";
-    char relName[MAXNAME + 1] = "student";
-    // 打开数据库
-    if((rc = ddlManager.openDb(dbName))) {
-        return rc;
-    }
     AttrInfo *attrs = new AttrInfo[4];
     attrs[0].attrLength = 4;
     attrs[0].attrType = INT;
@@ -152,17 +148,44 @@ RC Test1() {
     attrs[3].attrName = new char[MAXNAME + 1];
     sprintf(attrs[3].attrName, "%s", "height");
     // 创建表
-    if((rc = ddlManager.createTable(relName, 4, attrs))) {
+    return ddlManager.createTable(relName, 4, attrs);
+}
+
+// 测试创建表操作, 查看数据字典是否正确存储
+RC Test1() {
+    cout << "Test1 start....\n";
+    int rc;
+    PF_Manager pfManager;
+    RM_Manager rmManager(pfManager);
+    DDL_Manager ddlManager(rmManager);
+    DML_Manager dmlManager(rmManager, ddlManager);
+    char dbName[MAXNAME + 1] = "testdb";        // 创建数据库的名称
+    char relName[MAXNAME + 1] = "student";      // 创建表的名称
+    // 创建数据库
+    if((rc = CreateDatabase())) {
         return rc;
     }
+    // 打开数据库
+    if((rc = ddlManager.openDb(dbName))) {
+        return rc;
+    }
+    // 创建数据库表
+    if((rc = CreateTable(ddlManager, relName))) {
+        return rc;
+    }
+    // 输出数据字典信息
     if((rc = ddlManager.printDataDic())) {
+        return rc;
+    }
+    // 关闭数据库
+    if((rc = ddlManager.closeDb())) {
         return rc;
     }
     cout << "Test1 done!\n";
     return 0;   // ok
 }
 
-// Test2: 测试insert语句
+// Test2: 测试insert语句，并验证插入的正确性
 RC Test2() {
     cout << "Test2 start....\n";
     int rc;
@@ -172,29 +195,16 @@ RC Test2() {
     DML_Manager dmlManager(rmManager, ddlManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
+    // 创建数据库
+    if((rc = CreateDatabase())) {
+        return rc;
+    }
     // 打开数据库
     if((rc = ddlManager.openDb(dbName))) {
         return rc;
     }
-    AttrInfo *attrs = new AttrInfo[4];
-    attrs[0].attrLength = 4;
-    attrs[0].attrType = INT;
-    attrs[0].attrName = new char[MAXNAME + 1];
-    sprintf(attrs[0].attrName, "%s", "id");
-    attrs[1].attrLength = MAXNAME + 1;
-    attrs[1].attrType = STRING;
-    attrs[1].attrName = new char[MAXNAME + 1];
-    sprintf(attrs[1].attrName, "%s", "name");
-    attrs[2].attrLength = 4;
-    attrs[2].attrType = FLOAT;
-    attrs[2].attrName = new char[MAXNAME + 1];
-    sprintf(attrs[2].attrName, "%s", "weight");
-    attrs[3].attrLength = 4;
-    attrs[3].attrType = FLOAT;
-    attrs[3].attrName = new char[MAXNAME + 1];
-    sprintf(attrs[3].attrName, "%s", "height");
     // 创建表
-    if((rc = ddlManager.createTable(relName, 4, attrs))) {
+    if((rc = CreateTable(ddlManager, relName))) {
         return rc;
     }
     // 向表中插入数据
@@ -205,6 +215,7 @@ RC Test2() {
     if((rc = ddlManager.printDataDic())) {
         return rc;
     }
+    cout << "****************************************\n";
     // 输出表中所有信息
     if((rc = ddlManager.printAllData(relName, 3))) {
         return rc;

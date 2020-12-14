@@ -55,7 +55,7 @@ BufferMgr::~BufferMgr() {
 
 // getPage: 获取文件fd的pageNum页并返回该页的数据部分, bMultiplePins表示此次申请是否想要固定该页
 // - 查看该页是否在缓冲区内
-// - 若不在缓冲区内, 则向缓冲池申请一页空闲缓冲页, 并将文件页读入该缓冲页, 向哈希表中插入映射关系, 初始化该缓冲页的fd, pageNum, pinCount和bDirty
+// - 若不在缓冲区内, 则向缓冲池申请一页空闲缓冲页, 并将文件页读入该缓冲页, 向哈希表中插入映射关系, 初始化该缓冲页的fd, nextPage, pinCount和bDirty
 // - 若在缓冲区内, 则直接返回该页, ++pinCount, 注: bMultiplePins表示一个标记, 如果bMultiplePins为FALSE而pinCount > 0则是一个错误(如disposePage时)
 // - 返回文件页在缓冲区页的指针
 RC BufferMgr::getPage(int fd, PageNum pageNum, char **ppBuffer, int bMultiplePins) {
@@ -203,7 +203,7 @@ RC BufferMgr::unlink(int slot, bool blck) {
     return 0;   // ok
 }
 
-// linkHead: 将slot页置为first(mru页)
+// linkHead: 将slot页置为first(mru页), 即放到栈顶
 // 输入: slot - 缓冲页的下标    blck - 是否需要单独对链表加锁
 // 输出: RC码
 // - 如果需要, 对链表加写锁
@@ -247,7 +247,7 @@ RC BufferMgr::readPage(int fd, PageNum pageNum, char *dest) {
     return 0;   // ok
 }
 
-// initPageDesc: 初始化bufTable[slot]缓冲页, 设置fd, pageNum, bDirty, pinCount
+// initPageDesc: 初始化bufTable[slot]缓冲页, 设置fd, nextPage, bDirty, pinCount
 RC BufferMgr::initPageDesc(int fd, PageNum pageNum, int slot) {
     bufTable[slot].fd = fd;
     bufTable[slot].pageNum = pageNum;
@@ -275,7 +275,7 @@ RC BufferMgr::insertFree(int slot, bool blck) {
 
 // allocatePage: 向缓冲区申请一个空闲缓冲页, 用于文件申请新页时(新页一定不在缓冲区, 所以直接internalAlloc)
 // - 向缓冲区申请一页空闲缓冲页
-// - 向哈希表中插入(fd, pageNum) -> slotNum 的映射, 初始化该缓冲页
+// - 向哈希表中插入(fd, nextPage) -> slotNum 的映射, 初始化该缓冲页
 // - 将ppBuffer指向该缓冲页并返回
 RC BufferMgr::allocatePage(int fd, PageNum pageNum, char **ppBuffer) {
     RC rc;
@@ -329,9 +329,6 @@ RC BufferMgr::printBuffer() const {
         cout << "  pageNum = " << bufTable[slot].pageNum << "\n";
         cout << "  bDirty = " << bufTable[slot].bDirty << "\n";
         cout << "  pinCount = " << bufTable[slot].pinCount << "\n";
-        /////////////////////
-        cout << "  pData = " << bufTable[slot].pData << "\n";
-        ///////////////////
         slot = next;
     }
 
@@ -392,6 +389,7 @@ RC BufferMgr::flushPages(int fd) {
         if(bufTable[slot].fd == fd) {
             // 确保该页unpinned
             if(bufTable[slot].pinCount) {
+                cout << "!!: " << bufTable[slot].pageNum << "  " << bufTable[slot].pinCount << "\n";
                 rcWarn = PF_PAGEPINNED;
             }
             else {
@@ -415,7 +413,7 @@ RC BufferMgr::flushPages(int fd) {
     return rcWarn;
 }
 
-// markDirty: 将缓冲池中的(fd, pageNum)页标记为脏，不需要移除缓冲区, 并将该页放到used list的首部
+// markDirty: 将缓冲池中的(fd, nextPage)页标记为脏，不需要移除缓冲区, 并将该页放到used list的首部
 RC BufferMgr::markDirty(int fd, PageNum pageNum) {
     int rc;
     int slot;

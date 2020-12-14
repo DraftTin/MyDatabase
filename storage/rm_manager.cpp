@@ -142,7 +142,7 @@ RC RM_Manager::openFile(const char *fileName, RM_FileHandle &fileHandle) {
     memcpy((char*)&(fileHandle.rmAttrFileHandle.hdrPage), pAttrData, sizeof(RM_AttrFileHeaderPage));
     int pageNum;
     // openFile时调用了pfFH的getFirstPage, 由于是打开文件，所以对应的first page一定不在缓冲池中，
-    // 需要缓冲池管理器分配缓冲区，所以会有pinCount = 1, 所以此处需要unpinPage(pageNum)
+    // 需要缓冲池管理器分配缓冲区，所以会有pinCount = 1, 所以此处需要unpinPage(nextPage)
     if((rc = recPH.getPageNum(pageNum)) ||
             (rc = recFH.unpinPage(pageNum)) ||
             (rc = attrPH.getPageNum(pageNum)) ||

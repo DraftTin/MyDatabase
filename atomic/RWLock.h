@@ -8,6 +8,7 @@
 #include <condition_variable>
 #include <atomic>
 
+// RWLock: 读写锁, 用于对操作进行并发控制
 class RWLock {
 public:
     RWLock();
@@ -24,6 +25,7 @@ private:
     std::condition_variable rq;     // 控制读者
 };
 
+// ReadGuard: 用于管理读锁
 class ReadGuard {
 public:
     ReadGuard(RWLock &rwLock);
@@ -42,6 +44,7 @@ private:
     int myOwns;
 };
 
+// WriteGuard: 用于管理写锁
 class WriteGuard {
 public:
     explicit WriteGuard(RWLock& rwLock);

@@ -15,6 +15,7 @@ public:
     RC insert (const char  *relName,           // relation to insert into
                int         nValues,            // # values to insert
                const Value values[]);          // values to insert
+    RC insertForTest(const char *relName, int nValues, const Value *values, RID &rRid);
 private:
     RM_Manager *rmManager;                      // 用于控制记录的插入删除等
     DDL_Manager *ddlManager;                      // 用于获取表的信息和属性的信息

@@ -4,13 +4,13 @@
 CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.obj: ../atomic/RWLock.cpp
 CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.obj: ../atomic/RWLock.h
 
-CMakeFiles/rm_test1.dir/sm/sm_manager.cpp.obj: ../global.h
-CMakeFiles/rm_test1.dir/sm/sm_manager.cpp.obj: ../parser.h
-CMakeFiles/rm_test1.dir/sm/sm_manager.cpp.obj: ../sm/sm.h
-CMakeFiles/rm_test1.dir/sm/sm_manager.cpp.obj: ../sm/sm_manager.cpp
-CMakeFiles/rm_test1.dir/sm/sm_manager.cpp.obj: ../storage/pf.h
-CMakeFiles/rm_test1.dir/sm/sm_manager.cpp.obj: ../storage/rid.h
-CMakeFiles/rm_test1.dir/sm/sm_manager.cpp.obj: ../storage/rm.h
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../global.h
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../parser.h
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../sql/ddl.h
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../sql/ddl_manager.cpp
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../storage/pf.h
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../storage/rid.h
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../storage/rm.h
 
 CMakeFiles/rm_test1.dir/storage/attrfilehandle.cpp.obj: ../global.h
 CMakeFiles/rm_test1.dir/storage/attrfilehandle.cpp.obj: ../parser.h

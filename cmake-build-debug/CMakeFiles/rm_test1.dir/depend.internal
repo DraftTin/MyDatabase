@@ -4,11 +4,11 @@
 CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.obj
  C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.cpp
  C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.h
-CMakeFiles/rm_test1.dir/sm/sm_manager.cpp.obj
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj
  C:/Users/Administrator/CLionProjects/MyDatabase/global.h
  C:/Users/Administrator/CLionProjects/MyDatabase/parser.h
- C:/Users/Administrator/CLionProjects/MyDatabase/sm/sm.h
- C:/Users/Administrator/CLionProjects/MyDatabase/sm/sm_manager.cpp
+ C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl.h
+ C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl_manager.cpp
  C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
  C:/Users/Administrator/CLionProjects/MyDatabase/storage/rid.h
  C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h

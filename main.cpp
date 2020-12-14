@@ -32,7 +32,7 @@ void test2() {
     int pageNum = -999;
     pageHandle.getData(pData);
     pageHandle.getPageNum(pageNum);
-    cout << "pageNum: " << pageNum << endl;
+    cout << "nextPage: " << pageNum << endl;
     if(pData != nullptr)
         cout << "pData: " << ((PF_PageHdr*)pData)->nextFree << endl;
 }

@@ -32,7 +32,7 @@ struct RelcatRecord {
 // offset - 属性的偏移量
 // attrType - 属性的类型
 // attrLength - 属性的长度
-// indexNo - indexNumber 或 -1表示没有索引
+// indexNo - 索引号 或 -1表示没有索引
 struct AttrcatRecord {
     char relName[MAXNAME + 1];
     char attrName[MAXNAME + 1];

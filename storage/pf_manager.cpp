@@ -18,7 +18,7 @@ using namespace std;
 // PF_Manager: 初始化PF_Manager实例
 // - 初始化内存缓冲区
  PF_Manager::PF_Manager() {
-     // 申请内存中的一个缓冲区
+     // 申请内存中的一个缓冲区, 页数为PF_BUFFER_SIZE
      pBufferMgr = new BufferMgr(PF_BUFFER_SIZE);
  }
 

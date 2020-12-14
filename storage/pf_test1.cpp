@@ -134,7 +134,7 @@ RC WriteFile(PF_Manager &pfm, char *fname)
         }
 
         memcpy(pData, (char *)&pageNum, sizeof(PageNum));
-        //  memcpy(pData + PF_PAGE_SIZE - sizeof(PageNum), &pageNum, sizeof(PageNum));
+        //  memcpy(pData + PF_PAGE_SIZE - sizeof(PageNum), &nextPage, sizeof(PageNum));
 
         cout << "Page allocated: " << (int)pageNum << "\n";
     }
@@ -290,7 +290,7 @@ int len;
       }
 
       memcpy(pData, (char*)&pageNum, sizeof(PageNum));
-      //  memcpy(pData + PF_PAGE_SIZE - sizeof(PageNum), &pageNum, sizeof(PageNum));
+      //  memcpy(pData + PF_PAGE_SIZE - sizeof(PageNum), &nextPage, sizeof(PageNum));
 
       if ((rc = fh2.markDirty(pageNum)) ||
             (rc = fh2.unpinPage(pageNum)))
@@ -307,7 +307,7 @@ int len;
       }
 
       memcpy(pData, (char*)&pageNum, sizeof(PageNum));
- // memcpy(pData + PF_PAGE_SIZE - sizeof(PageNum), &pageNum, sizeof(PageNum));
+ // memcpy(pData + PF_PAGE_SIZE - sizeof(PageNum), &nextPage, sizeof(PageNum));
 
       if ((rc = fh1.markDirty(pageNum)) ||
             (rc = fh1.unpinPage(pageNum)))
@@ -377,7 +377,7 @@ int len;
          return(rc);
 
       memcpy(pData, (char *)&pageNum, sizeof(PageNum));
- // memcpy(pData + PF_PAGE_SIZE - sizeof(PageNum), &pageNum, sizeof(PageNum));
+ // memcpy(pData + PF_PAGE_SIZE - sizeof(PageNum), &nextPage, sizeof(PageNum));
 
       if ((rc = fh1.markDirty(pageNum)) ||
             (rc = fh1.unpinPage(pageNum)))

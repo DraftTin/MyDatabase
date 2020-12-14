@@ -58,7 +58,7 @@ public:
     RC getRid(RID &rid) const;
 public:
     char *pData;    // 记录的数据
-    RID rid;        // 记录的rid(pageNum, slotID)
+    RID rid;        // 记录的rid(nextPage, slotID)
     int isValid;    // flag
     int recordSize; // 记录的size
 };

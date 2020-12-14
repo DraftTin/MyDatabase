@@ -20,7 +20,7 @@ RID::~RID() {
 
 RC RID::getPageNum(PageNum &pageNum) const {
     // 修改bug: 将RM_INVALID_PAGE_NUMBER修改成-1
-    if(pageNum == RM_INVALID_PAGE_NUMBER) {
+    if(pageNum == -1) {
         return RID_NOT_VIABLE;
     }
     pageNum = this->pageNum;
