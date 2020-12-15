@@ -167,7 +167,7 @@ int (*tests[])() =                      // RC doesn't work on some compilers
     Test4,
     Test5,
     Test6,
-    Test7
+    Test7,
 };
 
 //

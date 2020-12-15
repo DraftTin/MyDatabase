@@ -6,11 +6,43 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.h
+condition_variable
+-
+atomic
+-
+
 C:/Users/Administrator/CLionProjects/MyDatabase/global.h
 
 C:/Users/Administrator/CLionProjects/MyDatabase/parser.h
 iostream
 -
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h
+pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
+../atomic/RWLock.h
+C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.cpp
+io.h
+-
+process.h
+-
+iostream
+-
+bufmgr.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
+atomic
+-
+../atomic/RWLock.h
+C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.h
+pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
+bufhashtable.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h
 
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
 ../global.h

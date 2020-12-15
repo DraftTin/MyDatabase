@@ -16,6 +16,7 @@ IX_IndexHandle::~IX_IndexHandle() {
     // do nothing
 }
 
+// insertEntry: 插入一条索引项, key值为data, val值为rid
 RC IX_IndexHandle::insertEntry(void *data, const RID &rid) {
     if(!isOpen) {
         return IX_FILE_CLOSED;
@@ -556,4 +557,296 @@ RC IX_IndexHandle::spliteTwoNodes(IX_NodeHeader *nodeHeader, PageNum leftNodePag
     return 0;   // ok
 }
 
+/*!
+ *
+ * @param pData : 索引key
+ * @param rid : 索引val, 由于能够存储重复的索引key, 所以删除的时候要将索引val也提供出来
+ * @return : 无
+ */
+RC IX_IndexHandle::deleteEntry(void *pData, const RID &rid) {
+    int rc;
+    // 检查索引是否打开
+    if(!isOpen) {
+        return IX_FILE_CLOSED;
+    }
+    // 如果根节点为空, 则返回未找到
+    if(indexHeader.rootPage == IX_NO_PAGE) {
+        return IX_NOT_FOUND;
+    }
+    // 获取根叶
+    PageHandle rootPageHandle;
+    char *rootData;
+    if((rc = pfFH.getThisPage(indexHeader.rootPage, rootPageHandle)) ||
+            (rc = rootPageHandle.getData(rootData))) {
+        return rc;
+    }
+    PageNum pageMemento = indexHeader.rootPage;
+    IX_NodeHeader *rootNodeHeader = (IX_NodeHeader*)rootData;
+    // 根节点为叶节点不需要递归向下查找
+    if(rootNodeHeader->type == ROOT_LEAF) {
+        int keyPos;
+        // 从叶节点中查找该key值的位置
+        if((rc = searchEntryFromLeaf(pData, indexHeader.rootPage, keyPos))) {
+            return rc;
+        }
+        if((rc = deleteFromLeaf(indexHeader.rootPage, keyPos, rid))) {
+            return rc;
+        }
+    }
+    // 根节点为非页结点需要递归查找pData所在的区间
+    else {
+        int leafPage;
+        int keyPos;
+        // 查找叶节点所在的页
+        if((rc = searchEntryFromNode(pData, indexHeader.rootPage, leafPage))) {
+            return rc;
+        }
+        if((rc = searchEntryFromLeaf(pData, leafPage, keyPos))) {
+            return rc;
+        }
+        if((rc = deleteFromLeaf(leafPage, keyPos, rid))) {
+            return rc;
+        }
+    }
+    if((rc = pfFH.unpinPage(pageMemento))) {
+        return rc;
+    }
+    return 0;   // ok
+}
+
+// searchEntryFromNode: 从非叶结点nodePage上查找到pData所在的区间并返回最后的叶节点
+// - 获取nodePage页, 判断是否是叶结点
+// - 如果是, 直接返回
+// - 如果不是, 循环查找区间, 递归
+RC IX_IndexHandle::searchEntryFromNode(void *pData, PageNum nodePage, PageNum &rReafPage) const {
+    int rc;
+    PageHandle nodePageHandle;
+    char *nodeData;
+    if((rc = pfFH.getThisPage(nodePage, nodePageHandle)) ||
+            (rc = nodePageHandle.getData(nodeData))) {
+        return rc;
+    }
+
+    IX_NodeHeader *nodeHeader = (IX_NodeHeader*)nodeData;
+    // 如果是叶节点则直接返回
+    if(nodeHeader->type == LEAF) {
+        if((rc = pfFH.unpinPage(nodePage))) {
+            return rc;
+        }
+        rReafPage = nodePage;
+    }
+    // 如果是非叶结点则循环查找区间, 递归执行
+    else {
+        PageNum nextPage;
+        if((rc = getIntervalFromNode(pData, nodeHeader, nextPage))) {
+            return rc;
+        }
+        if((rc = pfFH.unpinPage(nodePage))) {
+            return rc;
+        }
+        return searchEntryFromNode(pData, nextPage, rReafPage);
+    }
+    return 0;
+}
+
+RC IX_IndexHandle::searchEntryFromLeaf(void *value, PageNum leafPage, int &keyPos) const {
+    int rc;
+    PageHandle pageHandle;
+    char *pData;
+    if((rc = pfFH.getThisPage(leafPage, pageHandle)) ||
+            (pageHandle.getData(pData))) {
+        return rc;
+    }
+    IX_NodeHeader *nodeHeader = (IX_NodeHeader*)pData;
+    int bFound = FALSE;
+    if(indexHeader.attrType == INT) {
+        int intVal = *static_cast<int*>(value);
+        int *keyArray = (int*)(pData + sizeof(IX_NodeHeader));
+        for(int i = 0; i < nodeHeader->numberKeys; ++i) {
+            if(keyArray[i] == intVal) {
+                keyPos = i;
+                bFound = TRUE;
+                break;
+            }
+        }
+    }
+    else if(indexHeader.attrType == FLOAT) {
+
+    }
+    else if(indexHeader.attrType == STRING) {
+
+    }
+    if((rc = pfFH.unpinPage(leafPage))) {
+        return rc;
+    }
+    if(bFound == FALSE) {
+        return IX_NOT_FOUND;
+    }
+    return 0;
+}
+
+RC IX_IndexHandle::deleteFromLeaf(PageNum pageNum, int keyPos, const RID &rid) {
+    int rc;
+    PageHandle pageHandle;
+    char *pData;
+    int bFound = FALSE;
+    if((rc = pfFH.getThisPage(pageNum, pageHandle)) ||
+            (rc = pageHandle.getData(pData))) {
+        return rc;
+    }
+    IX_NodeHeader *nodeHeader = (IX_NodeHeader*)pData;
+    if(indexHeader.attrType == INT) {
+        char *valueData = pData + sizeof(IX_NodeHeader) + indexHeader.attrLength * indexHeader.degree;
+        int *keyArray = (int*)(pData + sizeof(IX_NodeHeader));
+        IX_NodeValue *valueArray = (IX_NodeValue*)valueData;
+        // 找到删除项
+        if((sameRID(rid, valueArray[keyPos].rid))) {
+            bFound = TRUE;
+            // 将该页标记为脏页
+            if((rc = pfFH.markDirty(pageNum))) {
+                return rc;
+            }
+            // 判断是否有溢出块
+            // 如果有溢出块, 则将溢出块中的rid拿出一个放到该索引项中
+            if(valueArray[keyPos].nextPage != IX_NO_PAGE) {
+                int overflowPage = valueArray[keyPos].nextPage;
+                PageHandle overflowPageHandle;
+                char *overflowPageData;
+                if((rc = pfFH.getThisPage(overflowPage, overflowPageHandle)) ||
+                        (rc = overflowPageHandle.getData(overflowPageData))) {
+                    return rc;
+                }
+                // 将溢出块标记为脏页
+                if((rc = pfFH.markDirty(overflowPage))) {
+                    return rc;
+                }
+                IX_OverflowPageHeader *overflowPageHeader = (IX_OverflowPageHeader*)overflowPageData;
+                RID *rids = (RID*)(overflowPageData + sizeof(IX_OverflowPageHeader));
+                valueArray[keyPos].rid = rids[overflowPageHeader->numberRecords - 1];
+                overflowPageHeader->numberRecords -= 1;
+                if(overflowPageHeader->numberRecords == 0) {
+                    valueArray[keyPos].nextPage = IX_NO_PAGE;
+                    if((rc = pfFH.unpinPage(overflowPage))) {
+                        return rc;
+                    }
+                    if((rc = pfFH.disposePage(overflowPage))) {
+                        return rc;
+                    }
+                }
+                else {
+                    if((rc = pfFH.unpinPage(overflowPage))) {
+                        return rc;
+                    }
+                }
+            }
+            // 如果没有, 则删除该索引项
+            else {
+                for(int i = keyPos; i < nodeHeader->numberKeys - 1; ++i) {
+                    keyArray[i] = keyArray[i + 1];
+                    valueArray[i] = valueArray[i + 1];
+                }
+                nodeHeader->numberKeys -= 1;
+            }
+        }
+        // 未找到
+        else {
+            // 从溢出块开始找
+            int overflowPage = valueArray[keyPos].nextPage;
+            // 如果有溢出块
+            if(overflowPage != IX_NO_PAGE) {
+                PageHandle overflowPageHandle;
+                char *overflowPageData;
+                if((rc = pfFH.getThisPage(overflowPage, overflowPageHandle)) ||
+                   (rc = overflowPageHandle.getData(overflowPageData))) {
+                    return rc;
+                }
+                IX_OverflowPageHeader *overflowPageHeader = (IX_OverflowPageHeader*)overflowPageData;
+                RID *rids = (RID*)(overflowPageData + sizeof(IX_OverflowPageHeader));
+                for(int i = 0; i < overflowPageHeader->numberRecords; ++i) {
+                    // 如果找到则删除
+                    if(sameRID(rid, rids[i])) {
+                        if((rc = pfFH.markDirty(overflowPage))) {
+                            return rc;
+                        }
+                        bFound = TRUE;
+                        for(int j = i; j < overflowPageHeader->numberRecords - 1; ++j) {
+                            rids[j] = rids[j + 1];
+                        }
+                        overflowPageHeader->numberRecords -= 1;
+                        break;
+                    }
+                }
+                // 如果溢出块没有rid, 则删除溢出块
+                if(overflowPageHeader->numberRecords == 0) {
+                    valueArray[keyPos].nextPage = IX_NO_PAGE;
+                    if((rc = pfFH.unpinPage(overflowPage))) {
+                        return rc;
+                    }
+                    if((rc = pfFH.disposePage(overflowPage))) {
+                        return rc;
+                    }
+                }
+                else {
+                    if((rc = pfFH.unpinPage(overflowPage))) {
+                        return rc;
+                    }
+                }
+            }
+        }
+    }
+    else if(indexHeader.attrType == FLOAT) {
+
+    }
+    else if(indexHeader.attrType == STRING) {
+
+    }
+    if((rc = pfFH.unpinPage(pageNum))) {
+        return rc;
+    }
+    if(bFound == FALSE) {
+        return IX_NOT_FOUND;
+    }
+    return 0;
+}
+
+RC IX_IndexHandle::getIntervalFromNode(void *value, IX_NodeHeader *nodeHeader, PageNum &nextPage) const {
+    int rc;
+
+    // 获取key数组和val数组
+    char *keyData = (char*)nodeHeader + sizeof(IX_NodeHeader);
+    char *valueData = keyData + indexHeader.attrLength * indexHeader.degree;
+    int *keyArray = (int*)keyData;
+    IX_NodeValue *valueArray = (IX_NodeValue*)valueData;
+    int val = *static_cast<int*>(value);
+    int bFound = FALSE;
+    // 寻找val值所在的区间
+    int numberKeys = nodeHeader->numberKeys;
+    // 判断第一个区间
+    if(val < keyArray[0]) {
+        nextPage = valueArray[0].nextPage;
+        bFound = TRUE;
+    }
+    // 判断最后一个区间
+    else if(val >= keyArray[numberKeys - 1]) {
+        nextPage = valueArray[numberKeys].nextPage;
+        bFound = TRUE;
+    }
+        // 判断中间(numberKeys - 1)个区间, 返回nextPage
+    else {
+        for(int i = 1; i < numberKeys; ++i) {
+            if(matchInterval(keyArray[i - 1], keyArray[i], val)) {
+                nextPage = valueArray[i].nextPage;
+                bFound = TRUE;
+                break;
+            }
+        }
+    }
+
+    return 0;
+}
+
+template<typename T>
+bool IX_IndexHandle::matchInterval(T lVal, T rVal, T givenValue) const {
+    return givenValue >= lVal && givenValue < rVal;
+}
 

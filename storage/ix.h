@@ -37,20 +37,33 @@ public:
     ~IX_IndexHandle();
     // 插入索引项
     RC insertEntry(void *pData, const RID &rid);
-
+    RC deleteEntry(void *pData, const RID &rid);
 private:
     RC insertRootPage(void *data, const RID &rid);                                  // 创建索引根项并且插入数据
     RC insertRootLeaf(void *data, const RID &rid);                                  // 向索引根页插入一条索引项
     RC insertEntryRecursively(void *data, const RID &rid, const PageNum pageNum);   // 递归插入数据, 由接口调用
     RC createOverflowPage(PageNum parentPage, PageNum &pageNum);                    // 创建溢出块返回创建的页号
     RC insertOverflowPage(PageNum pageNum, const RID &rid);                         // 向溢出块中插入rid记录
-    RC spliteTwoNodes(IX_NodeHeader *nodeHeader, PageNum leftNodePage, IX_NodeType targetType);             // 块分裂成两块
+    // 块分裂成两块
+    RC spliteTwoNodes(IX_NodeHeader *nodeHeader, PageNum leftNodePage, IX_NodeType targetType);
     bool sameRID(const RID &ridA, const RID &ridB) const;                           // 比较两个rid是否相同
+    // 提供索引key, 寻找到删除索引所在区间的叶节点页号
+    RC searchEntryFromNode(void *pData, PageNum nodePage, PageNum &rReafPage) const;
+    // 从提供的叶节点号中寻找到pData索引key值的位置
+    RC searchEntryFromLeaf(void *value, PageNum leafPage, int &keyPos) const;
+    // 从叶节点的相应位置删除索引项
+    RC deleteFromLeaf(PageNum pageNum, int keyPos, const RID &rid);
+    // 寻找合适的区间
+    RC getIntervalFromNode(void *value, IX_NodeHeader *nodeHeader, PageNum &nextPage) const;
+
 private:
     PF_FileHandle pfFH;
     int isOpen;
     int bHeaderModified;
     IX_FileHeader indexHeader{};    // 索引文件的header页中保存的数据, 类似于rmFileHeader
+private:
+    template <typename T>
+    bool matchInterval(T lVal, T rVal, T givenValue) const;
 };
 
 class IX_Manager {
@@ -85,7 +98,7 @@ private:
     // 获取从nodePage页开始第一个符合条件的索引项的位置
     RC getFirstEntry(PageNum nodePage, PageNum &rFirstEntryPage, int &rKeyPos);
     // 从叶节点中获取第一个满足条件的项(int)
-    RC getFirstIntFromLeaf(IX_NodeHeader *nodeHeader, PageNum nodePage, PageNum &rFirstEntryPage, int &rKeyPos);
+    RC getFirstIntFromLeaf(PageNum nodePage, PageNum &rFirstEntryPage, int &rKeyPos);
     // 找到符合条件节点所在的区间
     RC getIntervalFromNode(IX_NodeHeader *nodeHeader, PageNum &nextPage);
     // 从当前位置开始(currentPage, keyPos), 查找到第一个符合条件的keyPos, 并返回rid
@@ -116,5 +129,6 @@ private:
 #define IX_SCAN_CLOSED      (START_IX_WARN + 3)     // indexScan关闭
 #define IX_EOF              (START_IX_WARN + 4)     // 扫描到索引文件的end
 #define IX_UNKONWN_ATTRTYPE (START_IX_WARN + 5)     // 未知的属性类型
+#define IX_NOT_FOUND        (START_IX_WARN + 6)     // 索引项未找到
 
 #endif //MYDATABASE_IX_H

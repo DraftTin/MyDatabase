@@ -23,22 +23,25 @@ struct Student {
 };
 
 Student students[studentCount];
+RID rids[studentCount];
 
 RC Test1();
 RC Test2();
 RC Test3();
+RC Test4();
 RC CreateTable(DDL_Manager &ddlManager, char *relName);
 RC CreateDatabase();
 RC InsertIndexEntry(IX_IndexHandle &indexHandle);
 RC VertifyIndexEntry(IX_IndexHandle &indexHandle);
 RC InsertTableItem(DML_Manager &dmlManager, IX_IndexHandle &indexHandle, char *relName);
 RC VertifyItems(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, IX_IndexHandle &indexHandle, char *relName);
+RC DeleteIndexEntry(IX_IndexHandle &indexHandle);
 void generateStr(char str[], int size);
 bool compare(Student &student, int id);
 
 int main() {
     int rc;
-    if((rc = Test3())) {
+    if((rc = Test4())) {
         cout << "rc = " << rc << "\n";
     }
     return 0;
@@ -141,7 +144,7 @@ RC VertifyIndexEntry(IX_IndexHandle &indexHandle) {
 // InsertTableItem: 插入表项, 并将返回的rid作为索引val插入到索引中
 RC InsertTableItem(DML_Manager &dmlManager, IX_IndexHandle &indexHandle, char *relName) {
     int rc;
-    cout << "insert 10000 records..\n";
+    cout << "insert " << studentCount <<  " records..\n";
     for(int i = 0; i < studentCount; ++i) {
         students[i].id = i;
         generateStr(students[i].name, nameSize);
@@ -161,10 +164,11 @@ RC InsertTableItem(DML_Manager &dmlManager, IX_IndexHandle &indexHandle, char *r
             delete [] values;
             return rc;
         }
-        // 将rid插入索引
+        // 将rid插入索引, 并将保存的索引记录用于删除
         if((rc = indexHandle.insertEntry((void*)&i, rid))) {
             return rc;
         }
+        rids[i] = rid;
     }
     cout << "Insert Data and Index Successfully!\n";
     return 0;
@@ -191,7 +195,7 @@ RC VertifyItems(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, IX_IndexHa
     int k = 0;
     // 遍历所有插入的索引, 根据返回的rid获取记录并验证记录
     while((rc = indexScan.getNextEntry(rid)) == 0) {
-//        cout << "k = " << k << "\n";
+        cout << "k = " << k << "\n";
         ++k;
         if((rc = rmFileHandle.getRec(rid, rec))) {
             return 0;
@@ -218,10 +222,27 @@ RC VertifyItems(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, IX_IndexHa
                  << "weight: " << student.weight << "\n";
         }
     }
-    cout << "Vertify Data Successfully!\n";
+    if(rc != IX_EOF) {
+        return rc;
+    }
+    cout << "Count of Vertified Data = " << k << "\n";
+    if (k == studentCount) {
+        cout << "Vertify Data Successfully!\n";
+    }
     return 0;   // ok
 }
 
+// 删除indexHandle上一定数量的索引项
+RC DeleteIndexEntry(IX_IndexHandle &indexHandle) {
+    int rc;
+    for(int i = 0; i < studentCount / 2; ++i) {
+//        cout << "i = " << i << "\n";
+        if((rc = indexHandle.deleteEntry((void*)&i, rids[i]))) {
+            return rc;
+        }
+    }
+    return 0;
+}
 
 // Test1: 简单的测试索引的创建, open, close
 RC Test1() {
@@ -363,5 +384,59 @@ RC Test3() {
         return rc;
     }
     cout << "Test3 done!\n";
+    return 0; // ok
+}
+
+RC Test4() {
+    cout << "Test4 starts....\n";
+    int rc;
+    PF_Manager pfManager;
+    RM_Manager rmManager(pfManager);
+    DDL_Manager ddlManager(rmManager);
+    DML_Manager dmlManager(rmManager, ddlManager);
+    IX_Manager ixManager(pfManager);
+    char dbName[MAXNAME + 1] = "testdb";
+    char relName[MAXNAME + 1] = "student";
+    int indexNo = 0;
+    // 创建数据库
+    if((rc = CreateDatabase())) {
+        return rc;
+    }
+    // 打开数据库
+    if((rc = ddlManager.openDb(dbName))) {
+        return rc;
+    }
+    // 创建表
+    if((rc = CreateTable(ddlManager, relName))) {
+        return rc;
+    }
+    // 创建索引文件
+    if((rc = ixManager.createIndex(relName, indexNo, INT, 4))) {
+        return rc;
+    }
+    IX_IndexHandle indexHandle;
+    if((rc = ixManager.openIndex(relName, indexNo, indexHandle))) {
+        return rc;
+    }
+    // 插入表项并插入对应的索引
+    if((rc = InsertTableItem(dmlManager, indexHandle, relName))) {
+        return rc;
+    }
+    if((rc = DeleteIndexEntry(indexHandle))) {
+        return rc;
+    }
+    // 使用索引查找表项并进行验证
+    RM_FileHandle rmFileHandle;
+    if((rc = rmManager.openFile(relName, rmFileHandle))) {
+        return rc;
+    }
+    if((rc = VertifyItems(ddlManager, rmFileHandle, indexHandle, relName))) {
+        return rc;
+    }
+    // 关闭索引
+    if((rc = ixManager.closeIndex(indexHandle))) {
+        return rc;
+    }
+    cout << "Test4 done!\n";
     return 0; // ok
 }

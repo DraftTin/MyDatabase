@@ -61,9 +61,13 @@ RC IX_IndexScan::getFirstEntry(PageNum nodePage, PageNum &rFirstEntryPage, int &
     IX_NodeHeader *nodeHeader = (IX_NodeHeader*)nodeData;
     // 如果是叶节点, 循环找第一个符合条件的key返回位置
     if(nodeHeader->type == LEAF || nodeHeader->type == ROOT_LEAF) {
+        // 释放
+        if((rc = pfFH.unpinPage(nodePage))) {
+            return rc;
+        }
         // 循环判断值
         if(indexHandle.indexHeader.attrType == INT) {
-            if((rc = getFirstIntFromLeaf(nodeHeader, nodePage, rFirstEntryPage, rKeyPos))) {
+            if((rc = getFirstIntFromLeaf(nodePage, rFirstEntryPage, rKeyPos))) {
                 return rc;
             }
         }
@@ -73,9 +77,7 @@ RC IX_IndexScan::getFirstEntry(PageNum nodePage, PageNum &rFirstEntryPage, int &
         else if(indexHandle.indexHeader.attrType == STRING) {
 
         }
-        if((rc = pfFH.unpinPage(nodePage))) {
-            return rc;
-        }
+
     }
     // 如果不是叶节点, 循环找到第一个符合条件的interval, 递归重新执行该方法
     else if(nodeHeader->type == ROOT || nodeHeader->type == NODE){
@@ -100,17 +102,49 @@ RC IX_IndexScan::getFirstEntry(PageNum nodePage, PageNum &rFirstEntryPage, int &
     return 0;   // ok
 }
 
+int kkk = 0;
+
 // getFirstIntFromLeaf: 从叶节点中获取第一个符合条件的int型索引项的位置
 // - 循环找第一个符合条件的key返回位置
 RC
-IX_IndexScan::getFirstIntFromLeaf(IX_NodeHeader *nodeHeader, PageNum nodePage, PageNum &rFirstEntryPage, int &rKeyPos) {
+IX_IndexScan::getFirstIntFromLeaf(PageNum nodePage, PageNum &rFirstEntryPage, int &rKeyPos) {
     int rc;
+    PageHandle nodeHandle;
+    char *nodeData;
+    if((rc = indexHandle.pfFH.getThisPage(nodePage, nodeHandle)) ||
+            (rc = nodeHandle.getData(nodeData))) {
+        return rc;
+    }
+    IX_NodeHeader *nodeHeader = (IX_NodeHeader*)nodeData;
     // 获取key数组和val数组
     char *keyData = (char*)nodeHeader + sizeof(IX_NodeHeader);
     int *keyArray = (int*)keyData;
     int val = *static_cast<int*>(value);
     // 循环查找符合条件的索引项
     int numberKeys = nodeHeader->numberKeys;
+    ///////////////////////////
+    /* 判断是否存在项 */
+    // 如果不存在, 则转到下一个叶节点
+    if(numberKeys == 0) {
+        char *valueData = keyData + indexHandle.indexHeader.attrLength * indexHandle.indexHeader.degree;
+        IX_NodeValue *valueArray = (IX_NodeValue*)valueData;
+        PageNum nextPage = valueArray[indexHandle.indexHeader.degree].nextPage;
+        // 释放nodePage
+        if((rc = indexHandle.pfFH.unpinPage(nodePage))) {
+            return rc;
+        }
+        if(nextPage == IX_NO_PAGE) {
+            currentPage = IX_NO_PAGE;
+            keyPos = -1;
+        }
+        else {
+            if((rc = getFirstIntFromLeaf(nextPage, rFirstEntryPage, rKeyPos))) {
+                return rc;
+            }
+        }
+        return 0;
+    }
+    //////////////////////////
     int bFound = FALSE; // 标记是否找到
     for(int i = 0; i < numberKeys; ++i) {
         // 判断当前位置的索引key值是否符合条件
@@ -121,6 +155,10 @@ IX_IndexScan::getFirstIntFromLeaf(IX_NodeHeader *nodeHeader, PageNum nodePage, P
             bFound = TRUE;
             break;
         }
+    }
+    // 释放nodePage
+    if((rc = indexHandle.pfFH.unpinPage(nodePage))) {
+        return rc;
     }
     // 如果在nodePage中没有找到符合条件的结点, 则将currentPage置为IX_NO_PAGE
     if(bFound == FALSE) {
@@ -179,8 +217,8 @@ RC IX_IndexScan::getIntervalFromNode(IX_NodeHeader *nodeHeader, PageNum &nextPag
         nextPage = valueArray[0].nextPage;
         bFound = TRUE;
     }
-    // 判断最后一个区间
-    else if(val >= keyArray[numberKeys] || compOp == NO_OP) {
+    // 判断最后一个区间, 最后一个区间 nuumberKeys - 1
+    else if(val >= keyArray[numberKeys - 1] || compOp == NO_OP) {
         nextPage = valueArray[numberKeys].nextPage;
         bFound = TRUE;
     }

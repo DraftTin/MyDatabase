@@ -120,6 +120,7 @@ RC BufferMgr::bufferAlloc(int &slot) {
         slot = freeHead;
         freeHead = bufTable[freeHead].next;
     }
+    // 不存在空闲区
     // 已经拥有读锁
     else {
         // 用LRU算法替换未被固定的页面
@@ -389,7 +390,6 @@ RC BufferMgr::flushPages(int fd) {
         if(bufTable[slot].fd == fd) {
             // 确保该页unpinned
             if(bufTable[slot].pinCount) {
-                cout << "!!: " << bufTable[slot].pageNum << "  " << bufTable[slot].pinCount << "\n";
                 rcWarn = PF_PAGEPINNED;
             }
             else {
