@@ -236,7 +236,6 @@ RC VertifyItems(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, IX_IndexHa
 RC DeleteIndexEntry(IX_IndexHandle &indexHandle) {
     int rc;
     for(int i = 0; i < studentCount / 2; ++i) {
-//        cout << "i = " << i << "\n";
         if((rc = indexHandle.deleteEntry((void*)&i, rids[i]))) {
             return rc;
         }

@@ -40,6 +40,7 @@ struct IX_NodeValue {
 struct IX_NodeHeader {
     int numberKeys;
     int keyCapacity;
+    PageNum prePage;    // 前一个结点也就是左边的结点
     IX_NodeType type;
     PageNum parent;
 };

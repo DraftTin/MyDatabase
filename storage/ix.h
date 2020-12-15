@@ -55,7 +55,8 @@ private:
     RC deleteFromLeaf(PageNum pageNum, int keyPos, const RID &rid);
     // 寻找合适的区间
     RC getIntervalFromNode(void *value, IX_NodeHeader *nodeHeader, PageNum &nextPage) const;
-
+    // 从父节点中移除一个子节点
+    RC removeChildNode(PageNum parentNode, PageNum childNode);
 private:
     PF_FileHandle pfFH;
     int isOpen;
@@ -85,6 +86,7 @@ private:
     PF_Manager *pfManager;
 };
 
+// 索引扫描器: 输入检索条件, 通过调用getNextScan获取所有符合条件的索引项
 class IX_IndexScan {
 public:
     IX_IndexScan();

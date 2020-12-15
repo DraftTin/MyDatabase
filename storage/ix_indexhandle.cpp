@@ -82,11 +82,12 @@ RC IX_IndexHandle::insertRootPage(void *data, const RID &rid) {
         return rc;
     }
     // 初始化结点头
-    auto rootHeader = new IX_NodeHeader;
+    IX_NodeHeader *rootHeader = new IX_NodeHeader;
     rootHeader->numberKeys = 1;
     rootHeader->keyCapacity = degree;
     rootHeader->type = ROOT_LEAF;
     rootHeader->parent = IX_NO_PAGE;
+    rootHeader->prePage = IX_NO_PAGE;
 
     // 写入节点头
     memcpy(pageData, (char*)rootHeader, sizeof(IX_NodeHeader));
@@ -183,6 +184,7 @@ RC IX_IndexHandle::insertEntryRecursively(void *data, const RID &rid, const Page
             valueArray[pos].state = RID_FILLED;
             valueArray[pos].nextPage = IX_NO_PAGE;
             nodeHeader->numberKeys += 1;
+
             // 判断是否发生下溢出
             // 发生下溢出, 进行分裂
             if(nodeHeader->numberKeys >= indexHeader.degree) {
@@ -430,9 +432,21 @@ RC IX_IndexHandle::spliteTwoNodes(IX_NodeHeader *nodeHeader, PageNum leftNodePag
         char *pVal = pKey + indexHeader.attrLength * indexHeader.degree;
         newNodeHeader.numberKeys = nodeHeader->numberKeys - nodeHeader->numberKeys / 2;
         newNodeHeader.keyCapacity = indexHeader.degree;
+
         // 分裂后的类型为targetType
         newNodeHeader.type = targetType;
         newNodeHeader.parent = nodeHeader->parent;
+
+        // 新生成的子节点的前继节点是左边的结点
+        newNodeHeader.prePage = leftNodePage;
+
+        // 如果分裂后是叶节点则需要修改结点的前继后继指针
+        if(targetType == LEAF) {
+            // rightNode的后继节点是leftNode的后继节点, leftNode的前继结点是leftNode, leftNode的后继节点修改为rightNode
+            newValueArray[indexHeader.degree].nextPage = valueArray[indexHeader.degree].nextPage;
+            valueArray[indexHeader.degree].nextPage = rightNodePage;
+            newNodeHeader.prePage = leftNodePage;
+        }
         memcpy(pData, (char*)&newNodeHeader, sizeof(IX_NodeHeader));
         memcpy(pKey, (char*)newKeyArray, indexHeader.attrLength * indexHeader.degree);
         memcpy(pVal, (char*)newValueArray, sizeof(IX_NodeValue) * (indexHeader.degree + 1));
@@ -456,6 +470,7 @@ RC IX_IndexHandle::spliteTwoNodes(IX_NodeHeader *nodeHeader, PageNum leftNodePag
             newRootHeader.type = ROOT;
             newRootHeader.parent = IX_NO_PAGE;
             newRootHeader.keyCapacity = indexHeader.degree;
+            newRootHeader.prePage = IX_NO_PAGE;
             int *newRootKeyArray = new int[indexHeader.degree];
             IX_NodeValue *newRootValueArray = new IX_NodeValue[indexHeader.degree + 1];
             newRootKeyArray[0] = newKeyArray[0];
@@ -690,6 +705,7 @@ RC IX_IndexHandle::deleteFromLeaf(PageNum pageNum, int keyPos, const RID &rid) {
     PageHandle pageHandle;
     char *pData;
     int bFound = FALSE;
+    int disposed = FALSE;
     if((rc = pfFH.getThisPage(pageNum, pageHandle)) ||
             (rc = pageHandle.getData(pData))) {
         return rc;
@@ -746,6 +762,55 @@ RC IX_IndexHandle::deleteFromLeaf(PageNum pageNum, int keyPos, const RID &rid) {
                     valueArray[i] = valueArray[i + 1];
                 }
                 nodeHeader->numberKeys -= 1;
+                // 判断是否索引项的数量减为0
+                if(nodeHeader->numberKeys == 0) {
+                    // 需要释放
+                    disposed = TRUE;
+                    // 修改指针值
+                    PageNum prePage = nodeHeader->prePage;  // 前继结点
+                    PageNum nextPage = valueArray[indexHeader.degree].nextPage; // 后继结点
+                    // 修改前结点的后继指针
+                    if(prePage != IX_NO_PAGE) {
+                        PageHandle prePageHandle;
+                        char *prePageData;
+                        if((rc = pfFH.getThisPage(prePage, prePageHandle)) ||
+                                (rc = prePageHandle.getData(prePageData))) {
+                            return rc;
+                        }
+                        // 标记为脏页
+                        if((rc = pfFH.markDirty(prePage))) {
+                            return rc;
+                        }
+                        char *prePageValueData = prePageData + sizeof(IX_NodeHeader) + indexHeader.attrLength * indexHeader.degree;
+                        IX_NodeValue *prePageValueArray = (IX_NodeValue*)prePageValueData;;
+                        prePageValueArray[indexHeader.degree].nextPage = nextPage;
+                        if((rc = pfFH.unpinPage(prePage))) {
+                            return rc;
+                        }
+                    }
+                    // 修改后结点的前继指针
+                    if(nextPage != IX_NO_PAGE) {
+                        PageHandle nextPageHandle;
+                        char *nextPageData;
+                        if((rc = pfFH.getThisPage(nextPage, nextPageHandle)) ||
+                                (nextPageHandle.getData(nextPageData))) {
+                            return rc;
+                        }
+                        // 标记为脏页
+                        if((rc = pfFH.markDirty(nextPage))) {
+                            return rc;
+                        }
+                        IX_NodeHeader *nextNodeHeader = (IX_NodeHeader*)nextPageData;
+                        nextNodeHeader->prePage = prePage;
+                        if((rc = pfFH.unpinPage(nextPage))) {
+                            return rc;
+                        }
+                    }
+                    PageNum parentNode = nodeHeader->parent;
+                    if((rc = removeChildNode(parentNode, pageNum))) {
+                        return rc;
+                    }
+                }
             }
         }
         // 未找到
@@ -803,6 +868,11 @@ RC IX_IndexHandle::deleteFromLeaf(PageNum pageNum, int keyPos, const RID &rid) {
     if((rc = pfFH.unpinPage(pageNum))) {
         return rc;
     }
+    if(disposed) {
+        if((rc = pfFH.disposePage(pageNum))) {
+            return rc;
+        }
+    }
     if(bFound == FALSE) {
         return IX_NOT_FOUND;
     }
@@ -850,3 +920,74 @@ bool IX_IndexHandle::matchInterval(T lVal, T rVal, T givenValue) const {
     return givenValue >= lVal && givenValue < rVal;
 }
 
+/*!
+ *
+ * @param parentNode : 从parentNode页中移除子节点childNode
+ * @param childNode : 子节点号
+ * @return : 无
+ */
+RC IX_IndexHandle::removeChildNode(PageNum parentNode, PageNum childNode) {
+    int rc;
+    PageHandle parentPageHandle;
+    char *parentData;
+    if((rc = pfFH.getThisPage(parentNode, parentPageHandle)) ||
+            (rc = parentPageHandle.getData(parentData))) {
+        return rc;
+    }
+    // 标记为脏页
+    if((rc = pfFH.markDirty(parentNode))) {
+        return rc;
+    }
+    IX_NodeHeader *nodeHeader = (IX_NodeHeader*)parentData;
+    char *keyData = parentData + sizeof(IX_NodeHeader);
+    char *valueData = keyData + indexHeader.attrLength * indexHeader.degree;
+    if((indexHeader.attrType == INT)) {
+        int *keyArray = (int*)keyData;
+        IX_NodeValue *valueArray = (IX_NodeValue*)valueData;
+        // 遍历找到子节点的位置, 由于是遍历valueArray, 子节点的数量为numberKeys + 1
+        int childPos;
+        for(int i = 0; i < nodeHeader->numberKeys + 1; ++i) {
+            // 找到子节点的位置
+            if(valueArray[i].nextPage == childNode) {
+                childPos = i;
+                break;
+            }
+        }
+        // 如果是第一个子节点, 则先移动边界处的一个子节点
+        if(childPos == 0) {
+            valueArray[0] = valueArray[1];
+            childPos = 1;
+        }
+        for(int i = childPos; i < nodeHeader->numberKeys; ++i) {
+            valueArray[i] = valueArray[i + 1];
+            keyArray[i - 1] = keyArray[i];
+        }
+        nodeHeader->numberKeys -= 1;
+        int numberKeys = nodeHeader->numberKeys;
+        int pparentNode = nodeHeader->parent;
+        // 释放
+        if((rc = pfFH.unpinPage(parentNode))) {
+            return rc;
+        }
+        // 如果也成为了空结点, 则递归向上移除子节点
+        if(numberKeys == 0) {
+            // 如果pparentNode == IX_NO_PAGE则表示根节点也为空
+            if(pparentNode == IX_NO_PAGE) {
+                indexHeader.rootPage = IX_NO_PAGE;
+                bHeaderModified = TRUE;
+            }
+            else {
+                if((rc = removeChildNode(pparentNode, parentNode))) {
+                    return rc;
+                }
+            }
+        }
+    }
+    else if(indexHeader.attrType == FLOAT) {
+
+    }
+    else if(indexHeader.attrType == STRING) {
+
+    }
+    return 0;
+}
