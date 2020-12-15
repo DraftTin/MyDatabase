@@ -73,6 +73,7 @@ void generateStr(char str[], int size) {
     str[size - 1] = '\0';
 }
 
+// 创建relName表
 RC CreateTable(DDL_Manager &ddlManager, char *relName) {
     int rc;
     AttrInfo *attrs = new AttrInfo[4];
@@ -102,9 +103,6 @@ RC InsertIndexEntry(IX_IndexHandle &indexHandle) {
     // 插入若干条索引项
     for(int i = 0; i < studentCount; ++i) {
         RID rid(i, 2 * i);
-        if(i == 201) {
-            cout << "sss\n";
-        }
         if((rc = indexHandle.insertEntry((void*)&i, rid))) {
             return rc;
         }
@@ -195,7 +193,7 @@ RC VertifyItems(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, IX_IndexHa
     int k = 0;
     // 遍历所有插入的索引, 根据返回的rid获取记录并验证记录
     while((rc = indexScan.getNextEntry(rid)) == 0) {
-        cout << "k = " << k << "\n";
+//        cout << "k = " << k << "\n";
         ++k;
         if((rc = rmFileHandle.getRec(rid, rec))) {
             return 0;
@@ -225,6 +223,7 @@ RC VertifyItems(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, IX_IndexHa
     if(rc != IX_EOF) {
         return rc;
     }
+    cout << "**********************************************************\n";
     cout << "Count of Vertified Data = " << k << "\n";
     if (k == studentCount) {
         cout << "Vertify Data Successfully!\n";
@@ -235,7 +234,7 @@ RC VertifyItems(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, IX_IndexHa
 // 删除indexHandle上一定数量的索引项
 RC DeleteIndexEntry(IX_IndexHandle &indexHandle) {
     int rc;
-    for(int i = 0; i < studentCount / 2; ++i) {
+    for(int i = 0; i < studentCount; ++i) {
         if((rc = indexHandle.deleteEntry((void*)&i, rids[i]))) {
             return rc;
         }

@@ -970,7 +970,8 @@ RC IX_IndexHandle::removeChildNode(PageNum parentNode, PageNum childNode) {
             return rc;
         }
         // 如果也成为了空结点, 则递归向上移除子节点
-        if(numberKeys == 0) {
+        // 修改bug: 因为numberKeys的值是(节点数 - 1), 所以使用(numberKeys + 1）进行比较
+        if(numberKeys + 1 == 0) {
             // 如果pparentNode == IX_NO_PAGE则表示根节点也为空
             if(pparentNode == IX_NO_PAGE) {
                 indexHeader.rootPage = IX_NO_PAGE;

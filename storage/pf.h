@@ -56,7 +56,7 @@ public:
     // 获取current页号的前一页
     RC getPrevPage(PageNum current, PageHandle &pageHandle) const;
 
-    RC allocatePage(PageHandle &pageHandle);                 // 申请新页
+    RC allocatePage(PageHandle &pageHandle);                    // 申请新页
     RC disposePage(PageNum pageNum);                            // free一页
     RC markDirty(PageNum pageNum);                              // 将pageNum标记为脏
     RC unpinPage(PageNum pageNum) const;                        // unpin the page
@@ -66,7 +66,7 @@ public:
     int isValidPageNum(PageNum pageNum) const;                  // 检测访问的页号是否合法
 
 private:
-    BufferMgr *pBufferMgr;                   // 缓冲区的指针
+    BufferMgr *pBufferMgr;                      // 缓冲区的指针
     PF_FileHdr hdr;                             // file header, 保存文件中第一个空闲页的页号和文件内的总页数
     int bFileOpen;                              // 查看文件是否打开
     int bHdrChanged;                            // 文件的dirty标志
