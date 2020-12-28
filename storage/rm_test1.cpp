@@ -1,7 +1,6 @@
 #include <cstdio>
 #include <iostream>
 #include <cstring>
-#include <unistd.h>
 #include <cstdlib>
 
 #include "../global.h"
@@ -27,84 +26,6 @@ using namespace std;
 #ifndef offsetof
 #       define offsetof(type, field)   ((size_t)&(((type *)0) -> field))
 #endif
-
-#ifdef PF_STATS
-#include "statistics.h"
-
-// This is defined within pf_buffermgr.cc
-extern StatisticsMgr *pStatisticsMgr;
-
-// This method is defined within pf_statistics.cc.  It is called at the end
-// to display the final statistics, or by the debugger to monitor progress.
-extern void PF_Statistics();
-
-//
-// PF_ConfirmStatistics
-//
-// This function will be run at the end of the program after all the tests
-// to confirm that the buffer manager operated correctly.
-//
-// These numbers have been confirmed.  Note that if you change any of the
-// tests, you will also need to change these numbers as well.
-//
-void PF_ConfirmStatistics()
-{
-   // Must remember to delete the memory returned from StatisticsMgr::Get
-   cout << "Verifying the statistics for buffer manager: ";
-   int *piGP = pStatisticsMgr->Get("GetPage");
-   int *piPF = pStatisticsMgr->Get("PageFound");
-   int *piPNF = pStatisticsMgr->Get("PageNotFound");
-   int *piWP = pStatisticsMgr->Get("WritePage");
-   int *piRP = pStatisticsMgr->Get("ReadPage");
-   int *piFP = pStatisticsMgr->Get("FlushPage");
-
-   if (piGP && (*piGP != 702)) {
-      cout << "Number of GetPages is incorrect! (" << *piGP << ")\n";
-      // No built in error code for this
-      exit(1);
-   }
-   if (piPF && (*piPF != 23)) {
-      cout << "Number of pages found in the buffer is incorrect! (" <<
-        *piPF << ")\n";
-      // No built in error code for this
-      exit(1);
-   }
-   if (piPNF && (*piPNF != 679)) {
-      cout << "Number of pages not found in the buffer is incorrect! (" <<
-        *piPNF << ")\n";
-      // No built in error code for this
-      exit(1);
-   }
-   if (piRP && (*piRP != 679)) {
-      cout << "Number of read requests to the Unix file system is " <<
-         "incorrect! (" << *piPNF << ")\n";
-      // No built in error code for this
-      exit(1);
-   }
-   if (piWP && (*piWP != 339)) {
-      cout << "Number of write requests to the Unix file system is "<<
-         "incorrect! (" << *piPNF << ")\n";
-      // No built in error code for this
-      exit(1);
-   }
-   if (piFP && (*piFP != 16)) {
-      cout << "Number of requests to flush the buffer is "<<
-         "incorrect! (" << *piPNF << ")\n";
-      // No built in error code for this
-      exit(1);
-   }
-   cout << " Correct!\n";
-
-   // Delete the memory returned from StatisticsMgr::Get
-   delete piGP;
-   delete piPF;
-   delete piPNF;
-   delete piWP;
-   delete piRP;
-   delete piFP;
-}
-#endif    // PF_STATS
-
 
 //
 // 将TestRec结构体表示为一条数据记录

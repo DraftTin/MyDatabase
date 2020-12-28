@@ -48,7 +48,7 @@ RC DDL_Manager::openDb(const char *dbName) {
 // - 创建relName文件(relName, recordSize)
 // - 将表信息和属性信息写入relcat和attrcat
 // - 将relcat和attrcat缓冲区的内容写回到文件中(运行过程中需要读取)
-RC DDL_Manager::createTable(const char *relName, int attrCount, AttrInfo *attributes) {
+RC DDL_Manager::createTable(const char *relName, const int attrCount, AttrInfo *attributes) {
     if(!bDbOpen) {
         return DDL_DATABASE_NOT_OPEN;
     }

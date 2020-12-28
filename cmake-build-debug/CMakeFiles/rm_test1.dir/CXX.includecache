@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.cpp
+RWLock.h
+C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.h
+shared_mutex
+-
+
 C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.h
 condition_variable
 -
@@ -15,6 +21,38 @@ atomic
 C:/Users/Administrator/CLionProjects/MyDatabase/global.h
 
 C:/Users/Administrator/CLionProjects/MyDatabase/parser.h
+iostream
+-
+
+C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl.h
+../storage/rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
+../parser.h
+C:/Users/Administrator/CLionProjects/MyDatabase/parser.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl_manager.cpp
+io.h
+-
+process.h
+-
+cstring
+-
+ddl.h
+C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/attrfilehandle.cpp
+rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
+rm_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_internal.h
+rm_bitmap.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_bitmap.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.cpp
+pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
+bufhashtable.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h
 iostream
 -
 
@@ -44,6 +82,12 @@ C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 bufhashtable.h
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.h
 
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pagehandle.cpp
+pf.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
+../global.h
+C:/Users/Administrator/CLionProjects/MyDatabase/global.h
+
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
 ../global.h
 C:/Users/Administrator/CLionProjects/MyDatabase/global.h
@@ -58,11 +102,43 @@ iostream
 pf_internal.h
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_filehandle.cpp
+io.h
+-
+process.h
+-
+pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
+bufmgr.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
+pf.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
+iostream
+-
+
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
 cstring
 -
 pf.h
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_manager.cpp
+io.h
+-
+process.h
+-
+fcntl.h
+-
+pf_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_internal.h
+bufmgr.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
+iostream
+-
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rid.cpp
+rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
 
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/rid.h
 ../global.h
@@ -80,6 +156,16 @@ C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf.h
 ../parser.h
 C:/Users/Administrator/CLionProjects/MyDatabase/parser.h
 
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_bitmap.cpp
+rm_bitmap.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_bitmap.h
+rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_bitmap.h
+../global.h
+C:/Users/Administrator/CLionProjects/MyDatabase/global.h
+
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_error.h
 cerrno
 -
@@ -96,9 +182,41 @@ C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_internal.h
 rm.h
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
 
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_filehandle.cpp
+cstring
+-
+rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
+rm_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_internal.h
+rm_bitmap.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_bitmap.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_filescan.cpp
+iostream
+-
+rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
+rm_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_internal.h
+
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_internal.h
 string
 -
+rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_manager.cpp
+cstring
+-
+rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
+rm_internal.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_internal.h
+bufmgr.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_record.cpp
 rm.h
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
 
@@ -108,8 +226,6 @@ cstdio
 iostream
 -
 cstring
--
-unistd.h
 -
 cstdlib
 -
@@ -123,6 +239,8 @@ pf_error.h
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_error.h
 rm_error.h
 C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_error.h
-statistics.h
-C:/Users/Administrator/CLionProjects/MyDatabase/storage/statistics.h
+
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_varlenattr.cpp
+rm.h
+C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm.h
 
