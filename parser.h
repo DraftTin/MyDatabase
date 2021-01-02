@@ -44,5 +44,34 @@ struct Value {
     }
 };
 
+struct RelAttr {
+    char *relName;     // relation name (may be NULL)
+    char *attrName;    // attribute name
+    friend ostream &operator<<(ostream &s, const RelAttr &ra) {
+        return s << "relname: " << ra.relName << "\n"
+                 << "attrname: "<< ra.attrName << "\n";
+    }
+};
+
+struct Condition {
+    RelAttr lhsAttr;      // left-hand side
+    CompOp  op;           // comparison operator
+    int     bRhsIsAttr;   // TRUE if right-hand side is an attribute
+                          //   and not a value
+    RelAttr rhsAttr;      // right-hand side attribute if bRhsIsAttr = TRUE
+    Value   rhsValue;     // right-hand side value if bRhsIsAttr = FALSE
+    friend ostream &operator<<(ostream &s, const Condition &c) {
+        if(c.bRhsIsAttr) {
+            return s << c.lhsAttr << "\n"
+                     << c.op << "\n"
+                     << c.rhsAttr << "\n";
+        }
+        else {
+            return s << c.lhsAttr << "\n"
+                     << c.op << "\n"
+                     << c.rhsValue << "\n";
+        }
+    }
+};
 
 #endif //MYDATABASE_PARSER_H

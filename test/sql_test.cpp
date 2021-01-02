@@ -103,7 +103,7 @@ RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relNa
         return rc;
     }
     AttrcatRecord *attrInfo = new AttrcatRecord[relInfo.attrCount];
-    if((rc = ddlManager.getAttrInfo(relName, relInfo.attrCount, attrInfo))) {
+    if((rc = ddlManager.getAttrInfo(relName, attrInfo))) {
         return rc;
     }
     RM_Record rec;

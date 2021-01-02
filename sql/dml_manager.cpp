@@ -22,7 +22,7 @@ RC DML_Manager::insert(const char *relName, int nValues, const Value *values) {
     }
     int attrCount = relcatRecord.attrCount;
     AttrcatRecord *attrcatRecords = new AttrcatRecord[attrCount];
-    if((rc = ddlManager->getAttrInfo(relName, attrCount, attrcatRecords))) {
+    if((rc = ddlManager->getAttrInfo(relName, attrcatRecords))) {
         delete [] attrcatRecords;
         return rc;
     }
@@ -102,7 +102,7 @@ RC DML_Manager::insertForTest(const char *relName, int nValues, const Value *val
     }
     int attrCount = relcatRecord.attrCount;
     AttrcatRecord *attrcatRecords = new AttrcatRecord[attrCount];
-    if((rc = ddlManager->getAttrInfo(relName, attrCount, attrcatRecords))) {
+    if((rc = ddlManager->getAttrInfo(relName, attrcatRecords))) {
         delete [] attrcatRecords;
         return rc;
     }
@@ -174,5 +174,68 @@ RC DML_Manager::insertForTest(const char *relName, int nValues, const Value *val
         return rc;
     }
     return 0;   // ok
+}
+
+// Select: 執行Select執行物理計劃
+//
+RC DML_Manager::Select(int nSelAttrs, const RelAttr *selAttrs, int nRelations, const char *const *relations,
+                       int nConditions, const Condition *conditions) {
+    if(!ddlManager->isOpen()) {
+        return DML_DATABASE_CLOSED;
+    }
+    int rc;
+    // 記錄各個表的信息
+    RelcatRecord relInfoList[nRelations];
+    // 記錄每個表對應的屬性的信息
+    AttrcatRecord *attributesList[nRelations];
+    // 循环獲取各個表的信息，和各個表中屬性的信息
+    for(int i = 0; i < nRelations; ++i) {
+        if((rc = ddlManager->getRelInfo(relations[i], relInfoList[i]))) {
+            for(int j = 0; j < i; ++j) {
+                delete [] attributesList[j];
+            }
+            return rc;
+        }
+        attributesList[i] = new AttrcatRecord[relInfoList[i].attrCount];
+        if((rc = ddlManager->getAttrInfo(relations[i], attributesList[i]))) {
+            return rc;
+        }
+    }
+    RelAttr *changedSelectList = nullptr;
+    // 如果是 select * , 则将各个表的所有属性重新添加到changedSelectList中
+    if (nSelAttrs == 1 && strcmp(selAttrs[0].attrName, "*") == 0) {
+        nSelAttrs = 0;
+        for (int i = 0; i < nRelations; ++i) {
+            nSelAttrs += relInfoList[i].attrCount;
+        }
+        changedSelectList = new RelAttr[nSelAttrs];
+        int index = 0;
+        for (int i = 0; i < nRelations; ++i) {
+            for (int j = 0; j < relInfoList[i].attrCount; ++j) {
+                changedSelectList[index].relName = relInfoList[i].relName;
+                changedSelectList[index].attrName = attributesList[i][j].attrName;
+                ++index;
+            }
+        }
+    }
+    // 直接添加
+    else {
+        int index = 0;
+        changedSelectList = const_cast<RelAttr*>(selAttrs);
+    }
+    Condition changedConditionList[nConditions];
+
+
+}
+
+RC DML_Manager::Delete(const char *relName, int nConditions, const Condition *conditions) {
+    Select();
+    return 0;
+}
+
+RC DML_Manager::Update(const char *relName, const RelAttr &updAttr, const int bIsValue, const RelAttr &rhsRelAttr,
+                       const Value &rhsValue, int nConditions, const Condition *conditions) {
+    Update();
+    return 0;
 }
 

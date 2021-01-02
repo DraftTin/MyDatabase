@@ -180,7 +180,7 @@ RC VertifyItems(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, IX_IndexHa
         return rc;
     }
     AttrcatRecord *attrInfo = new AttrcatRecord[relInfo.attrCount];
-    if((rc = ddlManager.getAttrInfo(relName, relInfo.attrCount, attrInfo))) {
+    if((rc = ddlManager.getAttrInfo(relName, attrInfo))) {
         return rc;
     }
     // 索引扫描法

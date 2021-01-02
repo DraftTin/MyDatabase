@@ -511,6 +511,12 @@
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/playground.cpp">
 			<Option target="playground"/>
 		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/printer.cpp">
+			<Option target="MyDatabase"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/printer.h">
+			<Option target="MyDatabase"/>
+		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl.h">
 			<Option target="MyDatabase"/>
 			<Option target="dml_test"/>
