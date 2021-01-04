@@ -294,4 +294,28 @@ RC DDL_Manager::printDataDic() const {
     return 0;   // ok
 }
 
+// getAttributes: 获取表的所有属性名
+RC DDL_Manager::getAttributes(const string &relName, vector<string> &rAttributes) {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
+    int rc;
+    RelcatRecord relcatRecord;
+    if((rc = getRelInfo(relName.c_str(), relcatRecord))) {
+        return rc;
+    }
+    int attrCount = relcatRecord.attrCount;
+    AttrcatRecord *attrcatRecords = new AttrcatRecord[attrCount];
+    if((rc = getAttrInfo(relName.c_str(), attrCount, attrcatRecords))) {
+        delete [] attrcatRecords;
+        return rc;
+    }
+    rAttributes.clear();
+    for(int i = 0; i < attrCount; ++i) {
+        rAttributes.emplace_back(attrcatRecords[i].attrName);
+    }
+    delete [] attrcatRecords;
+    return 1;   // ok
+}
+
 

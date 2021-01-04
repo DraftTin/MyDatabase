@@ -5,6 +5,7 @@
 #ifndef MYDATABASE_DDL_H
 #define MYDATABASE_DDL_H
 
+#include <vector>
 #include "../storage/rm.h"
 #include "../parser.h"
 
@@ -75,10 +76,13 @@ public:
     RC openDb(const char *dbName);                  // 打开一个数据库
     RC closeDb();                                   // 关闭数据库
     RC createTable(const char *relName,             // 表名
-                   const int attrCount,            // 属性的数量
+                    const int attrCount,            // 属性的数量
                    AttrInfo   *attributes);         // 属性的数据(属性名, 属性长度, 属性类型)
     RC getRelInfo(const char *relName, RelcatRecord& relinfo) const;   // 返回属性信息和表信息
     RC getAttrInfo(const char *relName, int attrCount, AttrcatRecord *attrinfo) const;
+    ////
+    RC getAttributes(const string &relName, vector<string> &rAttributes);
+    ////
     RC printAllData(char *relName, int lines = PRINT_ALL_DATA) const;
     RC printDataDic() const;
 private:
