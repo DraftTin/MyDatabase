@@ -394,33 +394,6 @@ playground.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/playground.cpp.s
 .PHONY : playground.cpp.s
 
-printer.obj: printer.cpp.obj
-
-.PHONY : printer.obj
-
-# target to build an object file
-printer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/printer.cpp.obj
-.PHONY : printer.cpp.obj
-
-printer.i: printer.cpp.i
-
-.PHONY : printer.i
-
-# target to preprocess a source file
-printer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/printer.cpp.i
-.PHONY : printer.cpp.i
-
-printer.s: printer.cpp.s
-
-.PHONY : printer.s
-
-# target to generate assembly for a file
-printer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/printer.cpp.s
-.PHONY : printer.cpp.s
-
 sql/ddl_manager.obj: sql/ddl_manager.cpp.obj
 
 .PHONY : sql/ddl_manager.obj
@@ -1429,9 +1402,6 @@ help:
 	@echo ... playground.obj
 	@echo ... playground.i
 	@echo ... playground.s
-	@echo ... printer.obj
-	@echo ... printer.i
-	@echo ... printer.s
 	@echo ... sql/ddl_manager.obj
 	@echo ... sql/ddl_manager.i
 	@echo ... sql/ddl_manager.s

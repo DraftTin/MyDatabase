@@ -6,7 +6,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Administrator/CLionProjects/MyDatabase/atomic/RWLock.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/main.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/main.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/printer.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/printer.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/sql/ddl_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/sql/ddl_manager.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/sql/dml_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/sql/dml_manager.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/attrfilehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj"

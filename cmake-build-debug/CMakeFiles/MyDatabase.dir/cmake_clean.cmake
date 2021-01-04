@@ -1,7 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj"
   "CMakeFiles/MyDatabase.dir/main.cpp.obj"
-  "CMakeFiles/MyDatabase.dir/printer.cpp.obj"
   "CMakeFiles/MyDatabase.dir/sql/ddl_manager.cpp.obj"
   "CMakeFiles/MyDatabase.dir/sql/dml_manager.cpp.obj"
   "CMakeFiles/MyDatabase.dir/storage/attrfilehandle.cpp.obj"
