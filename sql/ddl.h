@@ -81,7 +81,7 @@ public:
     RC getRelInfo(const char *relName, RelcatRecord& relinfo) const;   // 返回属性信息和表信息
     RC getAttrInfo(const char *relName, int attrCount, AttrcatRecord *attrinfo) const;
     ////
-    RC getAttributes(const string &relName, vector<string> &rAttributes);
+    RC getAttributes(const string &relName, vector<string> &rAttributes);   // 获取表中所有的属性名
     ////
     RC printAllData(char *relName, int lines = PRINT_ALL_DATA) const;
     RC printDataDic() const;
