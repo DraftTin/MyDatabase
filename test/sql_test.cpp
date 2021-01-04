@@ -94,6 +94,13 @@ RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relNa
     cout << "vertify data....\n";
     RM_FileScan rmScan;
     int num = 0;
+    vector<string> attributeNames;
+    if((rc = ddlManager.getAttributes(relName, attributeNames))) {
+        return rc;
+    }
+    for(string &tmp : attributeNames) {
+        cout << ":: " << tmp << "\n";
+    }
     // 设置NO_OP
     if((rc = rmScan.openScan(rmFileHandle, INT, 4, 0, NO_OP, (void*)&num))) {
         return rc;
@@ -231,6 +238,7 @@ RC Test2() {
     if((rc = rmManager.closeFile(rmFileHandle))) {
         return rc;
     }
+    // 需要手动删除生成的库文件
     cout << "Test2 done!\n";
     return 0;   // ok
 }

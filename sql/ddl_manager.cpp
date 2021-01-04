@@ -312,10 +312,10 @@ RC DDL_Manager::getAttributes(const string &relName, vector<string> &rAttributes
     }
     rAttributes.clear();
     for(int i = 0; i < attrCount; ++i) {
-        rAttributes.emplace_back(attrcatRecords[i].attrName);
+        rAttributes.emplace_back(string(attrcatRecords[i].attrName));
     }
     delete [] attrcatRecords;
-    return 1;   // ok
+    return 0;   // ok
 }
 
 
