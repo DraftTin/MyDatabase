@@ -86,8 +86,8 @@ public:
     RC printAllData(char *relName, int lines = PRINT_ALL_DATA) const;
     RC printDataDic() const;
 private:
-    int bDbOpen;
-    RM_Manager *rmManager;
+    int bDbOpen;                    // 标记数据库是否被打开
+    RM_Manager *rmManager;          // 记录文件管理
     RM_FileHandle relFileHandle;
     RM_FileHandle attrFileHandle;
 };

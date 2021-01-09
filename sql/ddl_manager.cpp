@@ -60,11 +60,11 @@ RC DDL_Manager::createTable(const char *relName, const int attrCount, AttrInfo *
         offsets[i] = recordSize;
         recordSize += attributes[i].attrLength;
     }
-    PF_Manager pfManager;
-    RM_Manager rmManager(pfManager);
+//    PF_Manager pfManager;
+//    RM_Manager rmManager(pfManager);
     int rc;
     // 创建表文件, 指定记录的长度
-    if((rc = rmManager.createFile(relName, recordSize))) {
+    if((rc = rmManager->createFile(relName, recordSize))) {
         return rc;
     }
     // 将表信息和属性信息写入relcat和attrcat
@@ -241,7 +241,8 @@ RC DDL_Manager::printAllData(char *relName, int lines) const {
         }
     }
     delete [] attrInfos;
-    if(rc != RM_EOF) {
+    // 增加判断rc != 0，否则不能正确关闭文件
+    if(rc != RM_EOF && rc != 0) {
         return rc;
     }
     // 关闭表

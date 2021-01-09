@@ -37,8 +37,6 @@ RC InsertData(DML_Manager &dmlManager, char *relName);
 RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relName);
 RC CreateTable(DDL_Manager &ddlManager, char *relName);
 RC CreateDatabase();
-
-
 int main() {
     srand(time(nullptr));
     int rc;
@@ -260,9 +258,9 @@ RC Test2() {
     if((rc = ddlManager.closeDb())) {
         return rc;
     }
-//    if((rc = DeleteDatabase())) {
-//        return rc;
-//    }
+    if((rc = DeleteDatabase())) {
+        return rc;
+    }
     cout << "Test2 done!\n";
     return 0;   // ok
 }
