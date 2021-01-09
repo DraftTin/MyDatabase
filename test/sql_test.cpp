@@ -42,7 +42,7 @@ RC CreateDatabase();
 int main() {
     srand(time(nullptr));
     int rc;
-    if((rc = Test1())) {
+    if((rc = Test2())) {
         RM_PrintError(rc);
     }
     return 0;
@@ -126,7 +126,7 @@ RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relNa
         return rc;
     }
     AttrcatRecord *attrInfo = new AttrcatRecord[relInfo.attrCount];
-    if((rc = ddlManager.getAttrInfo(relName, nullptr))) {
+    if((rc = ddlManager.getAttrInfo(relName, attrInfo))) {
         return rc;
     }
     RM_Record rec;
@@ -257,9 +257,12 @@ RC Test2() {
     if((rc = rmManager.closeFile(rmFileHandle))) {
         return rc;
     }
-    if((rc = DeleteDatabase())) {
+    if((rc = ddlManager.closeDb())) {
         return rc;
     }
+//    if((rc = DeleteDatabase())) {
+//        return rc;
+//    }
     cout << "Test2 done!\n";
     return 0;   // ok
 }

@@ -22,7 +22,7 @@ RC DML_Manager::insert(const char *relName, int nValues, const Value *values) {
     }
     int attrCount = relcatRecord.attrCount;
     AttrcatRecord *attrcatRecords = new AttrcatRecord[attrCount];
-    if((rc = ddlManager->getAttrInfo(relName, nullptr))) {
+    if((rc = ddlManager->getAttrInfo(relName, attrcatRecords))) {
         delete [] attrcatRecords;
         return rc;
     }
@@ -102,7 +102,7 @@ RC DML_Manager::insertForTest(const char *relName, int nValues, const Value *val
     }
     int attrCount = relcatRecord.attrCount;
     AttrcatRecord *attrcatRecords = new AttrcatRecord[attrCount];
-    if((rc = ddlManager->getAttrInfo(relName, nullptr))) {
+    if((rc = ddlManager->getAttrInfo(relName, attrcatRecords))) {
         delete [] attrcatRecords;
         return rc;
     }
