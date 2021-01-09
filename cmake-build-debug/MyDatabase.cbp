@@ -812,6 +812,10 @@
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/test/sql_test.cpp">
 			<Option target="dml_test"/>
 		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/transaction/log_interval.h">
+			<Option target="MyDatabase"/>
+			<Option target="playground"/>
+		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
