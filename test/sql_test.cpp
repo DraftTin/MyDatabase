@@ -2,6 +2,11 @@
 // Created by Administrator on 2020/12/3.
 //
 
+#ifndef _UNISTD_H
+#define _UNISTD_H
+#include <io.h>
+#include <process.h>
+#endif
 #include <iostream>
 #include <ctime>
 #include "../storage/rm.h"
@@ -37,7 +42,7 @@ RC CreateDatabase();
 int main() {
     srand(time(nullptr));
     int rc;
-    if((rc = Test2())) {
+    if((rc = Test1())) {
         RM_PrintError(rc);
     }
     return 0;
@@ -61,6 +66,17 @@ RC CreateDatabase() {
     system(command);
     return 0;
 }
+
+RC DeleteDatabase() {
+    if(chdir("..") < 0) {
+        cerr << "chdir error!\n";
+        return 0;
+    }
+    char command[30] = "rd /s /q testdb";
+    system(command);
+    return 0;
+}
+
 
 RC InsertData(DML_Manager &dmlManager, char *relName) {
     int rc;
@@ -110,7 +126,7 @@ RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relNa
         return rc;
     }
     AttrcatRecord *attrInfo = new AttrcatRecord[relInfo.attrCount];
-    if((rc = ddlManager.getAttrInfo(relName, attrInfo))) {
+    if((rc = ddlManager.getAttrInfo(relName, nullptr))) {
         return rc;
     }
     RM_Record rec;
@@ -188,6 +204,9 @@ RC Test1() {
     if((rc = ddlManager.closeDb())) {
         return rc;
     }
+    if((rc = DeleteDatabase())) {
+        return rc;
+    }
     cout << "Test1 done!\n";
     return 0;   // ok
 }
@@ -238,7 +257,9 @@ RC Test2() {
     if((rc = rmManager.closeFile(rmFileHandle))) {
         return rc;
     }
-    // 需要手动删除生成的库文件
+    if((rc = DeleteDatabase())) {
+        return rc;
+    }
     cout << "Test2 done!\n";
     return 0;   // ok
 }
