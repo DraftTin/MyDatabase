@@ -8,6 +8,8 @@ CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../global.h
 CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../parser.h
 CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../sql/ddl.h
 CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../sql/ddl_manager.cpp
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../storage/ix.h
+CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../storage/ix_internal.h
 CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../storage/pf.h
 CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../storage/rid.h
 CMakeFiles/rm_test1.dir/sql/ddl_manager.cpp.obj: ../storage/rm.h
@@ -35,6 +37,33 @@ CMakeFiles/rm_test1.dir/storage/bufmgr.cpp.obj: ../storage/bufmgr.cpp
 CMakeFiles/rm_test1.dir/storage/bufmgr.cpp.obj: ../storage/bufmgr.h
 CMakeFiles/rm_test1.dir/storage/bufmgr.cpp.obj: ../storage/pf.h
 CMakeFiles/rm_test1.dir/storage/bufmgr.cpp.obj: ../storage/pf_internal.h
+
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../global.h
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../parser.h
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../storage/ix.h
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../storage/ix_indexhandle.cpp
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../storage/ix_internal.h
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../storage/pf.h
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../storage/rid.h
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../storage/rm.h
+
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../global.h
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../parser.h
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../storage/ix.h
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../storage/ix_indexscan.cpp
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../storage/ix_internal.h
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../storage/pf.h
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../storage/rid.h
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../storage/rm.h
+
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../global.h
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../parser.h
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../storage/ix.h
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../storage/ix_internal.h
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../storage/ix_manager.cpp
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../storage/pf.h
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../storage/rid.h
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../storage/rm.h
 
 CMakeFiles/rm_test1.dir/storage/pagehandle.cpp.obj: ../global.h
 CMakeFiles/rm_test1.dir/storage/pagehandle.cpp.obj: ../storage/pagehandle.cpp

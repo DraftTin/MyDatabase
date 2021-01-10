@@ -33,6 +33,8 @@ Student students[studentCount];
 
 RC Test1();
 RC Test2();
+RC Test3();
+RC Test4();
 RC InsertData(DML_Manager &dmlManager, char *relName);
 RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relName);
 RC CreateTable(DDL_Manager &ddlManager, char *relName);
@@ -40,7 +42,7 @@ RC CreateDatabase();
 int main() {
     srand(time(nullptr));
     int rc;
-    if((rc = Test2())) {
+    if((rc = Test3())) {
         RM_PrintError(rc);
     }
     return 0;
@@ -172,13 +174,40 @@ RC CreateTable(DDL_Manager &ddlManager, char *relName) {
     return ddlManager.createTable(relName, 4, attrs);
 }
 
+// 创建索引
+RC CreateIndex(DDL_Manager &ddlManager, const char *relName, const char *attrName) {
+    return ddlManager.createIndex(relName, attrName);
+}
+
+// 查看索引是否被正确创建
+RC VertifyIndex(DDL_Manager &ddlManager, const char *relName, const char *attrName, int rightNo) {
+    int rc;
+    AttrcatRecord attrcatRecord;
+    if((rc = ddlManager.getAttrInfo(relName, attrName, attrcatRecord))) {
+        return rc;
+    }
+//    cout << attrcatRecord.indexNo << "\n";
+    if(attrcatRecord.indexNo == rightNo) {
+        cout << "index is vertified successfully" << "\n";
+    }
+    else {
+        cout << "index vertification error" << "\n";
+    }
+    return 0;   // ok
+}
+
+RC DeleteIndex(DDL_Manager &ddlManager, const char *relName, const char *attrName) {
+    return ddlManager.dropIndex(relName, attrName);
+}
+
 // 测试创建表操作, 查看数据字典是否正确存储
 RC Test1() {
     cout << "Test1 start....\n";
     int rc;
     PF_Manager pfManager;
     RM_Manager rmManager(pfManager);
-    DDL_Manager ddlManager(rmManager);
+    IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
     DML_Manager dmlManager(rmManager, ddlManager);
     char dbName[MAXNAME + 1] = "testdb";        // 创建数据库的名称
     char relName[MAXNAME + 1] = "student";      // 创建表的名称
@@ -215,7 +244,8 @@ RC Test2() {
     int rc;
     PF_Manager pfManager;
     RM_Manager rmManager(pfManager);
-    DDL_Manager ddlManager(rmManager);
+    IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
     DML_Manager dmlManager(rmManager, ddlManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
@@ -265,5 +295,101 @@ RC Test2() {
     return 0;   // ok
 }
 
+// Test3: 测试创建表文件, 在一部分属性上创建索引, 之后删除索引, 查看索引是否被正确删除
+RC Test3() {
+    cout << "Test3 start....\n";
+    int rc;
+    PF_Manager pfManager;
+    RM_Manager rmManager(pfManager);
+    IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager);
+    char dbName[MAXNAME + 1] = "testdb";
+    char relName[MAXNAME + 1] = "student";
+    // 创建数据库
+    if((rc = CreateDatabase())) {
+        return rc;
+    }
+    // 打开数据库
+    if((rc = ddlManager.openDb(dbName))) {
+        return rc;
+    }
+    // 创建表
+    if((rc = CreateTable(ddlManager, relName))) {
+        return rc;
+    }
+    // 在表上创建索引
+    if((rc = CreateIndex(ddlManager, relName, "id")) ||
+            (rc = CreateIndex(ddlManager, relName, "weight"))) {
+        return rc;
+    }
+    // 验证索引
+    if((rc = VertifyIndex(ddlManager, relName, "id", 0)) ||
+       (rc = VertifyIndex(ddlManager, relName, "weight", 2))) {
+        return rc;
+    }
+    // 删除索引
+    if((rc = DeleteIndex(ddlManager, relName, "id"))) {
+        return rc;
+    }
+    // 验证是否被正确删除
+    if((rc = ddlManager.indexExists(relName, "id")) == DDL_INDEX_NOT_EXISTS) {
+        cout << "index is deleted right\n";
+    }
+    else {
+        cout << "index is deleted right" << "\n";
+        return rc;
+    }
+    // 关闭数据库
+    if((rc = ddlManager.closeDb())) {
+        return rc;
+    }
+    // 删除数据库
+    if((rc = DeleteDatabase())) {
+        return rc;
+    }
+    cout << "Test3 done1\n";
+    return 0;   // ok
+}
 
-
+// Test4: 测试表的创建, 表的删除是否能够正确地删除索引文件
+RC Test4() {
+    cout << "Test4 start....\n";
+    int rc;
+    PF_Manager pfManager;
+    RM_Manager rmManager(pfManager);
+    IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager);
+    char dbName[MAXNAME + 1] = "testdb";
+    char relName[MAXNAME + 1] = "student";
+    // 创建数据库
+    if((rc = CreateDatabase())) {
+        return rc;
+    }
+    // 打开数据库
+    if((rc = ddlManager.openDb(dbName))) {
+        return rc;
+    }
+    // 创建表
+    if((rc = CreateTable(ddlManager, relName))) {
+        return rc;
+    }
+    // 在表上创建索引
+    if((rc = CreateIndex(ddlManager, relName, "id")) ||
+       (rc = CreateIndex(ddlManager, relName, "weight"))) {
+        return rc;
+    }
+    if((rc = ddlManager.dropTable(relName))) {
+        return rc;
+    }
+    system("dir");
+    if((rc = ddlManager.closeDb())) {
+        return rc;
+    }
+    if((rc = DeleteDatabase())) {
+        return rc;
+    }
+    cout << "Test4 done!\n";
+    return 0; // ok
+}

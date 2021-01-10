@@ -79,7 +79,7 @@ public:
                  int indexNo,
                  IX_IndexHandle &indexHandle);
     RC closeIndex(IX_IndexHandle &indexHandle);
-    RC destroyIndex(char *fileName, int indexNo);
+    RC destroyIndex(const char *fileName, int indexNo);
 private:
     static string generateIndexFileName(const char *fileName, int indexNo);
     static int calculateDegree(int attrLength);

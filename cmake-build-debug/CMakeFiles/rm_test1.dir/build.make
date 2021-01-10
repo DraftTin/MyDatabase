@@ -284,6 +284,45 @@ CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.s"
 	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\atomic\RWLock.cpp -o CMakeFiles\rm_test1.dir\atomic\RWLock.cpp.s
 
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: CMakeFiles/rm_test1.dir/flags.make
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj: ../storage/ix_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\rm_test1.dir\storage\ix_manager.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_manager.cpp
+
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_manager.cpp > CMakeFiles\rm_test1.dir\storage\ix_manager.cpp.i
+
+CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_manager.cpp -o CMakeFiles\rm_test1.dir\storage\ix_manager.cpp.s
+
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: CMakeFiles/rm_test1.dir/flags.make
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj: ../storage/ix_indexhandle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\rm_test1.dir\storage\ix_indexhandle.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexhandle.cpp
+
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexhandle.cpp > CMakeFiles\rm_test1.dir\storage\ix_indexhandle.cpp.i
+
+CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexhandle.cpp -o CMakeFiles\rm_test1.dir\storage\ix_indexhandle.cpp.s
+
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: CMakeFiles/rm_test1.dir/flags.make
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj: ../storage/ix_indexscan.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\rm_test1.dir\storage\ix_indexscan.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexscan.cpp
+
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexscan.cpp > CMakeFiles\rm_test1.dir\storage\ix_indexscan.cpp.i
+
+CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexscan.cpp -o CMakeFiles\rm_test1.dir\storage\ix_indexscan.cpp.s
+
 # Object files for target rm_test1
 rm_test1_OBJECTS = \
 "CMakeFiles/rm_test1.dir/storage/rm_test1.cpp.obj" \
@@ -301,7 +340,10 @@ rm_test1_OBJECTS = \
 "CMakeFiles/rm_test1.dir/storage/rm_varlenattr.cpp.obj" \
 "CMakeFiles/rm_test1.dir/storage/attrfilehandle.cpp.obj" \
 "CMakeFiles/rm_test1.dir/storage/rm_bitmap.cpp.obj" \
-"CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.obj"
+"CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.obj" \
+"CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj" \
+"CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj" \
+"CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj"
 
 # External object files for target rm_test1
 rm_test1_EXTERNAL_OBJECTS =
@@ -322,11 +364,14 @@ rm_test1.exe: CMakeFiles/rm_test1.dir/storage/rm_varlenattr.cpp.obj
 rm_test1.exe: CMakeFiles/rm_test1.dir/storage/attrfilehandle.cpp.obj
 rm_test1.exe: CMakeFiles/rm_test1.dir/storage/rm_bitmap.cpp.obj
 rm_test1.exe: CMakeFiles/rm_test1.dir/atomic/RWLock.cpp.obj
+rm_test1.exe: CMakeFiles/rm_test1.dir/storage/ix_manager.cpp.obj
+rm_test1.exe: CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj
+rm_test1.exe: CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj
 rm_test1.exe: CMakeFiles/rm_test1.dir/build.make
 rm_test1.exe: CMakeFiles/rm_test1.dir/linklibs.rsp
 rm_test1.exe: CMakeFiles/rm_test1.dir/objects1.rsp
 rm_test1.exe: CMakeFiles/rm_test1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable rm_test1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable rm_test1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\rm_test1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

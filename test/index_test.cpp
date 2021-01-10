@@ -248,8 +248,9 @@ RC Test1() {
     int rc;
     PF_Manager pfManager;
     RM_Manager rmManager(pfManager);
-    DDL_Manager ddlManager(rmManager);
     IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     if((rc = CreateDatabase())) {
@@ -292,8 +293,9 @@ RC Test2() {
     int rc;
     PF_Manager pfManager;
     RM_Manager rmManager(pfManager);
-    DDL_Manager ddlManager(rmManager);
     IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     int indexNo = 0;
@@ -339,9 +341,9 @@ RC Test3() {
     int rc;
     PF_Manager pfManager;
     RM_Manager rmManager(pfManager);
-    DDL_Manager ddlManager(rmManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
     IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     int indexNo = 0;
@@ -385,14 +387,15 @@ RC Test3() {
     return 0; // ok
 }
 
+// 测试索引的删除
 RC Test4() {
     cout << "Test4 starts....\n";
     int rc;
     PF_Manager pfManager;
     RM_Manager rmManager(pfManager);
-    DDL_Manager ddlManager(rmManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
     IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     int indexNo = 0;

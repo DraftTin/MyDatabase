@@ -10,8 +10,10 @@
 #include <cstring>
 #include "ddl.h"
 
-DDL_Manager::DDL_Manager(RM_Manager &_rmManager) {
+
+DDL_Manager::DDL_Manager(RM_Manager &_rmManager, IX_Manager &_ixManager) {
     rmManager = &_rmManager;
+    ixManager = &_ixManager;
     bDbOpen = FALSE;
 }
 
@@ -316,6 +318,361 @@ RC DDL_Manager::getAttributes(const string &relName, vector<string> &rAttributes
         rAttributes.emplace_back(string(attrcatRecords[i].attrName));
     }
     delete [] attrcatRecords;
+    return 0;   // ok
+}
+
+// dropTable: 删除一个表
+// - 检查表是否存在
+// - 如果存在, 则检查每个属性是否有索引, 如果有则删除索引文件
+// - 删除该表在relcat文件和attrcat文件中对应的表项
+// - 删除表文件
+RC DDL_Manager::dropTable(const char *relName) {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
+    if(relName == nullptr) {
+        return DDL_NULL_RELATION;
+    }
+    int rc;
+    // 检查表是否存在
+    if((rc = relExists(relName))) {
+        return rc;
+    }
+    RM_Record rec;
+    if((rc = getRelcatRec(relName, rec))) {
+        return rc;
+    }
+    RID rid;
+    if((rc = rec.getRid(rid))) {
+        return rc;
+    }
+    // 删除relcat文件中对应的表项
+    if((rc = relFileHandle.deleteRec(rid))) {
+        return rc;
+    }
+
+    // 检查索引是否存在
+    RM_FileScan attrcatFS;
+    if((rc = attrcatFS.openScan(attrFileHandle, STRING, MAXNAME, 0, EQ_OP, (void*)relName))) {
+        return rc;
+    }
+    while((rc = attrcatFS.getNextRec(rec)) == 0) {
+        char *attrcatData;
+        if((rc = rec.getData(attrcatData))) {
+            return rc;
+        }
+        AttrcatRecord *attrcatRecord = (AttrcatRecord*)attrcatData;
+        // 如果有索引, 则删除索引文件
+        // 删除索引file
+        if(attrcatRecord->indexNo != -1) {
+            if((rc = ixManager->destroyIndex(relName, attrcatRecord->indexNo))) {
+                return rc;
+            }
+        }
+        if((rc = rec.getRid(rid))) {
+            return rc;
+        }
+        // 删除该属性在attrcat中对应的表项
+        if((rc = attrFileHandle.deleteRec(rid))) {
+            return rc;
+        }
+    }
+    // relcat和attrcat文件的对应的表项删除完成, 将信息写回磁盘
+    if((rc = relFileHandle.forcePages()) ||
+            (rc = attrFileHandle.forcePages())) {
+        return rc;
+    }
+    // 删除表文件
+    if((rc = rmManager->destroyFile(relName))) {
+        return rc;
+    }
+    return 0; // ok
+}
+
+// dropIndex: 删除relName.attrName上的索引
+// - 检查数据库是否打开
+// - 检查是输入字符串是否为空
+// - 检查索引是否存在
+// - 如果存在则更新系统表并删除索引文件
+RC DDL_Manager::dropIndex(const char *relName, const char *attrName) {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
+    if(relName == nullptr) {
+        return DDL_NULL_RELATION;
+    }
+    if(attrName == nullptr) {
+        return DDL_NULL_ATTRIBUTE;
+    }
+    int rc;
+    // 检查索引是否存在
+    if((rc = indexExists(relName, attrName))) {
+        return rc;
+    }
+    // 更新relcat文件和attrcat文件
+    RM_Record rec;
+    char relationName[MAXNAME + 1];
+    strcpy(relationName, relName);
+    // 修改relcat文件元信息
+    if((rc = getRelcatRec(relName, rec))) {
+        return rc;
+    }
+    char *relcatData;
+    if((rc = rec.getData(relcatData))) {
+        return rc;
+    }
+    // 将表元信息的indexCount--
+    RelcatRecord *relcatRecord = (RelcatRecord*)relcatData;
+    relcatRecord->indexCount--;
+    // 更新relcat
+    if((rc = relFileHandle.updateRec(rec))) {
+        return rc;
+    }
+    // 更新attrcat文件元信息
+    if((rc = getAttrcatRec(relName, attrName, rec))) {
+        return rc;
+    }
+    char *attrcatData;
+    if((rc = rec.getData(attrcatData))) {
+        return rc;
+    }
+    // 修改indexNo
+    AttrcatRecord *attrcatRecord = (AttrcatRecord*)attrcatData;
+    int indexNo = attrcatRecord->indexNo;   // 记录删除索引的属性在attrcat中记录的索引号
+    attrcatRecord->indexNo = -1;
+    if((rc = attrFileHandle.updateRec(rec))) {
+        return rc;
+    }
+
+    // 强制写回
+    if((rc = relFileHandle.forcePages()) ||
+            (rc = attrFileHandle.forcePages())) {
+        return rc;
+    }
+    // 删除索引文件
+    if((rc = ixManager->destroyIndex(relName, indexNo))) {
+        return rc;
+    }
+    return 0;   // ok
+}
+
+// createIndex: 调用ixManager提供的创建索引的接口, 创建索引
+//
+RC DDL_Manager::createIndex(const char *relName, const char *attrName) {
+    if(!bDbOpen) {
+        return DDL_DATABASE_NOT_OPEN;
+    }
+    if(relName == nullptr) {
+        return DDL_NULL_RELATION;
+    }
+    if(attrName == nullptr) {
+        return DDL_NULL_ATTRIBUTE;
+    }
+    int rc;
+    if((rc = indexExists(relName, attrName)) == 0) {
+        return DDL_INDEX_EXISTS;
+    }
+    else if(rc != DDL_INDEX_NOT_EXISTS) {
+        return rc;
+    }
+    // 更新relcat
+    RM_FileScan relcatFS;
+    RM_Record rec;
+    if((rc = getRelcatRec(relName, rec))) {
+        return rc;
+    }
+    char *relcatData;
+    if((rc = rec.getData(relcatData))) {
+        return rc;
+    }
+    RelcatRecord *relcatRecord = (RelcatRecord*)relcatData;
+    relcatRecord->indexCount++;
+    if((rc = relFileHandle.updateRec(rec))) {
+        return rc;
+    }
+    // 更新attrcat
+    RM_FileScan attrcatFS;
+    if ((rc = attrcatFS.openScan(attrFileHandle, STRING, MAXNAME, 0, EQ_OP, (void*)relName))) {
+        return rc;
+    }
+    int indexNo = 0;
+    // 索引属性的类型, 长度, 在记录中的偏移
+    AttrType attrType;
+    int attrLength;
+    int attrOffset;
+    while (rc != RM_EOF) {
+        rc = attrcatFS.getNextRec(rec);
+        if (rc != 0 && rc != RM_EOF) {
+            return rc;
+        }
+        char *attrcatData;
+        if (rc != RM_EOF) {
+            if ((rc = rec.getData(attrcatData))) {
+                return rc;
+            }
+            AttrcatRecord* attrcatRecord = (AttrcatRecord*)attrcatData;
+            // update
+            if (strcmp(attrcatRecord->attrName, attrName) == 0) {
+                attrcatRecord->indexNo = indexNo;
+                attrType = attrcatRecord->attrType;
+                attrLength = attrcatRecord->attrLength;
+                attrOffset = attrcatRecord->offset;
+                if ((rc = attrFileHandle.updateRec(rec))) {
+                    return rc;
+                }
+                break;
+            }
+        }
+        ++indexNo;
+    }
+    if((rc = attrcatFS.closeScan())) {
+        return rc;
+    }
+    // 强制写回
+    if((rc = relFileHandle.forcePages()) ||
+            (rc = attrFileHandle.forcePages())) {
+        return rc;
+    }
+    // 创建索引
+    if((rc = ixManager->createIndex(relName, indexNo, attrType, attrLength))) {
+        return rc;
+    }
+    // 将该属性对应的项全部插入索引
+    IX_IndexHandle ixIH;
+    if((rc = ixManager->openIndex(relName, indexNo, ixIH))) {
+        return rc;
+    }
+    // 扫描表中的所有项
+    RM_FileHandle rmFileHandle;
+    RM_FileScan rmFileScan;
+    if((rc = rmManager->openFile(relName, rmFileHandle)) ||
+            (rc = rmFileScan.openScan(rmFileHandle, attrType, attrLength, attrOffset, NO_OP, nullptr))) {
+        return rc;
+    }
+    while((rc = rmFileScan.getNextRec(rec)) == 0) {
+        char *recordData;
+        RID rid;
+        if((rc = rec.getData(recordData)) ||
+                (rc = rec.getRid(rid))) {
+            return rc;
+        }
+        if(attrType == INT) {
+            int val;
+            memcpy(&val, recordData + attrOffset, sizeof(val));
+            if((rc = ixIH.insertEntry(&val, rid))) {
+                return rc;
+            }
+        }
+        else if(attrType == FLOAT) {
+            float val;
+            memcpy(&val, recordData + attrOffset, sizeof(val));
+            if((rc = ixIH.insertEntry(&val, rid))) {
+                return rc;
+            }
+        }
+        else if(attrType == STRING) {
+            char* val = new char[attrLength];
+            strcpy(val, recordData + attrOffset);
+            if((rc = ixIH.insertEntry(&val, rid))) {
+                return rc;
+            }
+            delete [] val;
+        }
+    }
+    if((rc = rmFileScan.closeScan())) {
+        return rc;
+    }
+    // 关闭表文件, 关闭索引文件
+    if((rc = rmManager->closeFile(rmFileHandle)) ||
+            (rc = ixManager->closeIndex(ixIH))) {
+        return rc;
+    }
+    return 0; // ok
+}
+
+// getAttrInfo: 获取relName.attrName的信息
+RC DDL_Manager::getAttrInfo(const char *relName, const char *attrName, AttrcatRecord &attrInfo) {
+    int rc;
+    RM_Record rec;
+    if((rc = getAttrcatRec(relName, attrName, rec))) {
+        return rc;
+    }
+    char *attrcatData;
+    if((rc = rec.getData(attrcatData))) {
+        return rc;
+    }
+    AttrcatRecord *attrcatRecord = (AttrcatRecord*)attrcatData;
+    attrInfo = *attrcatRecord;
+    return 0;   // ok
+}
+
+RC DDL_Manager::indexExists(const char *relName, const char *attrName) {
+    // 检查是否存在索引
+    int rc;
+    AttrcatRecord attrcatRecord;
+    if((rc = getAttrInfo(relName, attrName, attrcatRecord))) {
+        return rc;
+    }
+    if(attrcatRecord.indexNo == -1) {
+        return DDL_INDEX_NOT_EXISTS;
+    }
+    return 0;   // ok
+}
+
+RC DDL_Manager::relExists(const char *relationName) {
+    int rc;
+    RM_Record rec;
+    RM_FileScan relcatFileScan;
+    if((rc = relcatFileScan.openScan(relFileHandle, STRING, MAXNAME, offsetof(RelcatRecord, relName), EQ_OP, (void*)relationName))) {
+        return rc;
+    }
+    if((rc = relcatFileScan.getNextRec(rec))) {
+        if(rc == RM_EOF) {
+            return DDL_REL_NOT_EXISTS;
+        }
+        return rc;
+    }
+    return 0;   // ok
+}
+
+// getRelcatRec: 获取relcat表中relName表对应的记录
+RC DDL_Manager::getRelcatRec(const char *relName, RM_Record &relcatRecord) {
+    int rc;
+    RM_FileScan relcatFS;
+    if((rc = relcatFS.openScan(relFileHandle, STRING, MAXNAME, 0, EQ_OP, (void*)relName))) {
+        return rc;
+    }
+    if((rc = relcatFS.getNextRec(relcatRecord))) {
+        if(rc == RM_EOF) {
+            return DDL_REL_NOT_EXISTS;
+        }
+        return rc;
+    }
+    return 0;   // ok
+}
+
+// getAttrcatRec: 获取attrcat表中relName.attrName对应的记录
+RC DDL_Manager::getAttrcatRec(const char *relName, const char *attrName, RM_Record &attrcatRecord) {
+    int rc;
+    RM_FileScan attrcatFS;
+    if((rc = attrcatFS.openScan(attrFileHandle, STRING, MAXNAME, 0, EQ_OP, (void *) relName))) {
+        return rc;
+    }
+    // 查找该属性的表项
+    while((rc = attrcatFS.getNextRec(attrcatRecord)) == 0) {
+        char *pData;
+        if((rc = attrcatRecord.getData(pData))) {
+            return rc;
+        }
+        AttrcatRecord *tmpRec = (AttrcatRecord*)pData;
+        // 找到attrcat表对应的表项
+        if(strcmp(tmpRec->attrName, attrName) == 0) {
+            break;
+        }
+    }
+    if((rc = attrcatFS.closeScan())) {
+        return rc;
+    }
     return 0;   // ok
 }
 

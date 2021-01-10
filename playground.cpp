@@ -58,4 +58,6 @@ int main() {
     char commandB[40] = "cmake-build-debug\\dbcreate testdb";
     chdir("..");
     system(commandB);
+    int b = 2;
+    int c = 3;
 }

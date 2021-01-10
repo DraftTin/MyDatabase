@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "../storage/rm.h"
+#include "../storage/ix.h"
 #include "../parser.h"
 
 /* 数据字典中所有字符串的长度都为MAXNAME + 1 */
@@ -71,28 +72,45 @@ struct AttrcatRecord {
 
 class DDL_Manager {
 public:
-    DDL_Manager(RM_Manager &_rmManager);
+    DDL_Manager(RM_Manager &_rmManager, IX_Manager &_ixManager);
     ~DDL_Manager();
     RC openDb(const char *dbName);                  // 打开一个数据库
     RC closeDb();                                   // 关闭数据库
     RC createTable(const char *relName,             // 表名
                     const int attrCount,            // 属性的数量
                    AttrInfo   *attributes);         // 属性的数据(属性名, 属性长度, 属性类型)
-    RC getRelInfo(const char *relName, RelcatRecord& relinfo) const;   // 返回属性信息和表信息
+    RC dropTable(const char *relName);              // 删除一个表，如果属性列上存在索引则删除索引
+    RC dropIndex(const char *relName,               // 删除表的一个索引
+                 const char *attrName);
+    RC createIndex(const char *relName,             // 创建表属性的索引
+                    const char *attrName);
+    RC getRelInfo(const char *relName, RelcatRecord &relinfo) const;   // 返回属性信息和表信息
     RC getAttrInfo(const char *relName, AttrcatRecord *attrinfo) const;
+    RC getAttrInfo(const char *relName, const char *attrName, AttrcatRecord &attrInfo);
     ////
     RC getAttributes(const string &relName, vector<string> &rAttributes);   // 获取表中所有的属性名
     ////
     RC printAllData(char *relName, int lines = PRINT_ALL_DATA) const;
     RC printDataDic() const;
+
+    RC indexExists(const char *relName, const char *attrName);
+    RC relExists(const char *relationName);
+private:
+    RC getRelcatRec(const char *relName, RM_Record &relcatRecord);
+    RC getAttrcatRec(const char *relName, const char *attrName, RM_Record &attrcatRecord);
 private:
     int bDbOpen;                    // 标记数据库是否被打开
-    RM_Manager *rmManager;          // 记录文件管理
-    RM_FileHandle relFileHandle;
-    RM_FileHandle attrFileHandle;
+    RM_Manager *rmManager;          // 记录管理
+    IX_Manager *ixManager;          // 索引管理
+    RM_FileHandle relFileHandle;    // relcat文件管理
+    RM_FileHandle attrFileHandle;   // attrcat文件管理
 };
 
 
+#define DDL_INDEX_EXISTS                        (START_DDL_WARN + 7)    // 索引已经存在
+#define DDL_INDEX_NOT_EXISTS                    (START_DDL_WARN + 6)    // 索引不存在
+#define DDL_NULL_ATTRIBUTE                      (START_DDL_WARN + 5)    // 传入attrName空指针
+#define DDL_NULL_RELATION                       (START_DDL_WARN + 4)    // 传入relName空指针
 #define DDL_DATABASE_NOT_OPEN                   (START_DDL_WARN + 3)    // 数据库没打开
 #define DDL_DATABASE_OPEN                       (START_DDL_WARN + 2)    // 数据库已经打开了
 #define DDL_REL_NOT_EXISTS                      (START_DDL_WARN + 1)    // 进行操作的表不存在

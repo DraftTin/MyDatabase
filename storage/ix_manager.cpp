@@ -152,7 +152,7 @@ int IX_Manager::calculateDegree(int attrLength) {
     return k - 1;
 }
 
-RC IX_Manager::destroyIndex(char *fileName, int indexNo) {
+RC IX_Manager::destroyIndex(const char *fileName, int indexNo) {
     string ss = generateIndexFileName(fileName, indexNo);
     // 删除索引文件
     return pfManager->destroyFile(ss.c_str());
