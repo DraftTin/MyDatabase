@@ -41,7 +41,7 @@ bool compare(Student &student, int id);
 
 int main() {
     int rc;
-    if((rc = Test4())) {
+    if((rc = Test3())) {
         cout << "rc = " << rc << "\n";
     }
     return 0;

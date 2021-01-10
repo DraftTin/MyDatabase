@@ -121,6 +121,10 @@ RC IX_Manager::closeIndex(IX_IndexHandle &indexHandle) {
         }
         // 写回数据
         memcpy(pData, (char*)&indexHandle.indexHeader, sizeof(IX_FileHeader));
+        // 修改bug: 增加markDirty
+        if((rc = indexHandle.pfFH.markDirty(pageNum))) {
+            return rc;
+        }
         if((rc = indexHandle.pfFH.unpinPage(pageNum))) {
             return rc;
         }

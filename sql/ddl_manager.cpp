@@ -546,7 +546,7 @@ RC DDL_Manager::createIndex(const char *relName, const char *attrName) {
     RM_FileHandle rmFileHandle;
     RM_FileScan rmFileScan;
     if((rc = rmManager->openFile(relName, rmFileHandle)) ||
-            (rc = rmFileScan.openScan(rmFileHandle, attrType, attrLength, attrOffset, NO_OP, nullptr))) {
+            (rc = rmFileScan.openScan(rmFileHandle, attrType, attrLength, attrOffset, NO_OP, (void*)&rc))) {
         return rc;
     }
     while((rc = rmFileScan.getNextRec(rec)) == 0) {
