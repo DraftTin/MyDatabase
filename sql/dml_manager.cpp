@@ -5,7 +5,8 @@
 #include <cstring>
 #include "dml.h"
 
-DML_Manager::DML_Manager(RM_Manager &_rmManager, DDL_Manager &_ddlManager) : rmManager(&_rmManager), ddlManager(&_ddlManager) {
+DML_Manager::DML_Manager(RM_Manager &_rmManager, DDL_Manager &_ddlManager, IX_Manager &_ixManager)
+: rmManager(&_rmManager), ddlManager(&_ddlManager), ixManager(&_ixManager) {
     // Don't need to do anything
 }
 
@@ -14,6 +15,7 @@ DML_Manager::DML_Manager(RM_Manager &_rmManager, DDL_Manager &_ddlManager) : rmM
 // - 将value数组按照顺序拼接为记录的字符串(如果有变长类型需要转换)
 // - 将拼接好的字符串插入到{relName}对应的表文件中
 // - 若有变长属性, 则将变长属性插入到表中
+// - 检查是否有索引, 如果有则插入索引
 RC DML_Manager::insert(const char *relName, int nValues, const Value *values) {
     int rc;
     RelcatRecord relcatRecord;
@@ -80,6 +82,39 @@ RC DML_Manager::insert(const char *relName, int nValues, const Value *values) {
                                                  attrcatRecords[i].attrLength, rmVarLenAttr))) {
                 delete [] attrcatRecords;
                 delete [] recordData;
+                return rc;
+            }
+        }
+    }
+    // 检查是否存在索引
+    for(int i = 0; i < attrCount; ++i) {
+        // 如果该属性存在索引, 则插入
+        if(attrcatRecords[i].indexNo != -1) {
+            // 打开索引文件
+            IX_IndexHandle indexHandle;
+            if((rc = ixManager->openIndex(relName, attrcatRecords[i].indexNo, indexHandle))) {
+                return rc;
+            }
+            if(attrcatRecords[i].attrType == INT) {
+                int val = *static_cast<int*>(values[i].value);
+                if((rc = indexHandle.insertEntry(&val, rid))) {
+                    return rc;
+                }
+            }
+            else if(attrcatRecords[i].attrType == FLOAT) {
+                float val = *static_cast<float*>(values[i].value);
+                if((rc = indexHandle.insertEntry(&val, rid))) {
+                    return rc;
+                }
+            }
+            else if(attrcatRecords[i].attrType == STRING) {
+                char *val = static_cast<char*>(values[i].value);
+                if((rc = indexHandle.insertEntry(val, rid))) {
+                    return rc;
+                }
+            }
+            // 关闭索引文件
+            if((rc = ixManager->closeIndex(indexHandle))) {
                 return rc;
             }
         }

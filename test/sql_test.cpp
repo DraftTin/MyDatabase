@@ -27,13 +27,15 @@ struct Student {
     float height;       // FLOAT
 };
 
-Student students[studentCount];
+Student students[2 * studentCount];
 
 RC Test1();
 RC Test2();
 RC Test3();
 RC Test4();
 RC Test5();
+RC Test6();
+RC Test7();
 RC InsertData(DML_Manager &dmlManager, char *relName);
 RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relName);
 RC CreateTable(DDL_Manager &ddlManager, char *relName);
@@ -41,7 +43,7 @@ RC CreateDatabase();
 int main() {
     srand(time(nullptr));
     int rc;
-    if((rc = Test5())) {
+    if((rc = Test7())) {
         RM_PrintError(rc);
     }
     return 0;
@@ -79,8 +81,35 @@ RC DeleteDatabase() {
 
 RC InsertData(DML_Manager &dmlManager, char *relName) {
     int rc;
-    cout << "insert 10000 records..\n";
+    cout << "insert " << studentCount << " records..\n";
     for(int i = 0; i < studentCount; ++i) {
+        students[i].id = i;
+        generateStr(students[i].name, nameSize);
+        students[i].weight = rand() % 249 + 1;
+        students[i].height = rand() % 249 + 1;
+        Value *values = new Value[4];
+        values[0].value = (void*)&(students[i].id);
+        values[0].type = INT;
+        values[1].value = (void*)(students[i].name);
+        values[1].type = STRING;
+        values[2].value = (void*)&(students[i].weight);
+        values[2].type = FLOAT;
+        values[3].value = (void*)&(students[i].height);
+        values[3].type = FLOAT;
+        if(dmlManager.insert(relName, 4, values)) {
+            delete [] values;
+            return rc;
+        }
+    }
+    cout << "Insert Data Successfully!\n";
+    return 0;
+}
+
+// 二次插入
+RC InsertData2(DML_Manager &dmlManager, char *relName) {
+    int rc;
+    cout << "insert " << studentCount << " records..\n";
+    for(int i = studentCount; i < studentCount + studentCount; ++i) {
         students[i].id = i;
         generateStr(students[i].name, nameSize);
         students[i].weight = rand() % 249 + 1;
@@ -175,6 +204,7 @@ RC CreateTable(DDL_Manager &ddlManager, char *relName) {
 
 // 创建索引
 RC CreateIndex(DDL_Manager &ddlManager, const char *relName, const char *attrName) {
+    cout << "Create index on " << attrName << "\n";
     return ddlManager.createIndex(relName, attrName);
 }
 
@@ -265,7 +295,7 @@ RC Test1() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";        // 创建数据库的名称
     char relName[MAXNAME + 1] = "student";      // 创建表的名称
     // 创建数据库
@@ -303,7 +333,7 @@ RC Test2() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     // 创建数据库
@@ -360,7 +390,7 @@ RC Test3() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     // 创建数据库
@@ -417,7 +447,7 @@ RC Test4() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     // 创建数据库
@@ -459,7 +489,7 @@ RC Test5() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     // 创建数据库
@@ -505,5 +535,115 @@ RC Test5() {
         return rc;
     }
     cout << "Test5 done!\n";
+    return 0;
+}
+
+// 插入数据前使用ddlManager创建索引, 之后使用索引验证数据
+RC Test6() {
+    cout << "Test6 starts....\n";
+    int rc;
+    PF_Manager pfManager;
+    RM_Manager rmManager(pfManager);
+    IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
+    char dbName[MAXNAME + 1] = "testdb";
+    char relName[MAXNAME + 1] = "student";
+    // 创建数据库
+    if((rc = CreateDatabase())) {
+        return rc;
+    }
+    // 打开数据库
+    if((rc = ddlManager.openDb(dbName))) {
+        return rc;
+    }
+    // 创建表
+    if((rc = CreateTable(ddlManager, relName))) {
+        return rc;
+    }
+    // 创建索引
+    if((rc = CreateIndex(ddlManager, relName, "id")) ||
+       (rc = CreateIndex(ddlManager, relName, "weight"))) {
+        return rc;
+    }
+    // 向表中插入数据
+    if((rc = InsertData(dmlManager, relName))) {
+        return rc;
+    }
+    RM_FileHandle rmFileHandle;
+    if((rc = rmManager.openFile(relName, rmFileHandle))) {
+        return rc;
+    }
+    int indexNo = 0;
+    if((rc = VertifyDataWithIndex(ddlManager, ixManager, rmFileHandle, relName, indexNo))) {
+        return rc;
+    }
+    if((rc = rmManager.closeFile(rmFileHandle))) {
+        return rc;
+    }
+    if((rc = ddlManager.closeDb())) {
+        return rc;
+    }
+    if((rc = DeleteDatabase())) {
+        return rc;
+    }
+    cout << "Test6 done!\n";
+    return 0;
+}
+
+// 插入数据间使用ddlManager创建索引, 之后使用索引验证数据
+RC Test7() {
+    cout << "Test7 starts....\n";
+    int rc;
+    PF_Manager pfManager;
+    RM_Manager rmManager(pfManager);
+    IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
+    char dbName[MAXNAME + 1] = "testdb";
+    char relName[MAXNAME + 1] = "student";
+    // 创建数据库
+    if((rc = CreateDatabase())) {
+        return rc;
+    }
+    // 打开数据库
+    if((rc = ddlManager.openDb(dbName))) {
+        return rc;
+    }
+    // 创建表
+    if((rc = CreateTable(ddlManager, relName))) {
+        return rc;
+    }
+    // 向表中插入数据
+    if((rc = InsertData(dmlManager, relName))) {
+        return rc;
+    }
+    // 创建索引
+    if((rc = CreateIndex(ddlManager, relName, "id")) ||
+       (rc = CreateIndex(ddlManager, relName, "weight"))) {
+        return rc;
+    }
+    // 二次插入数据, 看插入一定数据后再建立索引之后再插入数据是否能够正确插入索引
+    if((rc = InsertData2(dmlManager, relName))) {
+        return rc;
+    }
+    RM_FileHandle rmFileHandle;
+    if((rc = rmManager.openFile(relName, rmFileHandle))) {
+        return rc;
+    }
+    int indexNo = 0;
+    if((rc = VertifyDataWithIndex(ddlManager, ixManager, rmFileHandle, relName, indexNo))) {
+        return rc;
+    }
+    if((rc = rmManager.closeFile(rmFileHandle))) {
+        return rc;
+    }
+    if((rc = ddlManager.closeDb())) {
+        return rc;
+    }
+    if((rc = DeleteDatabase())) {
+        return rc;
+    }
+    cout << "Test7 done!\n";
     return 0;
 }

@@ -11,7 +11,7 @@
 
 class DML_Manager {
 public:
-    DML_Manager(RM_Manager &_rmManager, DDL_Manager &_ddlManager);
+    DML_Manager(RM_Manager &_rmManager, DDL_Manager &_ddlManager, IX_Manager &_ixManager);
     RC insert (const char  *relName,           // relation to insert into
                int         nValues,            // # values to insert
                const Value values[]);          // values to insert
@@ -35,6 +35,7 @@ public:
 private:
     RM_Manager *rmManager;                      // 用于控制记录的插入删除等
     DDL_Manager *ddlManager;                    // 用于获取表的信息和属性的信息
+    IX_Manager *ixManager;                      // 用于管理索引
 };
 
 #define DML_ATTR_COUNT_INCORRECT     START_DML_WARN + 1;  // 插入的属性数量不一致
