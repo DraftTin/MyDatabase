@@ -125,12 +125,16 @@ private:
 };
 
 
-#define IX_FILE_CLOSED      (START_IX_WARN + 0)
+#define IX_FILE_CLOSED      (START_IX_WARN + 0)     // 文件已经关闭
 #define IX_RID_EXISTED      (START_IX_WARN + 1)     // 已经存在的索引rid
 #define IX_RID_FULL         (START_IX_WARN + 2)     // 溢出块插满
 #define IX_SCAN_CLOSED      (START_IX_WARN + 3)     // indexScan关闭
 #define IX_EOF              (START_IX_WARN + 4)     // 扫描到索引文件的end
 #define IX_UNKONWN_ATTRTYPE (START_IX_WARN + 5)     // 未知的属性类型
 #define IX_NOT_FOUND        (START_IX_WARN + 6)     // 索引项未找到
+#define IX_LASTWARN         IX_NOT_FOUND
+
+#define IX_UNIX             (START_IX_ERR - 0)      // 未知错误
+#define IX_LASTERROR        IX_UNIX
 
 #endif //MYDATABASE_IX_H

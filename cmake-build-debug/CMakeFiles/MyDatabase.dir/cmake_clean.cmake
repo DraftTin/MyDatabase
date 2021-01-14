@@ -1,5 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj"
+  "CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.obj"
+  "CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.obj"
+  "CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.obj"
+  "CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.obj"
+  "CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.obj"
   "CMakeFiles/MyDatabase.dir/main.cpp.obj"
   "CMakeFiles/MyDatabase.dir/sql/ddl_manager.cpp.obj"
   "CMakeFiles/MyDatabase.dir/sql/dml_manager.cpp.obj"

@@ -628,7 +628,7 @@ RC DDL_Manager::relExists(const char *relationName) {
     }
     if((rc = relcatFileScan.getNextRec(rec))) {
         if(rc == RM_EOF) {
-            return DDL_REL_NOT_EXISTS;
+            return DDL_REL_NOT_EXIST;
         }
         return rc;
     }
@@ -644,7 +644,7 @@ RC DDL_Manager::getRelcatRec(const char *relName, RM_Record &relcatRecord) {
     }
     if((rc = relcatFS.getNextRec(relcatRecord))) {
         if(rc == RM_EOF) {
-            return DDL_REL_NOT_EXISTS;
+            return DDL_REL_NOT_EXIST;
         }
         return rc;
     }

@@ -113,9 +113,12 @@ private:
 #define DDL_NULL_RELATION                       (START_DDL_WARN + 4)    // 传入relName空指针
 #define DDL_DATABASE_NOT_OPEN                   (START_DDL_WARN + 3)    // 数据库没打开
 #define DDL_DATABASE_OPEN                       (START_DDL_WARN + 2)    // 数据库已经打开了
-#define DDL_REL_NOT_EXISTS                      (START_DDL_WARN + 1)    // 进行操作的表不存在
+#define DDL_REL_NOT_EXIST                       (START_DDL_WARN + 1)    // 进行操作的表不存在
+#define DDL_LASTWARN                            DDL_REL_NOT_EXIST
 
 
 #define DDL_INVALID_DBNAME                      (START_DDL_ERR - 0)
+#define DDL_UNIX                                (START_DDL_ERR - 1)
+#define DDL_LASTERROR                           DDL_UNIX
 
 #endif //MYDATABASE_DDL_H

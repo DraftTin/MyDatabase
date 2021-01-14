@@ -82,7 +82,6 @@ public:
     // 创建文件, 并写入文件头信息
     RC createFile(const char *filename);
     RC destroyFile(const char *fileName);
-
     RC openFile(const char *fileName, PF_FileHandle &fileHandle);
     // 关闭和fileHandle相关联的文件
     RC closeFile(PF_FileHandle &fileHandle);
@@ -101,8 +100,7 @@ private:
 #define PF_PAGEFREE         (START_PF_WARN + 5)     // 该页已经是空闲状态
 #define PF_PAGEUNPINNED     (START_PF_WARN + 6)     // 该页已经unpinned, 不能再unpin了
 #define PF_EOF              (START_PF_WARN + 7)     // 没有找到合法的页面
-#define PF_TOOSMALL         (START_PF_WARN + 8)     // Resize buffer too small
-#define PF_LASTWARN         PF_TOOSMALL
+#define PF_LASTWARN         PF_EOF
 
 #define PF_NOMEM            (START_PF_ERR - 0)      // 没申请到内存空间
 #define PF_NOBUF            (START_PF_ERR - 1)      // 缓冲区的页都被占用，不能申请

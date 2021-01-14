@@ -485,6 +485,21 @@
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/dbcreate.cpp">
 			<Option target="dbcreate"/>
 		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/error_message/ddl_error.cpp">
+			<Option target="MyDatabase"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/error_message/dml_error.cpp">
+			<Option target="MyDatabase"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/error_message/ix_error.cpp">
+			<Option target="MyDatabase"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/error_message/pf_error.cpp">
+			<Option target="MyDatabase"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/error_message/rm_error.cpp">
+			<Option target="MyDatabase"/>
+		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/global.h">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>

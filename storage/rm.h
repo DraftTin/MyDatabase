@@ -63,6 +63,7 @@ public:
     int recordSize; // 记录的size
 };
 
+
 // 属性文件的句柄
 class RM_AttrFileHandle {
     friend class RM_Manager;
@@ -203,12 +204,12 @@ private:
 #define RM_INVALID_OPERATOR         (START_RM_WARN + 12)    // Invalid operator
 #define RM_NULL_RECORD              (START_RM_WARN + 13)    // 空的record
 #define RM_EOF                      (START_RM_WARN + 14)    // End of file
-#define RM_RID_NOT_VIABLE              (START_RM_WARN + 15)    // rid未初始化
-#define RM_LASTWARN                 RM_EOF
+#define RM_RID_NOT_VIABLE           (START_RM_WARN + 15)    // rid未初始化
+#define RM_LASTWARN                 RM_RID_NOT_VIABLE
 
 // errors
-#define RM_INCONSISTENT_BITMAP  (START_RM_ERR - 1)  // bitmap未知错误
-#define RM_UNIX                 (START_RM_ERR - 2)  // Unix error
+#define RM_INCONSISTENT_BITMAP  (START_RM_ERR - 0)  // bitmap未知错误
+#define RM_UNIX                 (START_RM_ERR - 1)  // Unix error
 #define RM_LASTERROR            RM_UNIX
 
 

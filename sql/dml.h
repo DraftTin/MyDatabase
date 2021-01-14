@@ -38,8 +38,12 @@ private:
     IX_Manager *ixManager;                      // 用于管理索引
 };
 
-#define DML_ATTR_COUNT_INCORRECT     START_DML_WARN + 1;  // 插入的属性数量不一致
-#define DML_ATTR_TYPE_INCORRECT      START_DML_WARN + 2;  // 插入的属性类型不一致
-#define DML_DATABASE_CLOSED          START_DML_WARN + 3;  // 数据库关闭
+#define DML_ATTR_COUNT_INCORRECT     START_DML_WARN + 1  // 插入的属性数量不一致
+#define DML_ATTR_TYPE_INCORRECT      START_DML_WARN + 2  // 插入的属性类型不一致
+#define DML_DATABASE_CLOSED          START_DML_WARN + 3  // 数据库关闭
+#define DML_LASTWARN                 DML_DATABASE_CLOSED
+
+#define DML_UNIX                     (START_DML_ERR - 0)
+#define DML_LASTERROR                DML_UNIX
 
 #endif //MYDATABASE_DML_H
