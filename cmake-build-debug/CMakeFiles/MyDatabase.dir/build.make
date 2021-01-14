@@ -323,71 +323,6 @@ CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.s"
 	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexscan.cpp -o CMakeFiles\MyDatabase.dir\storage\ix_indexscan.cpp.s
 
-CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
-CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.obj: ../error_message/rm_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\MyDatabase.dir\error_message\rm_error.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\error_message\rm_error.cpp
-
-CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\error_message\rm_error.cpp > CMakeFiles\MyDatabase.dir\error_message\rm_error.cpp.i
-
-CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\error_message\rm_error.cpp -o CMakeFiles\MyDatabase.dir\error_message\rm_error.cpp.s
-
-CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
-CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.obj: ../error_message/pf_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\MyDatabase.dir\error_message\pf_error.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\error_message\pf_error.cpp
-
-CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\error_message\pf_error.cpp > CMakeFiles\MyDatabase.dir\error_message\pf_error.cpp.i
-
-CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\error_message\pf_error.cpp -o CMakeFiles\MyDatabase.dir\error_message\pf_error.cpp.s
-
-CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
-CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.obj: ../error_message/ix_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\MyDatabase.dir\error_message\ix_error.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\error_message\ix_error.cpp
-
-CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\error_message\ix_error.cpp > CMakeFiles\MyDatabase.dir\error_message\ix_error.cpp.i
-
-CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\error_message\ix_error.cpp -o CMakeFiles\MyDatabase.dir\error_message\ix_error.cpp.s
-
-CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
-CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.obj: ../error_message/ddl_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\MyDatabase.dir\error_message\ddl_error.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\error_message\ddl_error.cpp
-
-CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\error_message\ddl_error.cpp > CMakeFiles\MyDatabase.dir\error_message\ddl_error.cpp.i
-
-CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\error_message\ddl_error.cpp -o CMakeFiles\MyDatabase.dir\error_message\ddl_error.cpp.s
-
-CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.obj: CMakeFiles/MyDatabase.dir/flags.make
-CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.obj: ../error_message/dml_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\MyDatabase.dir\error_message\dml_error.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\error_message\dml_error.cpp
-
-CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\error_message\dml_error.cpp > CMakeFiles\MyDatabase.dir\error_message\dml_error.cpp.i
-
-CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\error_message\dml_error.cpp -o CMakeFiles\MyDatabase.dir\error_message\dml_error.cpp.s
-
 # Object files for target MyDatabase
 MyDatabase_OBJECTS = \
 "CMakeFiles/MyDatabase.dir/main.cpp.obj" \
@@ -408,12 +343,7 @@ MyDatabase_OBJECTS = \
 "CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj" \
 "CMakeFiles/MyDatabase.dir/sql/dml_manager.cpp.obj" \
 "CMakeFiles/MyDatabase.dir/storage/ix_indexhandle.cpp.obj" \
-"CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.obj" \
-"CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.obj" \
-"CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.obj" \
-"CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.obj" \
-"CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.obj" \
-"CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.obj"
+"CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.obj"
 
 # External object files for target MyDatabase
 MyDatabase_EXTERNAL_OBJECTS =
@@ -437,16 +367,11 @@ MyDatabase.exe: CMakeFiles/MyDatabase.dir/atomic/RWLock.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/sql/dml_manager.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/ix_indexhandle.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.obj
-MyDatabase.exe: CMakeFiles/MyDatabase.dir/error_message/rm_error.cpp.obj
-MyDatabase.exe: CMakeFiles/MyDatabase.dir/error_message/pf_error.cpp.obj
-MyDatabase.exe: CMakeFiles/MyDatabase.dir/error_message/ix_error.cpp.obj
-MyDatabase.exe: CMakeFiles/MyDatabase.dir/error_message/ddl_error.cpp.obj
-MyDatabase.exe: CMakeFiles/MyDatabase.dir/error_message/dml_error.cpp.obj
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/build.make
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/linklibs.rsp
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/objects1.rsp
 MyDatabase.exe: CMakeFiles/MyDatabase.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX executable MyDatabase.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable MyDatabase.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\MyDatabase.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

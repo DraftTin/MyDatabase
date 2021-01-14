@@ -41,7 +41,7 @@ bool compare(Student &student, int id);
 
 int main() {
     int rc;
-    if((rc = Test3())) {
+    if((rc = Test1())) {
         cout << "rc = " << rc << "\n";
     }
     return 0;
@@ -250,7 +250,7 @@ RC Test1() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     if((rc = CreateDatabase())) {
@@ -295,7 +295,7 @@ RC Test2() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     int indexNo = 0;
@@ -343,7 +343,7 @@ RC Test3() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     int indexNo = 0;
@@ -395,7 +395,7 @@ RC Test4() {
     RM_Manager rmManager(pfManager);
     IX_Manager ixManager(pfManager);
     DDL_Manager ddlManager(rmManager, ixManager);
-    DML_Manager dmlManager(rmManager, ddlManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
     char dbName[MAXNAME + 1] = "testdb";
     char relName[MAXNAME + 1] = "student";
     int indexNo = 0;
