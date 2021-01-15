@@ -9,6 +9,7 @@
 #include "../storage/rm.h"
 #include "../storage/rm_error.h"
 #include "../storage/pf_error.h"
+#include "../error_message/all_error.h"
 
 using namespace std;
 
@@ -48,7 +49,7 @@ int main() {
     int rc;
     srand(time(nullptr));
     if((rc = Test2()) != 0) {
-        RM_PrintError(rc);
+        PrintError(rc);
     }
 }
 

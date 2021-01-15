@@ -189,10 +189,14 @@ RC RM_FileHandle::insertRec(const char *pData, RID &rid) {
     if ((rc = fileHandle.unpinPage(freePageNumber))) {
         return rc;
     }
+    ///
+    // 成功插入后，记录数量++
+    hdrPage.totalNumberRecords++;
+    bHdrPageChanged = TRUE;
+    ///
     // Set the RID
     RID newRid(freePageNumber, freeSlotNumber);
     rid = newRid;
-//    cout << "rid: " << freePageNumber << "  " << freeSlotNumber << endl;
     return OK_RC;   // ok
 }
 
@@ -262,6 +266,11 @@ RC RM_FileHandle::deleteRec(const RID &rid) {
     if ((rc = fileHandle.unpinPage(pageNumber))) {
         return rc;
     }
+    ///
+    // 删除记录后, 记录数量--
+    hdrPage.totalNumberRecords--;
+    bHdrPageChanged = TRUE;
+    ///
     return 0;   // ok
 }
 
@@ -433,6 +442,16 @@ RC RM_FileHandle::getVarValue(RM_VarLenAttr &varLenAttr, char *&pVal) {
         return RM_CLOSEDFILE;
     }
     return rmAttrFileHandle.getVarValue(varLenAttr, pVal);
+}
+
+// getNumPages: 返回表中容纳所有元组所申请的页数，除去RM的头部信息页
+int RM_FileHandle::getNumPages() const {
+    return fileHandle.getNumPages() - 1;
+}
+
+// getNumTuples: 返回表中总的元组数量
+int RM_FileHandle::getNumTuples() const {
+    return hdrPage.totalNumberRecords;
 }
 
 

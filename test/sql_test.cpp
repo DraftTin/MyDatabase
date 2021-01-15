@@ -13,7 +13,7 @@
 #include "../storage/pf.h"
 #include "../sql/dml.h"
 #include "../sql/ddl.h"
-#include "../storage/rm_error.h"
+#include "../error_message/all_error.h"
 
 using namespace std;
 
@@ -36,6 +36,7 @@ RC Test4();
 RC Test5();
 RC Test6();
 RC Test7();
+RC Test8();
 RC InsertData(DML_Manager &dmlManager, char *relName);
 RC VertifyData(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle, char *relName);
 RC CreateTable(DDL_Manager &ddlManager, char *relName);
@@ -43,8 +44,8 @@ RC CreateDatabase();
 int main() {
     srand(time(nullptr));
     int rc;
-    if((rc = Test7())) {
-        RM_PrintError(rc);
+    if((rc = Test8())) {
+        PrintError(rc);
     }
     return 0;
 }
@@ -124,6 +125,32 @@ RC InsertData2(DML_Manager &dmlManager, char *relName) {
         values[3].value = (void*)&(students[i].height);
         values[3].type = FLOAT;
         if(dmlManager.insert(relName, 4, values)) {
+            delete [] values;
+            return rc;
+        }
+    }
+    cout << "Insert Data Successfully!\n";
+    return 0;
+}
+
+RC InsertDataWithSameID(DML_Manager &dmlManager, char *relName) {
+    int rc;
+    cout << "insert " << studentCount << " records..\n";
+    for(int i = 0; i < 10000; ++i) {
+        students[i].id = rand() % 10000 + 1;
+        generateStr(students[i].name, nameSize);
+        students[i].weight = rand() % 249 + 1;
+        students[i].height = rand() % 249 + 1;
+        Value *values = new Value[4];
+        values[0].value = (void*)&(students[i].id);
+        values[0].type = INT;
+        values[1].value = (void*)(students[i].name);
+        values[1].type = STRING;
+        values[2].value = (void*)&(students[i].weight);
+        values[2].type = FLOAT;
+        values[3].value = (void*)&(students[i].height);
+        values[3].type = FLOAT;
+        if((rc = dmlManager.insert(relName, 4, values))) {
             delete [] values;
             return rc;
         }
@@ -285,6 +312,44 @@ RC VertifyDataWithIndex(DDL_Manager &ddlManager, IX_Manager &ixManager, RM_FileH
         cout << "Vertify Data With Index Successfully!\n";
     }
     return 0;   // ok
+}
+
+RC getAttrIDCount(DDL_Manager &ddlManager, RM_FileHandle &rmFileHandle) {
+    int rc;
+    vector<int> idVals;
+    RM_FileScan rmScan;
+    if((rc = rmScan.openScan(rmFileHandle, INT, 4, 0, NO_OP, (void*)&rc))) {
+        return rc;
+    }
+    RM_Record rec;
+    // 扫描表中的数据，并和保存到数组中的数据做比较验证
+    while((rc = rmScan.getNextRec(rec)) == 0) {
+        char *pData;
+        if((rc = rec.getData(pData))) {
+            return rc;
+        }
+        Student student;
+        student.id = *(int*)(pData);
+        int flag = 0;
+        for(int &tmp : idVals) {
+            if(tmp == student.id) {
+                flag = 1;
+                break;
+            }
+        }
+        if(!flag) {
+            idVals.emplace_back(student.id);
+        }
+    }
+    if((rc = rmScan.closeScan())) {
+        return rc;
+    }
+//    for(int &tmp : idVals) {
+//        cout << tmp << " ";
+//    }
+//    cout << "\n";
+    cout << "right id count: " << idVals.size() << "\n";
+    return 0; // ok
 }
 
 // 测试创建表操作, 查看数据字典是否正确存储
@@ -646,4 +711,72 @@ RC Test7() {
     }
     cout << "Test7 done!\n";
     return 0;
+}
+
+// Test8: 测试新增的方法：
+RC Test8() {
+    cout << "Test8 starts....\n";
+    int rc;
+    PF_Manager pfManager;
+    RM_Manager rmManager(pfManager);
+    IX_Manager ixManager(pfManager);
+    DDL_Manager ddlManager(rmManager, ixManager);
+    DML_Manager dmlManager(rmManager, ddlManager, ixManager);
+    char dbName[MAXNAME + 1] = "testdb";
+    char relName[MAXNAME + 1] = "student";
+    // 创建数据库
+    if((rc = CreateDatabase())) {
+        return rc;
+    }
+    // 打开数据库
+    if((rc = ddlManager.openDb(dbName))) {
+        return rc;
+    }
+    // 创建表
+    if((rc = CreateTable(ddlManager, relName))) {
+        return rc;
+    }
+    // 向表中插入数据
+    if((rc = InsertDataWithSameID(dmlManager, relName))) {
+        return rc;
+    }
+    // 输出各个方法的信息
+    int blockNum;
+    int tupleNum;
+    if((rc = ddlManager.getRelBlockNum(relName, blockNum))) {
+        return rc;
+    }
+    if((rc = ddlManager.getRelTupleNum(relName, tupleNum))) {
+        return rc;
+    }
+    int idCount, nameCount, weightCount, heightCount;
+    if((rc = ddlManager.getAttrDiffNum(relName, "id", idCount)) ||
+            (rc = ddlManager.getAttrDiffNum(relName, "name", nameCount)) ||
+            (rc = ddlManager.getAttrDiffNum(relName, "weight", weightCount)) ||
+            (rc = ddlManager.getAttrDiffNum(relName, "height", heightCount))) {
+        return rc;
+    }
+    RM_FileHandle rmFileHandle;
+    if((rc = rmManager.openFile(relName, rmFileHandle))) {
+        return rc;
+    }
+    if((rc = getAttrIDCount(ddlManager, rmFileHandle))) {
+        return rc;
+    }
+    if((rc = rmManager.closeFile(rmFileHandle))) {
+        return rc;
+    }
+    cout << "Relation Block Number:" << blockNum << "\n";
+    cout << "Relation Tuple Number: " << tupleNum << "\n";
+    cout << "id count: " << idCount << "\n";
+    cout << "name count: " << nameCount << "\n";
+    cout << "weight count: " << weightCount << "\n";
+    cout << "height count: " << heightCount << "\n";
+    if((rc = ddlManager.closeDb())) {
+        return rc;
+    }
+    if((rc = DeleteDatabase())) {
+        return rc;
+    }
+    return 0; // ok
 }

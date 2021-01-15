@@ -248,14 +248,14 @@ RC RM_FileScan::getNextRec(RM_Record &rec) {
                 // - 根据varchar size从偏移处获取varchar属性值
             else if(attrType == VARCHAR) {
                 RM_VarLenAttr *varLenAttr = (RM_VarLenAttr*)(recordData + attrOffset);
-                int attrPageNum;
-                int attrSlotNum;
-                int blockInfoIndex;
-                if((rc = varLenAttr->getPageNum(attrPageNum)) ||
-                        (rc = varLenAttr->getSlotNum(attrSlotNum)) ||
-                        (rc = varLenAttr->getBlockInfoIndex(blockInfoIndex))) {
-                    return rc;
-                }
+//                int attrPageNum;
+//                int attrSlotNum;
+//                int blockInfoIndex;
+//                if((rc = varLenAttr->getPageNum(attrPageNum)) ||
+//                        (rc = varLenAttr->getSlotNum(attrSlotNum)) ||
+//                        (rc = varLenAttr->getBlockInfoIndex(blockInfoIndex))) {
+//                    return rc;
+//                }
                 char *pVal;
                 if((rc = rmFileHandle.getVarValue(*varLenAttr, pVal))) {
                     return rc;

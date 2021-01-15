@@ -64,6 +64,9 @@ public:
     RC forcePages(PageNum pageNum = ALL_PAGES) const;           // 仅将缓冲区内容写回而不从缓冲区移除, 使用pageNum标记是force特定页还是所有页
 
     int isValidPageNum(PageNum pageNum) const;                  // 检测访问的页号是否合法
+    ///
+    int getNumPages() const;
+    ///
 
 private:
     BufferMgr *pBufferMgr;                      // 缓冲区的指针

@@ -77,6 +77,8 @@ RC RM_Manager::createFile(const char *fileName, int recordSize) {
     recFileHeaderPage->numberRecords = calcNumberRecord(recordSize);
     // 初始化没有空闲页
     recFileHeaderPage->firstFreePage = RM_NO_FREE_PAGE;
+    // 初始化记录文件存储记录数量为0
+    recFileHeaderPage->totalNumberRecords = 0;
     // 将file header page的信息写入申请的缓冲页中, 复制file header page的数据到缓冲区中
     // 修改bug, 去掉(char8)&fileHeaderPage中的&，因为fileHeaderPage声明的是指针类型
     memcpy(pRecData, (char*)recFileHeaderPage, sizeof(RM_RecordFileHeaderPage));

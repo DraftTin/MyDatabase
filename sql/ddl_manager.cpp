@@ -676,4 +676,193 @@ RC DDL_Manager::getAttrcatRec(const char *relName, const char *attrName, RM_Reco
     return 0;   // ok
 }
 
+// getRelBlockNum: 获取表relName的申请的总页数
+RC DDL_Manager::getRelBlockNum(const string &relName, int &rNum) {
+    int rc;
+    RM_FileHandle rmFileHandle;
+    if((rc = rmManager->openFile(relName.c_str(), rmFileHandle))) {
+        return rc;
+    }
+    rNum = rmFileHandle.getNumPages();
+    if((rc = rmManager->closeFile(rmFileHandle))) {
+        return rc;
+    }
+    return 0; // ok
+}
+
+// getRelTupleNum: 获取表中存储总共元组的数量
+RC DDL_Manager::getRelTupleNum(const string &relName, int &rNum) {
+    int rc;
+    RM_FileHandle rmFileHandle;
+    if((rc = rmManager->openFile(relName.c_str(), rmFileHandle))) {
+        return rc;
+    }
+    rNum = rmFileHandle.getNumTuples();
+    if((rc = rmManager->closeFile(rmFileHandle))) {
+        return rc;
+    }
+    return 0;   // ok
+}
+
+//// getAttrDiffNum: 获取属性Attr的不同值的数量
+//RC DDL_Manager::getAttrDiffNum(const string &relName, const string &attrName, int &rNum) {
+//    int rc;
+//    AttrcatRecord attrcatRecord;
+//    // 获取属性attrName的信息
+//    if((rc = getAttrInfo(relName.c_str(), attrName.c_str(), attrcatRecord))) {
+//        return rc;
+//    }
+//    // 如果没有索引测创建索引
+//    if(attrcatRecord.indexNo == -1) {
+//        if((rc = createIndex(relName.c_str(), attrName.c_str()))) {
+//            return rc;
+//        }
+//        // 重新获取indexNo
+//        if((rc = getAttrInfo(relName.c_str(), attrName.c_str(), attrcatRecord))) {
+//            return rc;
+//        }
+//    }
+//    // 使用索引扫描
+//    rNum = 0;
+//    IX_IndexScan ixIndexScan;
+//    IX_IndexHandle ixIndexHandle;
+//    RID rid;
+//    if((rc = ixManager->openIndex(relName.c_str(), attrcatRecord.indexNo, ixIndexHandle))) {
+//        return rc;
+//    }
+//    if((rc = ixIndexScan.openScan(ixIndexHandle, NO_OP, (void*)&rc))) {
+//        return rc;
+//    }
+//    while((rc = ixIndexScan.getNextEntryWithoutRepeat(rid)) == 0) {
+//        ++rNum;
+//    }
+//    if((rc != IX_EOF)) {
+//        return rc;
+//    }
+//    // 关闭索引关闭索引扫描
+//    if((rc = ixManager->closeIndex(ixIndexHandle)) ||
+//            (rc = ixIndexScan.closeScan())) {
+//        return rc;
+//    }
+//    return 0;
+//}
+
+// getAttrDiffNum: 获取属性Attr的不同值的数量
+RC DDL_Manager::getAttrDiffNum(const string &relName, const string &attrName, int &rNum) {
+    int rc;
+
+    // 获取属性的信息
+    AttrcatRecord attrcatRecord;
+    if((rc = getAttrInfo(relName.c_str(), attrName.c_str(), attrcatRecord))) {
+        return rc;
+    }
+    // 打开文件
+    RM_FileHandle rmFileHandle;
+    if((rc = rmManager->openFile(relName.c_str(), rmFileHandle))) {
+        return rc;
+    }
+    RM_FileScan rmScan;
+    if((rc = rmScan.openScan(rmFileHandle, attrcatRecord.attrType, attrcatRecord.attrLength, attrcatRecord.offset, NO_OP, (void*)&rc))) {
+        return rc;
+    }
+    RM_Record rec;
+    // 扫描表中的数据，并和保存到数组中的数据做比较验证
+    if(attrcatRecord.attrType == INT) {
+        vector<int> attrVals;
+        while((rc = rmScan.getNextRec(rec)) == 0) {
+            char *pData;
+            if((rc = rec.getData(pData))) {
+                return rc;
+            }
+            int attrval = *(int*)(pData + attrcatRecord.offset);
+            int flag = 0;
+            for(int &tmp : attrVals) {
+                if(tmp == attrval) {
+                    flag = 1;
+                    break;
+                }
+            }
+            if(!flag) {
+                attrVals.emplace_back(attrval);
+            }
+        }
+        rNum = attrVals.size();
+    }
+    else if(attrcatRecord.attrType == FLOAT) {
+        vector<float> attrVals;
+        while((rc = rmScan.getNextRec(rec)) == 0) {
+            char *pData;
+            if((rc = rec.getData(pData))) {
+                return rc;
+            }
+            float attrval = *(float*)(pData + attrcatRecord.offset);
+            int flag = 0;
+            for(float &tmp : attrVals) {
+                if(tmp == attrval) {
+                    flag = 1;
+                    break;
+                }
+            }
+            if(!flag) {
+                attrVals.emplace_back(attrval);
+            }
+        }
+        rNum = attrVals.size();
+    }
+    else if(attrcatRecord.attrType == STRING) {
+        vector<string> attrVals;
+        while((rc = rmScan.getNextRec(rec)) == 0) {
+            char *pData;
+            if((rc = rec.getData(pData))) {
+                return rc;
+            }
+            char *attrval = (char*)(pData + attrcatRecord.offset);
+            int flag = 0;
+            for(string &tmp : attrVals) {
+                if(tmp == attrval) {
+                    flag = 1;
+                    break;
+                }
+            }
+            if(!flag) {
+                attrVals.emplace_back(attrval);
+            }
+        }
+        rNum = attrVals.size();
+    }
+    else if(attrcatRecord.attrType == VARCHAR) {
+        vector<string> attrVals;
+        while((rc = rmScan.getNextRec(rec)) == 0) {
+            char *pData;
+            if((rc = rec.getData(pData))) {
+                return rc;
+            }
+            RM_VarLenAttr *varLenAttr = (RM_VarLenAttr*)(pData + attrcatRecord.offset);
+            // 获取变长字符串的值
+            char *attrval;
+            if((rc = rmFileHandle.getVarValue(*varLenAttr, attrval))) {
+                return rc;
+            }
+            int flag = 0;
+            for(string &tmp : attrVals) {
+                if(tmp == attrval) {
+                    flag = 1;
+                    break;
+                }
+            }
+            if(!flag) {
+                attrVals.emplace_back(attrval);
+            }
+        }
+        rNum = attrVals.size();
+    }
+    if((rc = rmScan.closeScan())) {
+        return rc;
+    }
+    if((rc = rmManager->closeFile(rmFileHandle))) {
+        return rc;
+    }
+    return 0; // ok
+}
+
 

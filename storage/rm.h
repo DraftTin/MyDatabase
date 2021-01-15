@@ -23,6 +23,9 @@ struct RM_RecordFileHeaderPage {
     int recordSize;                 // 记录大小
     int numberRecords;              // 一页中记录的数量
     PageNum firstFreePage;          // 文件中第一个空闲页(有剩余空间的页)
+    ///
+    int totalNumberRecords;         // 文件中存储的总记录数量
+    ///
 };
 
 // RM_AttrFileHeaderPage
@@ -111,6 +114,11 @@ public:
     RC getVarValue(RM_VarLenAttr &varLenAttr, char *&pVal);
     // 写回文件
     RC forcePages(PageNum pageNum = ALL_PAGES);
+
+    ///
+    int getNumPages() const;
+    int getNumTuples() const;
+    ///
 private:
     // 计算slotNum记录在页内的偏移
     int calcRecordOffset(int slotNum) const;

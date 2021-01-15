@@ -84,11 +84,14 @@ public:
                  const char *attrName);
     RC createIndex(const char *relName,             // 创建表属性的索引
                     const char *attrName);
-    RC getRelInfo(const char *relName, RelcatRecord &relinfo) const;   // 返回属性信息和表信息
-    RC getAttrInfo(const char *relName, AttrcatRecord *attrinfo) const;
-    RC getAttrInfo(const char *relName, const char *attrName, AttrcatRecord &attrInfo);
+    RC getRelInfo(const char *relName, RelcatRecord &relinfo) const;    // 返回属性信息和表信息
+    RC getAttrInfo(const char *relName, AttrcatRecord *attrinfo) const; // 返回表中所有属性的信息
+    RC getAttrInfo(const char *relName, const char *attrName, AttrcatRecord &attrInfo); // 返回表中属性attrName属性的信息
     ////
-    RC getAttributes(const string &relName, vector<string> &rAttributes);   // 获取表中所有的属性名
+    RC getAttributes(const string &relName, vector<string> &rAttributes);           // 获取表中所有的属性名
+    RC getRelBlockNum(const string &relName, int &rNum);                            // 获取表申请的页数
+    RC getRelTupleNum(const string &relName, int &rNum);                            // 获取表总共的元组数量
+    RC getAttrDiffNum(const string &relName, const string &attrName, int &rNum);    // 获取表属性attrName的不同值的数目
     ////
     RC printAllData(char *relName, int lines = PRINT_ALL_DATA) const;
     RC printDataDic() const;

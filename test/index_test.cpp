@@ -2,13 +2,14 @@
 // Created by Administrator on 2020/12/11.
 //
 
+#include <iostream>
 #include "io.h"
 #include "../storage/pf.h"
 #include "../storage/rm.h"
 #include "../storage/ix.h"
 #include "../sql/ddl.h"
 #include "../sql/dml.h"
-#include <iostream>
+#include "../error_message/all_error.h"
 
 using namespace std;
 
@@ -43,6 +44,7 @@ int main() {
     int rc;
     if((rc = Test1())) {
         cout << "rc = " << rc << "\n";
+        PrintError(rc);
     }
     return 0;
 }

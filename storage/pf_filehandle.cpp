@@ -308,5 +308,9 @@ RC PF_FileHandle::forcePages(PageNum pageNum) const {
     return pBufferMgr->forceSinglePage(unixfd, pageNum);
 }
 
+int PF_FileHandle::getNumPages() const {
+    return hdr.numPages;
+}
+
 
 
