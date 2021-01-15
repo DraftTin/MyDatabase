@@ -859,60 +859,6 @@ storage/pf_manager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/storage/pf_manager.cpp.s
 .PHONY : storage/pf_manager.cpp.s
 
-storage/pf_test1.obj: storage/pf_test1.cpp.obj
-
-.PHONY : storage/pf_test1.obj
-
-# target to build an object file
-storage/pf_test1.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.obj
-.PHONY : storage/pf_test1.cpp.obj
-
-storage/pf_test1.i: storage/pf_test1.cpp.i
-
-.PHONY : storage/pf_test1.i
-
-# target to preprocess a source file
-storage/pf_test1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.i
-.PHONY : storage/pf_test1.cpp.i
-
-storage/pf_test1.s: storage/pf_test1.cpp.s
-
-.PHONY : storage/pf_test1.s
-
-# target to generate assembly for a file
-storage/pf_test1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.s
-.PHONY : storage/pf_test1.cpp.s
-
-storage/pf_test2.obj: storage/pf_test2.cpp.obj
-
-.PHONY : storage/pf_test2.obj
-
-# target to build an object file
-storage/pf_test2.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/storage/pf_test2.cpp.obj
-.PHONY : storage/pf_test2.cpp.obj
-
-storage/pf_test2.i: storage/pf_test2.cpp.i
-
-.PHONY : storage/pf_test2.i
-
-# target to preprocess a source file
-storage/pf_test2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/storage/pf_test2.cpp.i
-.PHONY : storage/pf_test2.cpp.i
-
-storage/pf_test2.s: storage/pf_test2.cpp.s
-
-.PHONY : storage/pf_test2.s
-
-# target to generate assembly for a file
-storage/pf_test2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/storage/pf_test2.cpp.s
-.PHONY : storage/pf_test2.cpp.s
-
 storage/rid.obj: storage/rid.cpp.obj
 
 .PHONY : storage/rid.obj
@@ -1165,33 +1111,6 @@ storage/rm_record.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/storage/rm_record.cpp.s
 .PHONY : storage/rm_record.cpp.s
 
-storage/rm_test1.obj: storage/rm_test1.cpp.obj
-
-.PHONY : storage/rm_test1.obj
-
-# target to build an object file
-storage/rm_test1.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/rm_test1.cpp.obj
-.PHONY : storage/rm_test1.cpp.obj
-
-storage/rm_test1.i: storage/rm_test1.cpp.i
-
-.PHONY : storage/rm_test1.i
-
-# target to preprocess a source file
-storage/rm_test1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/rm_test1.cpp.i
-.PHONY : storage/rm_test1.cpp.i
-
-storage/rm_test1.s: storage/rm_test1.cpp.s
-
-.PHONY : storage/rm_test1.s
-
-# target to generate assembly for a file
-storage/rm_test1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/rm_test1.cpp.s
-.PHONY : storage/rm_test1.cpp.s
-
 storage/rm_varlenattr.obj: storage/rm_varlenattr.cpp.obj
 
 .PHONY : storage/rm_varlenattr.obj
@@ -1315,6 +1234,87 @@ test/index_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/test/index_test.cpp.s
 .PHONY : test/index_test.cpp.s
 
+test/pf_test1.obj: test/pf_test1.cpp.obj
+
+.PHONY : test/pf_test1.obj
+
+# target to build an object file
+test/pf_test1.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj
+.PHONY : test/pf_test1.cpp.obj
+
+test/pf_test1.i: test/pf_test1.cpp.i
+
+.PHONY : test/pf_test1.i
+
+# target to preprocess a source file
+test/pf_test1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/test/pf_test1.cpp.i
+.PHONY : test/pf_test1.cpp.i
+
+test/pf_test1.s: test/pf_test1.cpp.s
+
+.PHONY : test/pf_test1.s
+
+# target to generate assembly for a file
+test/pf_test1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/test/pf_test1.cpp.s
+.PHONY : test/pf_test1.cpp.s
+
+test/pf_test2.obj: test/pf_test2.cpp.obj
+
+.PHONY : test/pf_test2.obj
+
+# target to build an object file
+test/pf_test2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/test/pf_test2.cpp.obj
+.PHONY : test/pf_test2.cpp.obj
+
+test/pf_test2.i: test/pf_test2.cpp.i
+
+.PHONY : test/pf_test2.i
+
+# target to preprocess a source file
+test/pf_test2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/test/pf_test2.cpp.i
+.PHONY : test/pf_test2.cpp.i
+
+test/pf_test2.s: test/pf_test2.cpp.s
+
+.PHONY : test/pf_test2.s
+
+# target to generate assembly for a file
+test/pf_test2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/test/pf_test2.cpp.s
+.PHONY : test/pf_test2.cpp.s
+
+test/rm_test1.obj: test/rm_test1.cpp.obj
+
+.PHONY : test/rm_test1.obj
+
+# target to build an object file
+test/rm_test1.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj
+.PHONY : test/rm_test1.cpp.obj
+
+test/rm_test1.i: test/rm_test1.cpp.i
+
+.PHONY : test/rm_test1.i
+
+# target to preprocess a source file
+test/rm_test1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/test/rm_test1.cpp.i
+.PHONY : test/rm_test1.cpp.i
+
+test/rm_test1.s: test/rm_test1.cpp.s
+
+.PHONY : test/rm_test1.s
+
+# target to generate assembly for a file
+test/rm_test1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/test/rm_test1.cpp.s
+.PHONY : test/rm_test1.cpp.s
+
 test/sql_test.obj: test/sql_test.cpp.obj
 
 .PHONY : test/sql_test.obj
@@ -1405,12 +1405,6 @@ help:
 	@echo ... storage/pf_manager.obj
 	@echo ... storage/pf_manager.i
 	@echo ... storage/pf_manager.s
-	@echo ... storage/pf_test1.obj
-	@echo ... storage/pf_test1.i
-	@echo ... storage/pf_test1.s
-	@echo ... storage/pf_test2.obj
-	@echo ... storage/pf_test2.i
-	@echo ... storage/pf_test2.s
 	@echo ... storage/rid.obj
 	@echo ... storage/rid.i
 	@echo ... storage/rid.s
@@ -1429,9 +1423,6 @@ help:
 	@echo ... storage/rm_record.obj
 	@echo ... storage/rm_record.i
 	@echo ... storage/rm_record.s
-	@echo ... storage/rm_test1.obj
-	@echo ... storage/rm_test1.i
-	@echo ... storage/rm_test1.s
 	@echo ... storage/rm_varlenattr.obj
 	@echo ... storage/rm_varlenattr.i
 	@echo ... storage/rm_varlenattr.s
@@ -1444,6 +1435,15 @@ help:
 	@echo ... test/index_test.obj
 	@echo ... test/index_test.i
 	@echo ... test/index_test.s
+	@echo ... test/pf_test1.obj
+	@echo ... test/pf_test1.i
+	@echo ... test/pf_test1.s
+	@echo ... test/pf_test2.obj
+	@echo ... test/pf_test2.i
+	@echo ... test/pf_test2.s
+	@echo ... test/rm_test1.obj
+	@echo ... test/rm_test1.i
+	@echo ... test/rm_test1.s
 	@echo ... test/sql_test.obj
 	@echo ... test/sql_test.i
 	@echo ... test/sql_test.s

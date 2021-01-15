@@ -84,11 +84,13 @@ public:
     ~PF_Manager();
     // 创建文件, 并写入文件头信息
     RC createFile(const char *filename);
+    // 删除文件
     RC destroyFile(const char *fileName);
+    // 打开文件，将文件句柄赋给fileHandle并返回
     RC openFile(const char *fileName, PF_FileHandle &fileHandle);
     // 关闭和fileHandle相关联的文件
     RC closeFile(PF_FileHandle &fileHandle);
-    // 由pBufferMgr执行
+    // 由pBufferMgr执行, 输出缓冲区的信息
     RC printBuffer() const;
 private:
     BufferMgr* pBufferMgr;

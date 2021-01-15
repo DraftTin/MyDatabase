@@ -10,7 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pagehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test1.dir/storage/pagehandle.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_filehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test1.dir/storage/pf_filehandle.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test1.dir/storage/pf_manager.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_test1.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/test/pf_test1.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

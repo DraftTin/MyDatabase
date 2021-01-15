@@ -21,8 +21,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_filescan.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rm_test1.dir/storage/rm_filescan.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rm_test1.dir/storage/rm_manager.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_record.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rm_test1.dir/storage/rm_record.cpp.obj"
-  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_test1.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rm_test1.dir/storage/rm_test1.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_varlenattr.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rm_test1.dir/storage/rm_varlenattr.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/test/rm_test1.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

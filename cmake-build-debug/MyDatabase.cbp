@@ -709,12 +709,6 @@
 			<Option target="hw1_test"/>
 			<Option target="index_test"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_test1.cpp">
-			<Option target="pf_test1"/>
-		</Unit>
-		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_test2.cpp">
-			<Option target="pf_test2"/>
-		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rid.cpp">
 			<Option target="MyDatabase"/>
 			<Option target="dbcreate"/>
@@ -803,9 +797,6 @@
 			<Option target="hw1_test"/>
 			<Option target="index_test"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_test1.cpp">
-			<Option target="rm_test1"/>
-		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_varlenattr.cpp">
 			<Option target="MyDatabase"/>
 			<Option target="dbcreate"/>
@@ -822,6 +813,15 @@
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/test/index_test.cpp">
 			<Option target="index_test"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/test/pf_test1.cpp">
+			<Option target="pf_test1"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/test/pf_test2.cpp">
+			<Option target="pf_test2"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/test/rm_test1.cpp">
+			<Option target="rm_test1"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/test/sql_test.cpp">
 			<Option target="sql_test"/>

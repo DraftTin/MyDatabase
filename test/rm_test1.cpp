@@ -4,10 +4,10 @@
 #include <cstdlib>
 
 #include "../global.h"
-#include "pf.h"
-#include "rm.h"
-#include "pf_error.h"
-#include "rm_error.h"
+#include "../storage/pf.h"
+#include "../storage/rm.h"
+#include "../storage/pf_error.h"
+#include "../storage/rm_error.h"
 
 using namespace std;
 

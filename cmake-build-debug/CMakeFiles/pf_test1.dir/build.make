@@ -76,18 +76,18 @@ include CMakeFiles/pf_test1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/pf_test1.dir/flags.make
 
-CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.obj: CMakeFiles/pf_test1.dir/flags.make
-CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.obj: ../storage/pf_test1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.obj"
-	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\pf_test1.dir\storage\pf_test1.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\storage\pf_test1.cpp
+CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: CMakeFiles/pf_test1.dir/flags.make
+CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../test/pf_test1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\pf_test1.dir\test\pf_test1.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\test\pf_test1.cpp
 
-CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.i"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\storage\pf_test1.cpp > CMakeFiles\pf_test1.dir\storage\pf_test1.cpp.i
+CMakeFiles/pf_test1.dir/test/pf_test1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pf_test1.dir/test/pf_test1.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\test\pf_test1.cpp > CMakeFiles\pf_test1.dir\test\pf_test1.cpp.i
 
-CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.s"
-	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\pf_test1.cpp -o CMakeFiles\pf_test1.dir\storage\pf_test1.cpp.s
+CMakeFiles/pf_test1.dir/test/pf_test1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pf_test1.dir/test/pf_test1.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\test\pf_test1.cpp -o CMakeFiles\pf_test1.dir\test\pf_test1.cpp.s
 
 CMakeFiles/pf_test1.dir/storage/pf_manager.cpp.obj: CMakeFiles/pf_test1.dir/flags.make
 CMakeFiles/pf_test1.dir/storage/pf_manager.cpp.obj: ../storage/pf_manager.cpp
@@ -169,7 +169,7 @@ CMakeFiles/pf_test1.dir/atomic/RWLock.cpp.s: cmake_force
 
 # Object files for target pf_test1
 pf_test1_OBJECTS = \
-"CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.obj" \
+"CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj" \
 "CMakeFiles/pf_test1.dir/storage/pf_manager.cpp.obj" \
 "CMakeFiles/pf_test1.dir/storage/bufhashtable.cpp.obj" \
 "CMakeFiles/pf_test1.dir/storage/bufmgr.cpp.obj" \
@@ -180,7 +180,7 @@ pf_test1_OBJECTS = \
 # External object files for target pf_test1
 pf_test1_EXTERNAL_OBJECTS =
 
-pf_test1.exe: CMakeFiles/pf_test1.dir/storage/pf_test1.cpp.obj
+pf_test1.exe: CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj
 pf_test1.exe: CMakeFiles/pf_test1.dir/storage/pf_manager.cpp.obj
 pf_test1.exe: CMakeFiles/pf_test1.dir/storage/bufhashtable.cpp.obj
 pf_test1.exe: CMakeFiles/pf_test1.dir/storage/bufmgr.cpp.obj

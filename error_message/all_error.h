@@ -14,6 +14,7 @@
 
 using namespace std;
 
+// 根据错误码输出错误信息
 void PrintError(RC rc) {
     if(abs(rc) < END_PF_ERR) {
         PF_PrintError(rc);

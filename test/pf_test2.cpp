@@ -2,10 +2,10 @@
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
-#include "pf.h"
-#include "pf_internal.h"
-#include "bufhashtable.h"
-#include "pf_error.h"
+#include "../storage/pf.h"
+#include "../storage/pf_internal.h"
+#include "../storage/bufhashtable.h"
+#include "../storage/pf_error.h"
 
 using namespace std;
 

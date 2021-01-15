@@ -5,7 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/pf_test2.dir/storage/pagehandle.cpp.obj"
   "CMakeFiles/pf_test2.dir/storage/pf_filehandle.cpp.obj"
   "CMakeFiles/pf_test2.dir/storage/pf_manager.cpp.obj"
-  "CMakeFiles/pf_test2.dir/storage/pf_test2.cpp.obj"
+  "CMakeFiles/pf_test2.dir/test/pf_test2.cpp.obj"
   "libpf_test2.dll.a"
   "pf_test2.exe"
   "pf_test2.exe.manifest"
