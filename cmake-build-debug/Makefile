@@ -259,6 +259,19 @@ playground/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/build
 .PHONY : playground/fast
 
+#=============================================================================
+# Target rules for targets named dbdestroy
+
+# Build rule for target.
+dbdestroy: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 dbdestroy
+.PHONY : dbdestroy
+
+# fast build rule for target.
+dbdestroy/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbdestroy.dir\build.make CMakeFiles/dbdestroy.dir/build
+.PHONY : dbdestroy/fast
+
 atomic/RWLock.obj: atomic/RWLock.cpp.obj
 
 .PHONY : atomic/RWLock.obj
@@ -336,6 +349,33 @@ dbcreate.s: dbcreate.cpp.s
 dbcreate.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/dbcreate.cpp.s
 .PHONY : dbcreate.cpp.s
+
+dbdestroy.obj: dbdestroy.cpp.obj
+
+.PHONY : dbdestroy.obj
+
+# target to build an object file
+dbdestroy.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbdestroy.dir\build.make CMakeFiles/dbdestroy.dir/dbdestroy.cpp.obj
+.PHONY : dbdestroy.cpp.obj
+
+dbdestroy.i: dbdestroy.cpp.i
+
+.PHONY : dbdestroy.i
+
+# target to preprocess a source file
+dbdestroy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbdestroy.dir\build.make CMakeFiles/dbdestroy.dir/dbdestroy.cpp.i
+.PHONY : dbdestroy.cpp.i
+
+dbdestroy.s: dbdestroy.cpp.s
+
+.PHONY : dbdestroy.s
+
+# target to generate assembly for a file
+dbdestroy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbdestroy.dir\build.make CMakeFiles/dbdestroy.dir/dbdestroy.cpp.s
+.PHONY : dbdestroy.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -1359,6 +1399,7 @@ help:
 	@echo ... MyDatabase
 	@echo ... concurrent_test
 	@echo ... dbcreate
+	@echo ... dbdestroy
 	@echo ... hw1_test
 	@echo ... index_test
 	@echo ... pf_test1
@@ -1372,6 +1413,9 @@ help:
 	@echo ... dbcreate.obj
 	@echo ... dbcreate.i
 	@echo ... dbcreate.s
+	@echo ... dbdestroy.obj
+	@echo ... dbdestroy.i
+	@echo ... dbdestroy.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

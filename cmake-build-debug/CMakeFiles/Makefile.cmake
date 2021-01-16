@@ -63,4 +63,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/concurrent_test.dir/DependInfo.cmake"
   "CMakeFiles/index_test.dir/DependInfo.cmake"
   "CMakeFiles/playground.dir/DependInfo.cmake"
+  "CMakeFiles/dbdestroy.dir/DependInfo.cmake"
   )

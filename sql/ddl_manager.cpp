@@ -865,9 +865,4 @@ RC DDL_Manager::getAttrDiffNum(const string &relName, const string &attrName, in
     return 0; // ok
 }
 
-RC DDL_Manager::createDb(const char *dbName) {
-    string command = ".\\dbcreate " + string(dbName);
-    return system(command.c_str());
-}
-
 
