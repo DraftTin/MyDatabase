@@ -11,8 +11,8 @@
 #include "global.h"
 #include "storage/pf.h"
 #include "storage/rm.h"
-#include "storage/rm_error.h"
 #include "sql/ddl.h"
+#include "error_message/all_error.h"
 
 using namespace std;
 
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     RM_Manager rmManager(pfManager);
     if((rc = rmManager.createFile(relCatFileName, sizeof(RelcatRecord))) ||
        (rc = rmManager.createFile(attrCatFileName, sizeof(AttrcatRecord)))) {
-        RM_PrintError(rc);
+        PrintError(rc);
         return rc;
     }
 //    RM_FileHandle relFH;

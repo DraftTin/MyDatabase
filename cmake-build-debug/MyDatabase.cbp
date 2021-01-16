@@ -669,16 +669,6 @@
 			<Option target="hw1_test"/>
 			<Option target="index_test"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_error.h">
-			<Option target="pf_test2"/>
-			<Option target="MyDatabase"/>
-			<Option target="dbcreate"/>
-			<Option target="pf_test1"/>
-			<Option target="sql_test"/>
-			<Option target="rm_test1"/>
-			<Option target="hw1_test"/>
-			<Option target="index_test"/>
-		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_filehandle.cpp">
 			<Option target="pf_test2"/>
 			<Option target="MyDatabase"/>
@@ -742,14 +732,6 @@
 			<Option target="index_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_bitmap.h">
-			<Option target="MyDatabase"/>
-			<Option target="dbcreate"/>
-			<Option target="sql_test"/>
-			<Option target="rm_test1"/>
-			<Option target="hw1_test"/>
-			<Option target="index_test"/>
-		</Unit>
-		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/rm_error.h">
 			<Option target="MyDatabase"/>
 			<Option target="dbcreate"/>
 			<Option target="sql_test"/>
