@@ -284,9 +284,35 @@ CMakeFiles/dbcreate.dir/atomic/RWLock.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbcreate.dir/atomic/RWLock.cpp.s"
 	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\atomic\RWLock.cpp -o CMakeFiles\dbcreate.dir\atomic\RWLock.cpp.s
 
+CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.obj: CMakeFiles/dbcreate.dir/flags.make
+CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.obj: ../storage/ix_indexhandle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbcreate.dir\storage\ix_indexhandle.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexhandle.cpp
+
+CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexhandle.cpp > CMakeFiles\dbcreate.dir\storage\ix_indexhandle.cpp.i
+
+CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexhandle.cpp -o CMakeFiles\dbcreate.dir\storage\ix_indexhandle.cpp.s
+
+CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.obj: CMakeFiles/dbcreate.dir/flags.make
+CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.obj: ../storage/ix_indexscan.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.obj"
+	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbcreate.dir\storage\ix_indexscan.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexscan.cpp
+
+CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.i"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexscan.cpp > CMakeFiles\dbcreate.dir\storage\ix_indexscan.cpp.i
+
+CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.s"
+	C:\MinGW64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_indexscan.cpp -o CMakeFiles\dbcreate.dir\storage\ix_indexscan.cpp.s
+
 CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.obj: CMakeFiles/dbcreate.dir/flags.make
 CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.obj: ../storage/ix_manager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.obj"
 	C:\MinGW64\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbcreate.dir\storage\ix_manager.cpp.obj -c C:\Users\Administrator\CLionProjects\MyDatabase\storage\ix_manager.cpp
 
 CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.i: cmake_force
@@ -315,6 +341,8 @@ dbcreate_OBJECTS = \
 "CMakeFiles/dbcreate.dir/storage/attrfilehandle.cpp.obj" \
 "CMakeFiles/dbcreate.dir/storage/rm_bitmap.cpp.obj" \
 "CMakeFiles/dbcreate.dir/atomic/RWLock.cpp.obj" \
+"CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.obj" \
+"CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.obj" \
 "CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.obj"
 
 # External object files for target dbcreate
@@ -336,12 +364,14 @@ dbcreate.exe: CMakeFiles/dbcreate.dir/storage/rm_varlenattr.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/attrfilehandle.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/rm_bitmap.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/atomic/RWLock.cpp.obj
+dbcreate.exe: CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.obj
+dbcreate.exe: CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.obj
 dbcreate.exe: CMakeFiles/dbcreate.dir/build.make
 dbcreate.exe: CMakeFiles/dbcreate.dir/linklibs.rsp
 dbcreate.exe: CMakeFiles/dbcreate.dir/objects1.rsp
 dbcreate.exe: CMakeFiles/dbcreate.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable dbcreate.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable dbcreate.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\dbcreate.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

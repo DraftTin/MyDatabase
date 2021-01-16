@@ -621,24 +621,28 @@
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/ix.h">
 			<Option target="MyDatabase"/>
+			<Option target="dbcreate"/>
 			<Option target="sql_test"/>
 			<Option target="rm_test1"/>
 			<Option target="index_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/ix_indexhandle.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dbcreate"/>
 			<Option target="sql_test"/>
 			<Option target="rm_test1"/>
 			<Option target="index_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/ix_indexscan.cpp">
 			<Option target="MyDatabase"/>
+			<Option target="dbcreate"/>
 			<Option target="sql_test"/>
 			<Option target="rm_test1"/>
 			<Option target="index_test"/>
 		</Unit>
 		<Unit filename="C:/Users/Administrator/CLionProjects/MyDatabase/storage/ix_internal.h">
 			<Option target="MyDatabase"/>
+			<Option target="dbcreate"/>
 			<Option target="sql_test"/>
 			<Option target="rm_test1"/>
 			<Option target="index_test"/>

@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/dbcreate.dir/storage/attrfilehandle.cpp.obj"
   "CMakeFiles/dbcreate.dir/storage/bufhashtable.cpp.obj"
   "CMakeFiles/dbcreate.dir/storage/bufmgr.cpp.obj"
+  "CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.obj"
+  "CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.obj"
   "CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.obj"
   "CMakeFiles/dbcreate.dir/storage/pagehandle.cpp.obj"
   "CMakeFiles/dbcreate.dir/storage/pf_filehandle.cpp.obj"

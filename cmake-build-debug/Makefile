@@ -614,6 +614,7 @@ storage/ix_indexhandle.obj: storage/ix_indexhandle.cpp.obj
 # target to build an object file
 storage/ix_indexhandle.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/storage/ix_indexhandle.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sql_test.dir\build.make CMakeFiles/sql_test.dir/storage/ix_indexhandle.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/storage/ix_indexhandle.cpp.obj
@@ -626,6 +627,7 @@ storage/ix_indexhandle.i: storage/ix_indexhandle.cpp.i
 # target to preprocess a source file
 storage/ix_indexhandle.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/storage/ix_indexhandle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sql_test.dir\build.make CMakeFiles/sql_test.dir/storage/ix_indexhandle.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/storage/ix_indexhandle.cpp.i
@@ -638,6 +640,7 @@ storage/ix_indexhandle.s: storage/ix_indexhandle.cpp.s
 # target to generate assembly for a file
 storage/ix_indexhandle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/storage/ix_indexhandle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sql_test.dir\build.make CMakeFiles/sql_test.dir/storage/ix_indexhandle.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/ix_indexhandle.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/storage/ix_indexhandle.cpp.s
@@ -650,6 +653,7 @@ storage/ix_indexscan.obj: storage/ix_indexscan.cpp.obj
 # target to build an object file
 storage/ix_indexscan.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sql_test.dir\build.make CMakeFiles/sql_test.dir/storage/ix_indexscan.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/storage/ix_indexscan.cpp.obj
@@ -662,6 +666,7 @@ storage/ix_indexscan.i: storage/ix_indexscan.cpp.i
 # target to preprocess a source file
 storage/ix_indexscan.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sql_test.dir\build.make CMakeFiles/sql_test.dir/storage/ix_indexscan.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/storage/ix_indexscan.cpp.i
@@ -674,6 +679,7 @@ storage/ix_indexscan.s: storage/ix_indexscan.cpp.s
 # target to generate assembly for a file
 storage/ix_indexscan.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyDatabase.dir\build.make CMakeFiles/MyDatabase.dir/storage/ix_indexscan.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbcreate.dir\build.make CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sql_test.dir\build.make CMakeFiles/sql_test.dir/storage/ix_indexscan.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rm_test1.dir\build.make CMakeFiles/rm_test1.dir/storage/ix_indexscan.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/storage/ix_indexscan.cpp.s

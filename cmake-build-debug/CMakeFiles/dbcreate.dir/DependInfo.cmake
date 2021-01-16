@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/attrfilehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbcreate.dir/storage/attrfilehandle.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufhashtable.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbcreate.dir/storage/bufhashtable.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/bufmgr.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbcreate.dir/storage/bufmgr.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/ix_indexhandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbcreate.dir/storage/ix_indexhandle.cpp.obj"
+  "C:/Users/Administrator/CLionProjects/MyDatabase/storage/ix_indexscan.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbcreate.dir/storage/ix_indexscan.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/ix_manager.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbcreate.dir/storage/ix_manager.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pagehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbcreate.dir/storage/pagehandle.cpp.obj"
   "C:/Users/Administrator/CLionProjects/MyDatabase/storage/pf_filehandle.cpp" "C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbcreate.dir/storage/pf_filehandle.cpp.obj"
