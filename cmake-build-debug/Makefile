@@ -272,6 +272,19 @@ dbdestroy/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbdestroy.dir\build.make CMakeFiles/dbdestroy.dir/build
 .PHONY : dbdestroy/fast
 
+#=============================================================================
+# Target rules for targets named error_message_test
+
+# Build rule for target.
+error_message_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 error_message_test
+.PHONY : error_message_test
+
+# fast build rule for target.
+error_message_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\error_message_test.dir\build.make CMakeFiles/error_message_test.dir/build
+.PHONY : error_message_test/fast
+
 atomic/RWLock.obj: atomic/RWLock.cpp.obj
 
 .PHONY : atomic/RWLock.obj
@@ -1226,6 +1239,33 @@ test/concurrent_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\concurrent_test.dir\build.make CMakeFiles/concurrent_test.dir/test/concurrent_test.cpp.s
 .PHONY : test/concurrent_test.cpp.s
 
+test/error_message_test.obj: test/error_message_test.cpp.obj
+
+.PHONY : test/error_message_test.obj
+
+# target to build an object file
+test/error_message_test.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\error_message_test.dir\build.make CMakeFiles/error_message_test.dir/test/error_message_test.cpp.obj
+.PHONY : test/error_message_test.cpp.obj
+
+test/error_message_test.i: test/error_message_test.cpp.i
+
+.PHONY : test/error_message_test.i
+
+# target to preprocess a source file
+test/error_message_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\error_message_test.dir\build.make CMakeFiles/error_message_test.dir/test/error_message_test.cpp.i
+.PHONY : test/error_message_test.cpp.i
+
+test/error_message_test.s: test/error_message_test.cpp.s
+
+.PHONY : test/error_message_test.s
+
+# target to generate assembly for a file
+test/error_message_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\error_message_test.dir\build.make CMakeFiles/error_message_test.dir/test/error_message_test.cpp.s
+.PHONY : test/error_message_test.cpp.s
+
 test/hw1_test.obj: test/hw1_test.cpp.obj
 
 .PHONY : test/hw1_test.obj
@@ -1400,6 +1440,7 @@ help:
 	@echo ... concurrent_test
 	@echo ... dbcreate
 	@echo ... dbdestroy
+	@echo ... error_message_test
 	@echo ... hw1_test
 	@echo ... index_test
 	@echo ... pf_test1
@@ -1479,6 +1520,9 @@ help:
 	@echo ... test/concurrent_test.obj
 	@echo ... test/concurrent_test.i
 	@echo ... test/concurrent_test.s
+	@echo ... test/error_message_test.obj
+	@echo ... test/error_message_test.i
+	@echo ... test/error_message_test.s
 	@echo ... test/hw1_test.obj
 	@echo ... test/hw1_test.i
 	@echo ... test/hw1_test.s

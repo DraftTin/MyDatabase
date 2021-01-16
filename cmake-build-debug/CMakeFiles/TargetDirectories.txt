@@ -9,5 +9,6 @@ C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/con
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/index_test.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/playground.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/dbdestroy.dir
+C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/error_message_test.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/Administrator/CLionProjects/MyDatabase/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -83,6 +83,7 @@ all: CMakeFiles/concurrent_test.dir/all
 all: CMakeFiles/index_test.dir/all
 all: CMakeFiles/playground.dir/all
 all: CMakeFiles/dbdestroy.dir/all
+all: CMakeFiles/error_message_test.dir/all
 
 .PHONY : all
 
@@ -103,6 +104,7 @@ clean: CMakeFiles/concurrent_test.dir/clean
 clean: CMakeFiles/index_test.dir/clean
 clean: CMakeFiles/playground.dir/clean
 clean: CMakeFiles/dbdestroy.dir/clean
+clean: CMakeFiles/error_message_test.dir/clean
 
 .PHONY : clean
 
@@ -113,12 +115,12 @@ clean: CMakeFiles/dbdestroy.dir/clean
 CMakeFiles/pf_test2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test2.dir\build.make CMakeFiles/pf_test2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=65,66,67,68,69 "Built target pf_test2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=65,66,67,68,69,70 "Built target pf_test2"
 .PHONY : CMakeFiles/pf_test2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pf_test2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/pf_test2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/pf_test2.dir/rule
@@ -194,12 +196,12 @@ CMakeFiles/dbcreate.dir/clean:
 CMakeFiles/pf_test1.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pf_test1.dir\build.make CMakeFiles/pf_test1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=59,60,61,62,63,64 "Built target pf_test1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=60,61,62,63,64 "Built target pf_test1"
 .PHONY : CMakeFiles/pf_test1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pf_test1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/pf_test1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/pf_test1.dir/rule
@@ -275,12 +277,12 @@ CMakeFiles/rm_test1.dir/clean:
 CMakeFiles/hw1_test.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\hw1_test.dir\build.make CMakeFiles/hw1_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\hw1_test.dir\build.make CMakeFiles/hw1_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=33,34,35,36,37,38,39,40,41,42,43,44 "Built target hw1_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43,44 "Built target hw1_test"
 .PHONY : CMakeFiles/hw1_test.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/hw1_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/hw1_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/hw1_test.dir/rule
@@ -329,12 +331,12 @@ CMakeFiles/concurrent_test.dir/clean:
 CMakeFiles/index_test.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\index_test.dir\build.make CMakeFiles/index_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=45,46,47,48,49,50,51,52,53,54,55,56,57,58 "Built target index_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=45,46,47,48,49,50,51,52,53,54,55,56,57,58,59 "Built target index_test"
 .PHONY : CMakeFiles/index_test.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/index_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/index_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/index_test.dir/rule
@@ -356,12 +358,12 @@ CMakeFiles/index_test.dir/clean:
 CMakeFiles/playground.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\playground.dir\build.make CMakeFiles/playground.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=70,71 "Built target playground"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=71 "Built target playground"
 .PHONY : CMakeFiles/playground.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/playground.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/playground.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/playground.dir/rule
@@ -383,12 +385,12 @@ CMakeFiles/playground.dir/clean:
 CMakeFiles/dbdestroy.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbdestroy.dir\build.make CMakeFiles/dbdestroy.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbdestroy.dir\build.make CMakeFiles/dbdestroy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=31,32 "Built target dbdestroy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=31 "Built target dbdestroy"
 .PHONY : CMakeFiles/dbdestroy.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/dbdestroy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/dbdestroy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/dbdestroy.dir/rule
@@ -402,6 +404,33 @@ dbdestroy: CMakeFiles/dbdestroy.dir/rule
 CMakeFiles/dbdestroy.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dbdestroy.dir\build.make CMakeFiles/dbdestroy.dir/clean
 .PHONY : CMakeFiles/dbdestroy.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/error_message_test.dir
+
+# All Build rule for target.
+CMakeFiles/error_message_test.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\error_message_test.dir\build.make CMakeFiles/error_message_test.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\error_message_test.dir\build.make CMakeFiles/error_message_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles --progress-num=32,33 "Built target error_message_test"
+.PHONY : CMakeFiles/error_message_test.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/error_message_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/error_message_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\CLionProjects\MyDatabase\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/error_message_test.dir/rule
+
+# Convenience name for target.
+error_message_test: CMakeFiles/error_message_test.dir/rule
+
+.PHONY : error_message_test
+
+# clean rule for target.
+CMakeFiles/error_message_test.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\error_message_test.dir\build.make CMakeFiles/error_message_test.dir/clean
+.PHONY : CMakeFiles/error_message_test.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
