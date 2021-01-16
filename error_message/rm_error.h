@@ -2,6 +2,9 @@
 // Created by Administrator on 2021/1/13.
 //
 
+#ifndef RM_ERROR_H
+#define RM_ERROR_H
+
 #include <iostream>
 #include "../storage/rm.h"
 
@@ -45,3 +48,5 @@ void RM_PrintError(RC rc) {
         cerr << "RM ERROR: " << rc << " is out of bound\n";
     }
 }
+
+#endif

@@ -137,14 +137,12 @@ CMakeFiles/rm_test1.dir/storage/rm_varlenattr.cpp.obj: ../storage/rid.h
 CMakeFiles/rm_test1.dir/storage/rm_varlenattr.cpp.obj: ../storage/rm.h
 CMakeFiles/rm_test1.dir/storage/rm_varlenattr.cpp.obj: ../storage/rm_varlenattr.cpp
 
+CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../error_message/pf_error.h
+CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../error_message/rm_error.h
 CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../global.h
 CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../parser.h
 CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../storage/pf.h
-CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../storage/pf_error.h
-CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../storage/pf_internal.h
 CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../storage/rid.h
 CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../storage/rm.h
-CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../storage/rm_error.h
-CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../storage/rm_internal.h
 CMakeFiles/rm_test1.dir/test/rm_test1.cpp.obj: ../test/rm_test1.cpp
 

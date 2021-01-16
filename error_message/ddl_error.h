@@ -2,6 +2,9 @@
 // Created by Administrator on 2021/1/13.
 //
 
+#ifndef DDL_ERROR_H
+#define DDL_ERROR_H
+
 #include <iostream>
 #include "../sql/ddl.h"
 
@@ -36,3 +39,5 @@ void DDL_PrintError(RC rc) {
         cerr << "DDL ERROR: " << rc << " is out of bound\n";
     }
 }
+
+#endif

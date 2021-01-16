@@ -40,10 +40,10 @@ CMakeFiles/pf_test1.dir/storage/pf_manager.cpp.obj: ../storage/pf_internal.h
 CMakeFiles/pf_test1.dir/storage/pf_manager.cpp.obj: ../storage/pf_manager.cpp
 
 CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../atomic/RWLock.h
+CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../error_message/pf_error.h
 CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../global.h
 CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../storage/bufhashtable.h
 CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../storage/pf.h
-CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../storage/pf_error.h
 CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../storage/pf_internal.h
 CMakeFiles/pf_test1.dir/test/pf_test1.cpp.obj: ../test/pf_test1.cpp
 

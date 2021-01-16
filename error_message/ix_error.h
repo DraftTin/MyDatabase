@@ -2,6 +2,9 @@
 // Created by Administrator on 2021/1/13.
 //
 
+#ifndef IX_ERROR_H
+#define IX_ERROR_H
+
 #include <iostream>
 #include "../storage/ix.h"
 
@@ -34,3 +37,5 @@ void IX_PrintError(RC rc) {
         cerr << "IX ERROR: " << rc << " is out of bound\n";
     }
 }
+
+#endif

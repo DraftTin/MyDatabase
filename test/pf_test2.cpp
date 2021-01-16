@@ -5,7 +5,7 @@
 #include "../storage/pf.h"
 #include "../storage/pf_internal.h"
 #include "../storage/bufhashtable.h"
-#include "../storage/pf_error.h"
+#include "../error_message/pf_error.h"
 
 using namespace std;
 

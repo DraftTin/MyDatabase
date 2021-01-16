@@ -1,6 +1,9 @@
 //
 // Created by Administrator on 2021/1/13.
 //
+#ifndef PF_ERROR_H
+#define PF_ERROR_H
+
 #include <iostream>
 #include "../storage/pf.h"
 
@@ -44,3 +47,5 @@ void PF_PrintError(RC rc) {
         cerr << "PF ERROR: " << rc << " is out of bound\n";
     }
 }
+
+#endif

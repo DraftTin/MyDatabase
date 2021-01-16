@@ -2,6 +2,9 @@
 // Created by Administrator on 2021/1/13.
 //
 
+#ifndef DML_ERROR_H
+#define DML_ERROR_H
+
 #include <iostream>
 #include "../sql/dml.h"
 
@@ -31,3 +34,5 @@ void DML_PrintError(RC rc) {
         cerr << "DML ERROR: " << rc << " is out of bound\n";
     }
 }
+
+#endif
